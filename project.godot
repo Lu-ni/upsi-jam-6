@@ -15,8 +15,14 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="upsi-jam-6"
+run/main_scene="uid://dtbs3n50bqkkl"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneList="*uid://c5ra7fd6ewiio"
+Signals="*uid://ckynh1tp68hdk"
 
 [input]
 
