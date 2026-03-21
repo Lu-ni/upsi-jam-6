@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://cu0s3kerks1jj"]
 
 [ext_resource type="Script" uid="uid://bjgfd2aapsvub" path="res://scripts/drop.gd" id="1_21n5c"]
+[ext_resource type="Shader" uid="uid://bx8pxigf5ijxr" path="res://scripts/Drop.gdshader" id="2_8aaos"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o5f2y"]
+shader = ExtResource("2_8aaos")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 1.398000066405
 
 [node name="Drop" type="CharacterBody2D" unique_id=1198643905]
 script = ExtResource("1_21n5c")
@@ -8,3 +14,4 @@ pickup_range = 100
 move_speed = 503
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=57519601]
+material = SubResource("ShaderMaterial_o5f2y")
