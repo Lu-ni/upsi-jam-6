@@ -7,6 +7,7 @@ var purple_color: Color = Color(0.85, 0.6, 1.0, 1.0)
 
 @export var fade_start: float = 0.7
 @export var fade_end: float = 1.0
+var target: Node2D = null
 
 func _ready() -> void:
 	_setup_gradient()
@@ -36,8 +37,10 @@ func burst_in_direction(dir: Vector2):
 func _process(_delta: float) -> void:
 	if ready_to_blow and Input.is_action_just_pressed("petals"):
 		ready_to_blow = false
-		var mouse_pos = get_global_mouse_position()
-		var dir = (mouse_pos - global_position).normalized()
+		if target == null:
+			target = get_tree().get_first_node_in_group("garbage_pile")
+		if target == null: return
+		var dir = (target.global_position - global_position).normalized()
 
 		var new_emitter: GPUParticles2D = duplicate()
 		new_emitter.one_shot = true

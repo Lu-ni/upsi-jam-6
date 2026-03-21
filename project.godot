@@ -30,6 +30,7 @@ PlayerManager="*uid://dk0j4ubsrvp26"
 [global_group]
 
 player="This is the fukin player you dunce"
+garbage_pile=""
 
 [input]
 
