@@ -10,11 +10,11 @@
 script = ExtResource("1_fls4u")
 
 [node name="ItemList" type="VBoxContainer" parent="." unique_id=1672027048]
-offset_left = 37.0
-offset_top = 98.0
-offset_right = 165.0
-offset_bottom = 1102.762
-scale = Vector2(0.42, 0.42)
+offset_left = 24.000002
+offset_top = 110.0
+offset_right = 152.0
+offset_bottom = 1114.762
+scale = Vector2(0.33, 0.33)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
@@ -28,8 +28,8 @@ layout_mode = 2
 texture = ExtResource("1_qpvh6")
 
 [node name="Weight" type="Sprite2D" parent="." unique_id=880909006]
-position = Vector2(140, 20.000004)
-scale = Vector2(0.155, 0.155)
+position = Vector2(26, 72)
+scale = Vector2(0.23, 0.23)
 texture = ExtResource("3_1etfg")
 
 [node name="Label" type="Label" parent="Weight" unique_id=497785977]
@@ -41,8 +41,8 @@ theme_override_font_sizes/font_size = 92
 text = "0"
 
 [node name="Value" type="Sprite2D" parent="." unique_id=1959881150]
-position = Vector2(367, 19.000002)
-scale = Vector2(0.155, 0.155)
+position = Vector2(28, 28)
+scale = Vector2(0.23, 0.23)
 texture = ExtResource("4_nysna")
 
 [node name="Label" type="Label" parent="Value" unique_id=205730385]
@@ -54,8 +54,8 @@ theme_override_font_sizes/font_size = 92
 text = "0"
 
 [node name="Time" type="Sprite2D" parent="." unique_id=1727786038]
-position = Vector2(559, 19.000002)
-scale = Vector2(0.155, 0.155)
+position = Vector2(778, 22)
+scale = Vector2(0.23, 0.23)
 texture = ExtResource("5_f6qnu")
 
 [node name="Label" type="Label" parent="Time" unique_id=687337136]
