@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b8426ip26j4iu"]
 
-[ext_resource type="Script" uid="uid://b82ibctgve75e" path="res://scripts/craft.gd" id="1_ec5oe"]
-[ext_resource type="Texture2D" uid="uid://drsmvpdhbasf0" path="res://assets/test/Farming Pixel Art Assets.png" id="2_t4md6"]
+[ext_resource type="Script" uid="uid://uuccduo61w5q" path="res://scripts/shop.gd" id="1_ec5oe"]
+[ext_resource type="Texture2D" uid="uid://drsmvpdhbasf0" path="res://assets/sprites/test/Farming Pixel Art Assets.png" id="2_t4md6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cimqq"]
 atlas = ExtResource("2_t4md6")
@@ -12,21 +12,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cimqq")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fpbbi"]
-atlas = ExtResource("2_t4md6")
-region = Rect2(0, 0, 16, 17)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_m0qts"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fpbbi")
 }],
 "loop": true,
 "name": &"default",
@@ -45,10 +30,6 @@ script = ExtResource("1_ec5oe")
 
 [node name="ShopPart" type="AnimatedSprite2D" parent="." unique_id=415828246]
 sprite_frames = SubResource("SpriteFrames_yltc6")
-
-[node name="PngPart" type="AnimatedSprite2D" parent="." unique_id=501089114]
-scale = Vector2(1.0027387, 1)
-sprite_frames = SubResource("SpriteFrames_m0qts")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=743889153]
 position = Vector2(-0.8187318, 0.31494308)

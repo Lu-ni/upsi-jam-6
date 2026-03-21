@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://dtbs3n50bqkkl"]
 
-[ext_resource type="Texture2D" uid="uid://drsmvpdhbasf0" path="res://assets/test/Farming Pixel Art Assets.png" id="1_611at"]
+[ext_resource type="Texture2D" uid="uid://drsmvpdhbasf0" path="res://assets/sprites/test/Farming Pixel Art Assets.png" id="1_611at"]
 [ext_resource type="PackedScene" uid="uid://bxbwud5tu2yaq" path="res://scenes/Player.tscn" id="1_echbf"]
 [ext_resource type="PackedScene" uid="uid://cu0s3kerks1jj" path="res://scenes/Drop.tscn" id="2_ibiss"]
-[ext_resource type="PackedScene" uid="uid://b8426ip26j4iu" path="res://scenes/Craft.tscn" id="3_c6dvc"]
+[ext_resource type="PackedScene" uid="uid://d35pkl3pwtuow" path="res://scenes/Shop.tscn" id="3_c6dvc"]
+[ext_resource type="PackedScene" uid="uid://b8426ip26j4iu" path="res://scenes/Craft.tscn" id="5_k24pf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k24pf"]
 texture = ExtResource("1_611at")
@@ -205,13 +206,7 @@ position = Vector2(716, -125)
 [node name="Drop7" parent="." unique_id=1528787226 instance=ExtResource("2_ibiss")]
 position = Vector2(291, -368)
 
-[node name="Shop3" parent="." unique_id=644990966 instance=ExtResource("3_c6dvc")]
+[node name="Shop" parent="." unique_id=644990966 instance=ExtResource("3_c6dvc")]
 
-[node name="Shop2" parent="." unique_id=1580942380 instance=ExtResource("3_c6dvc")]
-position = Vector2(-292, 3)
-
-[node name="Shop" parent="." unique_id=1649543323 instance=ExtResource("3_c6dvc")]
-position = Vector2(458, -14)
-
-[node name="HeapOfGarbage" parent="." unique_id=1990489062 instance=ExtResource("5_k24pf")]
-position = Vector2(904, 329)
+[node name="Craft" parent="." unique_id=42163889 instance=ExtResource("5_k24pf")]
+position = Vector2(314, -2)

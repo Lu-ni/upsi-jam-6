@@ -25,7 +25,7 @@ GlobalItemList="*uid://brp35qkkiiwt7"
 SceneList="*uid://c5ra7fd6ewiio"
 PlayerInfo="*uid://bae4ppspx5ngb"
 GameInfo="*uid://d38veo5scdgsj"
-PlayerManager="*uid://dk0j4ubsrvp26"
+PlayerManager="*res://globals/PlayerManager.gd"
 
 [global_group]
 
