@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bxbwud5tu2yaq" path="res://scenes/Player.tscn" id="1_echbf"]
 [ext_resource type="PackedScene" uid="uid://cu0s3kerks1jj" path="res://scenes/Drop.tscn" id="2_ibiss"]
 [ext_resource type="PackedScene" uid="uid://b8426ip26j4iu" path="res://scenes/Shop.tscn" id="3_c6dvc"]
+[ext_resource type="PackedScene" uid="uid://cxmshivhhmjok" path="res://scenes/HeapOfGarbage.tscn" id="5_k24pf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k24pf"]
 texture = ExtResource("1_611at")
@@ -212,3 +213,6 @@ position = Vector2(-292, 3)
 
 [node name="Shop" parent="." unique_id=1649543323 instance=ExtResource("3_c6dvc")]
 position = Vector2(458, -14)
+
+[node name="HeapOfGarbage" parent="." unique_id=1990489062 instance=ExtResource("5_k24pf")]
+position = Vector2(904, 329)
