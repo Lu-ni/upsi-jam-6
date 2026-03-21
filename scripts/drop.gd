@@ -9,8 +9,14 @@ var picked_up: bool = false
 var item: Item = null
 
 func _ready() -> void:
-	# Example
-	item = GlobalItemList.example_item
+	# TEMP RAND ITEM SELECTION
+	var selection = randi() % GlobalItemList.items.size()
+	var keys = GlobalItemList.items.keys()
+	var rand_index = randi() % keys.size()
+	var key = keys[rand_index]
+	item = GlobalItemList.items[key]
+		
+	$Sprite2D.scale = Vector2(0.2, 0.2)
 	get_player()
 	set_sprite()
 
@@ -45,6 +51,6 @@ func set_sprite():
 		$Sprite2D.texture = item.texture
 
 func give_player_loot():
-	print("Woohoo yioppieeei didee dooo da you got loota ma masn")
-	Signals.pick_up.emit(item)
+	if PlayerInfo.inventory.size() < GameInfo.max_inventory:
+		Signals.pick_up.emit(item)
 	queue_free()

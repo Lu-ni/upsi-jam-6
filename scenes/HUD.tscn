@@ -13,15 +13,14 @@ script = ExtResource("1_fls4u")
 offset_left = 24.000002
 offset_top = 110.0
 offset_right = 152.0
-offset_bottom = 1114.762
+offset_bottom = 1440.303
 scale = Vector2(0.33, 0.33)
-size_flags_horizontal = 3
-size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 
 [node name="TextureRect2" type="TextureRect" parent="ItemList" unique_id=1341948677]
 layout_mode = 2
 texture = ExtResource("1_qpvh6")
+stretch_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ItemList" unique_id=1478821820]
 layout_mode = 2
@@ -41,6 +40,7 @@ theme_override_font_sizes/font_size = 92
 text = "0"
 
 [node name="Value" type="Sprite2D" parent="." unique_id=1959881150]
+visible = false
 position = Vector2(28, 28)
 scale = Vector2(0.23, 0.23)
 texture = ExtResource("4_nysna")
