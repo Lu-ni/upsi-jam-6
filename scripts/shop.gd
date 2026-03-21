@@ -32,29 +32,29 @@ func reroll_shop() -> void:
 
 func get_random_item_index() -> int:
 	var potential_indices = range(items.size())
-	
+
 	if not ALLOW_DUPLICATES:
 		for idx in shop_slots_indices:
 			potential_indices.erase(idx)
-	
+
 	if potential_indices.is_empty():
 		return randi() % items.size()
-		
+
 	return potential_indices.pick_random()
 
 func replace_item_at_slot(slot_index: int) -> void:
 	if slot_index < 0 or slot_index >= shop_slots_indices.size():
 		return
-		
+
 	var current_indices_copy = shop_slots_indices.duplicate()
 	current_indices_copy.remove_at(slot_index)
-	
+
 	var potential_indices = range(items.size())
-	
+
 	if not ALLOW_DUPLICATES:
 		for idx in current_indices_copy:
 			potential_indices.erase(idx)
-			
+
 	if potential_indices.is_empty():
 		shop_slots_indices[slot_index] = randi() % items.size()
 	else:
@@ -63,14 +63,14 @@ func replace_item_at_slot(slot_index: int) -> void:
 func get_item_at_slot(slot_index: int) -> Dictionary:
 	if slot_index < 0 or slot_index >= shop_slots_indices.size():
 		return {}
-	
+
 	var real_index = shop_slots_indices[slot_index]
 	return items[real_index]
 
 func update_item_price_at_slot(slot_index: int, new_price: int) -> void:
 	if slot_index < 0 or slot_index >= shop_slots_indices.size():
 		return
-		
+
 	var real_index = shop_slots_indices[slot_index]
 	items[real_index]["price"] = new_price
 
