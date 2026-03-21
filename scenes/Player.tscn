@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bekfg7wx6vst3"]
+[gd_scene format=3 uid="uid://bxbwud5tu2yaq"]
 
 [ext_resource type="Script" uid="uid://doyrqmd1d1vvl" path="res://scripts/player.gd" id="1_v6fml"]
 [ext_resource type="Texture2D" uid="uid://t17t3iqkesbp" path="res://icon.svg" id="2_3li8b"]
@@ -12,3 +12,5 @@ scale = Vector2(0.58, 0.58)
 texture = ExtResource("2_3li8b")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1720887917]
+
+[node name="Skeleton2D" type="Skeleton2D" parent="." unique_id=1963170893]
