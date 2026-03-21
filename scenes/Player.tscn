@@ -37,6 +37,9 @@ turbulence_noise_scale = 3.957
 turbulence_influence_min = 0.030000001
 turbulence_influence_max = 0.082
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdl7e"]
+size = Vector2(75, 76)
+
 [node name="Player" type="CharacterBody2D" unique_id=657339320 groups=["player"]]
 script = ExtResource("1_v6fml")
 speed = 500.0
@@ -60,3 +63,7 @@ explosiveness = 0.89
 randomness = 0.4
 process_material = SubResource("ParticleProcessMaterial_3li8b")
 script = ExtResource("3_3li8b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1422910339]
+position = Vector2(1.5, -1)
+shape = SubResource("RectangleShape2D_mdl7e")
