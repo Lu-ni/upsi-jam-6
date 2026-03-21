@@ -1,11 +1,23 @@
 [gd_scene format=3 uid="uid://bt5ppf60hstyw"]
 
 [ext_resource type="Script" uid="uid://086tw55ivwfn" path="res://scripts/ChunkManager.gd" id="1_kqs1s"]
+[ext_resource type="Script" uid="uid://d3gartxcwiibl" path="res://scripts/flowers.gd" id="2_7g83o"]
 [ext_resource type="PackedScene" uid="uid://bxbwud5tu2yaq" path="res://scenes/Player.tscn" id="2_32lhk"]
+[ext_resource type="Script" uid="uid://dy3x8dnsttnr6" path="res://scripts/grass.gd" id="3_d1c63"]
 
 [node name="World" type="Node2D" unique_id=1768956342]
 
-[node name="Node2D" type="Node2D" parent="." unique_id=1217159323]
+[node name="WorldMap" type="Node2D" parent="." unique_id=1217159323]
 script = ExtResource("1_kqs1s")
+
+[node name="Grass" type="Node2D" parent="." unique_id=835536886]
+z_index = -1
+z_as_relative = false
+script = ExtResource("3_d1c63")
+
+[node name="Flowers" type="Node2D" parent="." unique_id=485891091]
+z_index = -1
+z_as_relative = false
+script = ExtResource("2_7g83o")
 
 [node name="Player" parent="." unique_id=657339320 instance=ExtResource("2_32lhk")]
