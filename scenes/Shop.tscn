@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://b8426ip26j4iu"]
+
+[ext_resource type="Script" uid="uid://b82ibctgve75e" path="res://scripts/shop.gd" id="1_ec5oe"]
+[ext_resource type="Texture2D" uid="uid://drsmvpdhbasf0" path="res://assets/test/Farming Pixel Art Assets.png" id="2_t4md6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cimqq"]
+atlas = ExtResource("2_t4md6")
+region = Rect2(2, 180, 29, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yltc6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cimqq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpbbi"]
+atlas = ExtResource("2_t4md6")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m0qts"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpbbi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ht580"]
+size = Vector2(6.310071, 24.94112)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_skkvx"]
+radius = 15.0
+
+[node name="Shop" type="StaticBody2D" unique_id=644990966]
+scale = Vector2(2.763, 3)
+script = ExtResource("1_ec5oe")
+
+[node name="ShopPart" type="AnimatedSprite2D" parent="." unique_id=415828246]
+sprite_frames = SubResource("SpriteFrames_yltc6")
+
+[node name="PngPart" type="AnimatedSprite2D" parent="." unique_id=501089114]
+scale = Vector2(1.0027387, 1)
+sprite_frames = SubResource("SpriteFrames_m0qts")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=743889153]
+position = Vector2(-0.8187318, 0.31494308)
+scale = Vector2(4.696851, -0.9370114)
+shape = SubResource("RectangleShape2D_ht580")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=436078647]
+
+[node name="Area2D" type="Area2D" parent="Area2D" unique_id=1994307709]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/Area2D" unique_id=1926473600]
+position = Vector2(-1, 12)
+shape = SubResource("CircleShape2D_skkvx")
+
+[connection signal="body_entered" from="Area2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D/Area2D" to="." method="_on_area_2d_body_exited"]

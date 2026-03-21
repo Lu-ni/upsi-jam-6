@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://doyrqmd1d1vvl" path="res://scripts/player.gd" id="1_v6fml"]
 [ext_resource type="Texture2D" uid="uid://t17t3iqkesbp" path="res://icon.svg" id="2_3li8b"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6fml"]
+size = Vector2(74, 75)
+
 [node name="Player" type="CharacterBody2D" unique_id=657339320 groups=["player"]]
 script = ExtResource("1_v6fml")
 speed = 500.0
@@ -12,5 +15,10 @@ scale = Vector2(0.58, 0.58)
 texture = ExtResource("2_3li8b")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1720887917]
+zoom = Vector2(0.5, 0.5)
 
 [node name="Skeleton2D" type="Skeleton2D" parent="." unique_id=1963170893]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=881272321]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_v6fml")

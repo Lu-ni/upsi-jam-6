@@ -6,3 +6,4 @@ func _ready() -> void:
 
 func SKABALADAN():
 	$Sprite2D.scale += Vector2(1,1)
+#

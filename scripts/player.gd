@@ -31,3 +31,9 @@ func play_animation(anim_type: String, direction: Vector2) -> void:
 
 	$AnimatedSprite2D.flip_h = flip
 	$AnimatedSprite2D.play(anim_type + "_" + anim_dir)
+
+func player_shop_method() -> void:
+	pass;
+
+func player_craft_method() -> void:
+	pass;

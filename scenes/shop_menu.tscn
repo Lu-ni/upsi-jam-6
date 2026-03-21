@@ -1,0 +1,167 @@
+[gd_scene format=3 uid="uid://csubsbsm6haaq"]
+
+[ext_resource type="Script" uid="uid://dmnw3qvjkgrsn" path="res://scripts/shop_menu.gd" id="1_script"]
+[ext_resource type="Shader" uid="uid://cn7hvtpllxew1" path="res://shaders/blur.gdshader" id="2_blur"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bubble"]
+bg_color = Color(0.1, 0.1, 0.1, 0.8)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_blur"]
+shader = ExtResource("2_blur")
+shader_parameter/amount = 2.5
+
+[node name="ShopMenu" type="Node2D" unique_id=2041116252]
+z_index = 100
+script = ExtResource("1_script")
+
+[node name="Bubble" type="PanelContainer" parent="." unique_id=2073863335]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -120.0
+offset_right = 75.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bubble")
+
+[node name="BackgroundBlur" type="ColorRect" parent="Bubble" unique_id=286425537]
+show_behind_parent = true
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="BlurEffect" type="ColorRect" parent="Bubble/BackgroundBlur" unique_id=1909568845]
+material = SubResource("ShaderMaterial_blur")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="VBoxContainer" parent="Bubble" unique_id=1623163306]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Header" type="HBoxContainer" parent="Bubble/Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="RerollContainer" type="VBoxContainer" parent="Bubble/Content/Header"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="RerollInfo" type="HBoxContainer" parent="Bubble/Content/Header/RerollContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RerollPriceLabel" type="Label" parent="Bubble/Content/Header/RerollContainer/RerollInfo" unique_id=998877665]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "10"
+horizontal_alignment = 2
+
+[node name="RerollCurrencyIcon" type="TextureRect" parent="Bubble/Content/Header/RerollContainer/RerollInfo" unique_id=11223344]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RerollButton" type="Button" parent="Bubble/Content/Header/RerollContainer" unique_id=55667788]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Roll"
+
+[node name="VSeparator" type="VSeparator" parent="Bubble/Content/Header"]
+layout_mode = 2
+
+[node name="ItemIcon" type="TextureRect" parent="Bubble/Content/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Spacer" type="Control" parent="Bubble/Content/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PriceContainer" type="HBoxContainer" parent="Bubble/Content/Header"]
+layout_mode = 2
+alignment = 1
+
+[node name="PriceLabel" type="Label" parent="Bubble/Content/Header/PriceContainer" unique_id=1590517232]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "100"
+horizontal_alignment = 2
+
+[node name="CurrencyIcon" type="TextureRect" parent="Bubble/Content/Header/PriceContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ItemLabel" type="Label" parent="Bubble/Content" unique_id=542516356]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_bubble")
+text = "Item Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescLabel" type="Label" parent="Bubble/Content" unique_id=987654321]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 10
+text = "Description of the item goes here."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Footer" type="HBoxContainer" parent="Bubble/Content"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="LeftButton" type="Button" parent="Bubble/Content/Footer" unique_id=2144269564]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = "<"
+
+[node name="BuyButton" type="Button" parent="Bubble/Content/Footer" unique_id=1838717197]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Buy"
+
+[node name="RightButton" type="Button" parent="Bubble/Content/Footer" unique_id=484053695]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+text = ">"
