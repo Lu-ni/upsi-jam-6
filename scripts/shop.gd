@@ -35,7 +35,7 @@ func get_random_item_index() -> int:
 	if not ALLOW_DUPLICATES:
 		for idx in shop_slots_indices:
 			potential_indices.erase(idx)
-	
+
 	if potential_indices.is_empty():
 		return randi() % all_deals.size()
 		
@@ -44,7 +44,7 @@ func get_random_item_index() -> int:
 func replace_item_at_slot(slot_index: int) -> void:
 	if slot_index < 0 or slot_index >= shop_slots_indices.size():
 		return
-		
+
 	var current_indices_copy = shop_slots_indices.duplicate()
 	current_indices_copy.remove_at(slot_index)
 	
@@ -53,7 +53,7 @@ func replace_item_at_slot(slot_index: int) -> void:
 	if not ALLOW_DUPLICATES:
 		for idx in current_indices_copy:
 			potential_indices.erase(idx)
-			
+
 	if potential_indices.is_empty():
 		shop_slots_indices[slot_index] = randi() % all_deals.size()
 	else:
@@ -69,7 +69,7 @@ func get_item_at_slot(slot_index: int) -> Deal:
 func update_item_price_at_slot(slot_index: int, new_price: Dictionary) -> void:
 	if slot_index < 0 or slot_index >= shop_slots_indices.size():
 		return
-		
+
 	var real_index = shop_slots_indices[slot_index]
 	all_deals[real_index].current_price = new_price
 

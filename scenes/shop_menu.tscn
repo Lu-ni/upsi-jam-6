@@ -56,17 +56,17 @@ layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Header" type="HBoxContainer" parent="Bubble/Content"]
+[node name="Header" type="HBoxContainer" parent="Bubble/Content" unique_id=1589430981]
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="RerollContainer" type="VBoxContainer" parent="Bubble/Content/Header"]
+[node name="RerollContainer" type="VBoxContainer" parent="Bubble/Content/Header" unique_id=663055354]
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="RerollInfo" type="HBoxContainer" parent="Bubble/Content/Header/RerollContainer"]
+[node name="RerollInfo" type="HBoxContainer" parent="Bubble/Content/Header/RerollContainer" unique_id=1574548758]
 layout_mode = 2
 alignment = 1
 
@@ -91,21 +91,21 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "Roll"
 
-[node name="VSeparator" type="VSeparator" parent="Bubble/Content/Header"]
+[node name="VSeparator" type="VSeparator" parent="Bubble/Content/Header" unique_id=1306338649]
 layout_mode = 2
 
-[node name="ItemIcon" type="TextureRect" parent="Bubble/Content/Header"]
+[node name="ItemIcon" type="TextureRect" parent="Bubble/Content/Header" unique_id=659930584]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Spacer" type="Control" parent="Bubble/Content/Header"]
+[node name="Spacer" type="Control" parent="Bubble/Content/Header" unique_id=1801349778]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PriceContainer" type="HBoxContainer" parent="Bubble/Content/Header"]
+[node name="PriceContainer" type="HBoxContainer" parent="Bubble/Content/Header" unique_id=1186149278]
 layout_mode = 2
 alignment = 1
 
@@ -117,7 +117,7 @@ theme_override_font_sizes/font_size = 14
 text = "100"
 horizontal_alignment = 2
 
-[node name="CurrencyIcon" type="TextureRect" parent="Bubble/Content/Header/PriceContainer"]
+[node name="CurrencyIcon" type="TextureRect" parent="Bubble/Content/Header/PriceContainer" unique_id=400278594]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
@@ -143,7 +143,7 @@ text = "Description of the item goes here."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Footer" type="HBoxContainer" parent="Bubble/Content"]
+[node name="Footer" type="HBoxContainer" parent="Bubble/Content" unique_id=1896034198]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1

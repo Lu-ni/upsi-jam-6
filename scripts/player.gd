@@ -4,6 +4,9 @@ extends CharacterBody2D
 
 var last_direction: Vector2 = Vector2.DOWN
 
+func _ready() -> void:
+	PlayerManager.player = self
+
 func _physics_process(_delta):
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	direction = direction.normalized()

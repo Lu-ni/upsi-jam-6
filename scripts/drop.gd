@@ -15,7 +15,7 @@ func _ready() -> void:
 	var rand_index = randi() % keys.size()
 	var key = keys[rand_index]
 	item = GlobalItemList.items[key]
-		
+
 	$Sprite2D.scale = Vector2(0.2, 0.2)
 	get_player()
 	set_sprite()
@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 		return
 	var to_target := target.global_position - global_position
 	var dist := to_target.length()
-	
+
 	if entered_range or dist <= pickup_range:
 		entered_range = true
 		var direction := to_target.normalized()

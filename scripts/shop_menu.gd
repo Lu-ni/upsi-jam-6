@@ -20,15 +20,15 @@ func _ready():
 	if not left_button: left_button = find_child("LeftButton", true, false)
 	if not right_button: right_button = find_child("RightButton", true, false)
 	if not buy_button: buy_button = find_child("BuyButton", true, false)
-	
+
 	if currency_icon:
 		if ResourceLoader.exists(money_icon_path):
 			var tex = load(money_icon_path)
 			currency_icon.texture = tex
 			if reroll_currency_icon: reroll_currency_icon.texture = tex
-	
+
 	update_display()
-	
+
 	if left_button: left_button.pressed.connect(_on_left_button_pressed)
 	if right_button: right_button.pressed.connect(_on_right_button_pressed)
 	if buy_button: buy_button.pressed.connect(_on_buy_button_pressed)
@@ -131,7 +131,7 @@ func _on_buy_button_pressed():
 			count,
 			deal.base_price
 		)
-		
+
 		# Mise à jour du prix et du compteur
 		shop_owner.update_item_price_at_slot(current_index, new_price_dict)
 		deal.count = count + 1 
@@ -140,16 +140,16 @@ func _on_buy_button_pressed():
 		
 		# Remplacement de l'item acheté par un nouveau aléatoire
 		shop_owner.replace_item_at_slot(current_index)
-		
+
 		update_display()
 
 func _on_reroll_button_pressed():
 	if shop_owner:
 		var current_price = shop_owner.get_current_reroll_price()
-		
+
 		# On suppose que le shop owner gère son compteur de reroll
 		var count = shop_owner.get("reroll_count") if "reroll_count" in shop_owner else 0
-		
+
 		var new_price = ShopManager.get_next_price(
 			ShopManager.current_algo_type,
 			current_price,
@@ -160,9 +160,9 @@ func _on_reroll_button_pressed():
 		shop_owner.update_reroll_price(new_price)
 		if "reroll_count" in shop_owner:
 			shop_owner.reroll_count += 1
-		
+
 		# Reroll complet du shop !
 		shop_owner.reroll_shop()
-		
+
 		print("Reroll used! New price: ", new_price)
 		update_display()

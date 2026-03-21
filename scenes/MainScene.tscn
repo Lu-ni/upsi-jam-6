@@ -212,3 +212,6 @@ position = Vector2(-292, 3)
 
 [node name="Shop" parent="." unique_id=1649543323 instance=ExtResource("3_c6dvc")]
 position = Vector2(458, -14)
+
+[node name="HeapOfGarbage" parent="." unique_id=1990489062 instance=ExtResource("5_k24pf")]
+position = Vector2(904, 329)
