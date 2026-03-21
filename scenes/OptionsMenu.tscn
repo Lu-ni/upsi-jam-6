@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cec56usivcq4m"]
+
+[node name="OptionsMenu" type="Control" unique_id=2088881939]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextEdit" type="TextEdit" parent="." unique_id=259310853]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 305.0
+offset_right = 590.0
+offset_bottom = 343.0
+text = "OPTION"
