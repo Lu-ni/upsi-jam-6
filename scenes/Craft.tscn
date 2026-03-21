@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://d35pkl3pwtuow"]
+[gd_scene format=3 uid="uid://b8426ip26j4iu"]
 
-[ext_resource type="Script" uid="uid://b82ibctgve75e" path="res://scripts/shop_precious.gd" id="1_ec5oe"]
+[ext_resource type="Script" uid="uid://b82ibctgve75e" path="res://scripts/craft.gd" id="1_ec5oe"]
 [ext_resource type="Texture2D" uid="uid://drsmvpdhbasf0" path="res://assets/test/Farming Pixel Art Assets.png" id="2_t4md6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cimqq"]

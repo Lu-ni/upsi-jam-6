@@ -17,9 +17,11 @@ var reroll_count: int = 0
 
 func _ready() -> void:
 	# Initialisation des deals : (Nom, Desc, Icon_Path, PriceDict, randomPrice, RewardID)
-	all_deals.append(Deal.new("Special +1", "un super buff", "res://assets/test/Yellow.png", {"Precious": 1}, false, "add_special"))
-	all_deals.append(Deal.new("Global spd +1", "augmente the global move spd", "res://assets/test/Yellow.png", {"Precious": 2}, false, "add_move_spd"))
-	all_deals.append(Deal.new("Special +5", "un mega buff", "res://assets/test/Red.png", {"Precious": 5}, false, "add_special"))
+	all_deals.append(Deal.new("Waste +1", "augmente the number of recolted Waste", "res://assets/test/Red.png", {"Skabungle": 1}, false, "add_waste"))
+	all_deals.append(Deal.new("Herbal +1", "augmente the number of recolted Herbal", "res://assets/test/Green.png", {"Babakiki": 1}, false, "add_herbal"))
+	all_deals.append(Deal.new("Electrical +1", "augmente the number of recolted Electrical", "res://assets/test/White.png", {"Kungamingu": 1}, false, "add_electrical"))
+	all_deals.append(Deal.new("Move spd +1", "augmente the global move spd", "res://assets/test/Yellow.png", {"Skabungle": 5}, false, "add_move_spd"))
+	all_deals.append(Deal.new("Inventory +1", "augmente Inventory slot", "res://assets/test/Black.png", {"Babakiki": 5}, false, "add_inventory"))
 	
 	reroll_shop()
 
@@ -73,56 +75,46 @@ func update_item_price_at_slot(slot_index: int, new_price: Dictionary) -> void:
 	var real_index = shop_slots_indices[slot_index]
 	all_deals[real_index].current_price = new_price
 
-func get_total_precious() -> int:
-	var total = 0
-	for inv_item in PlayerInfo.inventory:
-		if inv_item.item_type == Item.ITEM_TYPE.precious:
-			total += 1
-	return total
-
 func can_player_afford(deal: Deal) -> bool:
 	for price_item_name in deal.current_price.keys():
 		var required_amount = deal.current_price[price_item_name]
-		if price_item_name == "Precious":
-			if get_total_precious() < required_amount:
-				return false
-		else:
-			var player_has = 0
-			# Compte combien le joueur a de cet item
-			for inv_item in PlayerInfo.inventory:
-				if inv_item.item_name == price_item_name:
-					player_has += 1
-			
-			if player_has < required_amount:
-				return false
+		var player_has = 0
+		# Compte combien le joueur a de cet item
+		for inv_item in PlayerInfo.inventory:
+			if inv_item.item_name == price_item_name:
+				player_has += 1
+		
+		if player_has < required_amount:
+			return false
 	return true
 
 func pay_for_deal(deal: Deal) -> void:
 	for price_item_name in deal.current_price.keys():
 		var required_amount = deal.current_price[price_item_name]
-		
-		if price_item_name == "Precious":
-			for i in range(required_amount):
-				for j in range(PlayerInfo.inventory.size()):
-					if PlayerInfo.inventory[j].item_type == Item.ITEM_TYPE.precious:
-						PlayerInfo.inventory.remove_at(j)
-						break
-		else:
-			for i in range(required_amount):
-				for j in range(PlayerInfo.inventory.size()):
-					if PlayerInfo.inventory[j].item_name == price_item_name:
-						PlayerInfo.inventory.remove_at(j)
-						break
+		# Retire le montant requis de l'inventaire
+		for i in range(required_amount):
+			for j in range(PlayerInfo.inventory.size()):
+				if PlayerInfo.inventory[j].item_name == price_item_name:
+					PlayerInfo.inventory.remove_at(j)
+					break # Sort de la boucle pour trouver le suivant
 	
 	# Après avoir tout retiré, on met à jour l'UI globale
 	Signals.inventory_updated.emit()
 
 func grant_reward(reward_id: String) -> void:
 	match reward_id:
-		"add_special":
-			print("Reward Action: Player gains +1 Special bonus")
+		"add_waste":
+			print("Reward Action: Player gains +1 Waste bonus")
+			# Logique concrète à lié avec le manager/player
+		"add_herbal":
+			print("Reward Action: Player gains +1 Herbal bonus")
+		"add_electrical":
+			print("Reward Action: Player gains +1 Electrical bonus")
 		"add_move_spd":
 			print("Reward Action: Player gains +1 Move spd")
+		"add_inventory":
+			print("Reward Action: Player gains +1 Inventory slot")
+			GameInfo.max_inventory += 1
 		_:
 			print("Reward Action: Unknown reward_id ", reward_id)
 
@@ -130,6 +122,7 @@ func _on_area_2d_body_entered(body) -> void:
 	if body.has_method("player_shop_method"):
 		if menu_instance == null:
 			menu_instance = SHOP_MENU_SCENE.instantiate()
+
 			menu_instance.shop_owner = self
 			add_child(menu_instance)
 

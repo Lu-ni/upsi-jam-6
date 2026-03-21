@@ -45,6 +45,15 @@ func get_next_price(algo_type: Algo, current_price: int, count: int, base_price:
 		return MAX_PRICE
 		
 	return new_price 
+	
+# Applique la formule d'inflation sur toutes les devises exigées
+func get_next_price_dict(algo_type: Algo, current_price: Dictionary, count: int, base_price: Dictionary) -> Dictionary:
+	var new_prices = {}
+	for currency in current_price.keys():
+		var c_val = current_price[currency]
+		var b_val = base_price.get(currency, 1)
+		new_prices[currency] = get_next_price(algo_type, c_val, count, b_val)
+	return new_prices
 
 func check_max_price(current_price: int) -> bool:
 	return current_price < MAX_PRICE

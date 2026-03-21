@@ -4,6 +4,7 @@ enum ITEM_TYPE {
 	thingy,
 	bajigy,
 	bomboclat,
+	precious,
 }
 
 var item_name: String

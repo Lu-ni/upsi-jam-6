@@ -47,22 +47,53 @@ func _input(event: InputEvent) -> void:
 func update_display():
 	if shop_owner == null: return
 	
-	# Utilisation de la méthode spécifique pour récupérer l'item du slot visible
-	var item = shop_owner.get_item_at_slot(current_index)
-	# Si l'index est invalide (au tout début), on ne fait rien
-	if item.is_empty(): return
+	# Utilisation de la méthode spécifique pour récupérer le Deal du slot visible
+	var deal: Deal = shop_owner.get_item_at_slot(current_index)
+	if deal == null: return
 
-	if item_label: item_label.text = item["name"]
-	if desc_label: desc_label.text = item.get("desc", "")
-	if price_label: price_label.text = str(item["price"])
+	if item_label: item_label.text = deal.item_name
+	if desc_label: desc_label.text = deal.desc
 	
-	if item_icon and item.has("icon"):
-		if ResourceLoader.exists(item["icon"]):
-			item_icon.texture = load(item["icon"])
+	# Gestion dynamique des icônes et prix multiples
+	if price_label and currency_icon:
+		var price_container = price_label.get_parent()
+		# Nettoyer les anciens enfants générés (sauf les deux originaux qu'on va utiliser comme template)
+		for child in price_container.get_children():
+			if child != price_label and child != currency_icon:
+				child.queue_free()
+		
+		# On cache les originaux s'il n'y a pas de prix, mais on s'en sert de modèle
+		price_label.hide()
+		currency_icon.hide()
+		
+		# Affichage des prix sous forme de multiples Labels/Icons
+		for currency in deal.current_price.keys():
+			var price_val = deal.current_price[currency]
+			
+			var new_lbl = price_label.duplicate()
+			new_lbl.text = str(price_val)
+			new_lbl.show()
+			price_container.add_child(new_lbl)
+			
+			var new_icon = currency_icon.duplicate()
+			if GlobalItemList.items.has(currency):
+				new_icon.texture = GlobalItemList.items[currency].texture
+			new_icon.show()
+			price_container.add_child(new_icon)
+	
+	if item_icon and deal.texture_path != "":
+		if ResourceLoader.exists(deal.texture_path):
+			item_icon.texture = load(deal.texture_path)
 	
 	var current_reroll_price = shop_owner.get_current_reroll_price()
 	if reroll_price_label:
 		reroll_price_label.text = str(current_reroll_price)
+
+	# Vérification des fonds pour le bouton d'achat
+	if shop_owner.can_player_afford(deal):
+		buy_button.modulate = Color(1, 1, 1) # Normal
+	else:
+		buy_button.modulate = Color(1, 0, 0) # Rouge si pas assez d'argent
 
 func _on_left_button_pressed():
 	if shop_owner:
@@ -76,27 +107,36 @@ func _on_right_button_pressed():
 
 func _on_buy_button_pressed():
 	if shop_owner:
-		var item = shop_owner.get_item_at_slot(current_index)
-		if item.is_empty(): return
+		var deal: Deal = shop_owner.get_item_at_slot(current_index)
+		if deal == null: return
 		
-		var current_price = item["price"]
+		# Vérifie si on peut payer
+		if not shop_owner.can_player_afford(deal):
+			print("Pas assez de ressources pour acheter ", deal.item_name)
+			return
+			
+		# Paye l'item
+		shop_owner.pay_for_deal(deal)
 		
-		# Récupère le nombre d'objets déjà achetés (0 par défaut)
-		var count = item.get("count", 0) 
+		# Applique la récompense
+		shop_owner.grant_reward(deal.reward_id)
 		
-		# Calcul du prochain prix avec l'algorithme choisi
-		var new_price = ShopManager.get_next_price(
+		var current_price = deal.current_price
+		var count = deal.count 
+		
+		# Calcul du prochain prix avec l'algorithme choisi pour chaque devise
+		var new_price_dict = ShopManager.get_next_price_dict(
 			ShopManager.current_algo_type,
 			current_price,
 			count,
-			1 # Prix de base approximatif
+			deal.base_price
 		)
 		
 		# Mise à jour du prix et du compteur
-		shop_owner.update_item_price_at_slot(current_index, new_price)
-		item["count"] = count + 1 
+		shop_owner.update_item_price_at_slot(current_index, new_price_dict)
+		deal.count = count + 1 
 		
-		print("Buy item: ", item["name"], " (new price: ", new_price, ") [Algo: ", ShopManager.Algo.keys()[ShopManager.current_algo_type], "]")
+		print("Buy deal: ", deal.item_name, " (new price dict: ", new_price_dict, ") [Algo: ", ShopManager.Algo.keys()[ShopManager.current_algo_type], "]")
 		
 		# Remplacement de l'item acheté par un nouveau aléatoire
 		shop_owner.replace_item_at_slot(current_index)
