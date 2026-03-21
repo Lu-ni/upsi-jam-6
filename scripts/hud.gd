@@ -1,8 +1,13 @@
 extends CanvasLayer
 
-func _ready() -> void:
-	Signals.pick_up.connect(SKABALADAN)
-	
 
-func SKABALADAN():
-	$Sprite2D.scale += Vector2(1,1)
+func _ready() -> void:
+	var items = $ItemList.find_children("*", "Node")
+	for item in items:
+		item.queue_free()
+	Signals.pick_up.connect(add_item)
+
+func add_item(item: Item):
+	var texture_rect: TextureRect = TextureRect.new()
+	texture_rect.texture = item.texture
+	$ItemList.add_child(texture_rect)

@@ -6,8 +6,20 @@
 [node name="Hud" type="CanvasLayer" unique_id=1218645215]
 script = ExtResource("1_fls4u")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=257191941]
-modulate = Color(0.8, 0, 0.1882353, 0.36862746)
-position = Vector2(551, 484)
-scale = Vector2(0.225, 0.225)
+[node name="ItemList" type="VBoxContainer" parent="." unique_id=1672027048]
+offset_left = 37.0
+offset_top = 98.0
+offset_right = 165.0
+offset_bottom = 1102.762
+scale = Vector2(0.42, 0.42)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+
+[node name="TextureRect2" type="TextureRect" parent="ItemList" unique_id=1341948677]
+layout_mode = 2
+texture = ExtResource("1_qpvh6")
+
+[node name="TextureRect" type="TextureRect" parent="ItemList" unique_id=1478821820]
+layout_mode = 2
 texture = ExtResource("1_qpvh6")

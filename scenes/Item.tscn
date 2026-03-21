@@ -3,11 +3,10 @@
 [ext_resource type="Script" uid="uid://bjgfd2aapsvub" path="res://scripts/drop.gd" id="1_21n5c"]
 [ext_resource type="Texture2D" uid="uid://t17t3iqkesbp" path="res://icon.svg" id="2_8aaos"]
 
-[node name="Drop" type="CharacterBody2D" unique_id=1198643905 node_paths=PackedStringArray("sprite")]
+[node name="Drop" type="CharacterBody2D" unique_id=1198643905]
 script = ExtResource("1_21n5c")
-pickup_range = 392
+pickup_range = 100
 move_speed = 353
-sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=57519601]
 modulate = Color(0.5297558, 0.25715807, 0.09872932, 1)
