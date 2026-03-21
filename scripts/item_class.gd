@@ -1,7 +1,7 @@
 class_name Item
 
 enum ITEM_TYPE {
-	HERBAL,
+	COSUMABLE,
 	ELECTRONICS,
 	WASTE,
 	PRECIOUS

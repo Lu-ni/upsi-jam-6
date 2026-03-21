@@ -3,8 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://drsmvpdhbasf0" path="res://assets/sprites/test/Farming Pixel Art Assets.png" id="1_611at"]
 [ext_resource type="PackedScene" uid="uid://bxbwud5tu2yaq" path="res://scenes/Player.tscn" id="1_echbf"]
 [ext_resource type="PackedScene" uid="uid://cu0s3kerks1jj" path="res://scenes/Drop.tscn" id="2_ibiss"]
-[ext_resource type="PackedScene" uid="uid://d35pkl3pwtuow" path="res://scenes/Shop.tscn" id="3_c6dvc"]
-[ext_resource type="PackedScene" uid="uid://b8426ip26j4iu" path="res://scenes/Craft.tscn" id="5_k24pf"]
+[ext_resource type="PackedScene" uid="uid://b8426ip26j4iu" path="res://scenes/Shop.tscn" id="5_k24pf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k24pf"]
 texture = ExtResource("1_611at")
@@ -213,7 +212,7 @@ move_speed = 353
 position = Vector2(291, -368)
 move_speed = 353
 
-[node name="Shop" parent="." unique_id=644990966 instance=ExtResource("3_c6dvc")]
+[node name="Shop" parent="." unique_id=644990966 instance=ExtResource("5_k24pf")]
 
 [node name="Craft" parent="." unique_id=42163889 instance=ExtResource("5_k24pf")]
 position = Vector2(314, -2)
