@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bt5ppf60hstyw"]
+
+[ext_resource type="Script" uid="uid://086tw55ivwfn" path="res://scripts/ChunkManager.gd" id="1_kqs1s"]
+[ext_resource type="PackedScene" uid="uid://bxbwud5tu2yaq" path="res://scenes/Player.tscn" id="2_32lhk"]
+
+[node name="World" type="Node2D" unique_id=1768956342]
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1217159323]
+script = ExtResource("1_kqs1s")
+
+[node name="Player" parent="." unique_id=657339320 instance=ExtResource("2_32lhk")]

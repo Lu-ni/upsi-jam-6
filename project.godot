@@ -8,10 +8,6 @@
 
 config_version=5
 
-[animation]
-
-compatibility/default_parent_skeleton_in_mesh_instance_3d=true
-
 [application]
 
 config/name="upsi-jam-6"
@@ -29,6 +25,7 @@ GlobalItemList="*uid://brp35qkkiiwt7"
 SceneList="*uid://c5ra7fd6ewiio"
 PlayerInfo="*uid://bae4ppspx5ngb"
 GameInfo="*uid://d38veo5scdgsj"
+PlayerManager="*uid://dk0j4ubsrvp26"
 
 [global_group]
 
