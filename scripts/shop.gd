@@ -76,7 +76,7 @@ func update_item_price_at_slot(slot_index: int, new_price: Dictionary) -> void:
 func get_total_precious() -> int:
 	var total = 0
 	for inv_item in PlayerInfo.inventory:
-		if inv_item.item_type == Item.ITEM_TYPE.precious:
+		if inv_item.item_type == Item.ITEM_TYPE.PRECIOUS:
 			total += 1
 	return total
 
@@ -104,7 +104,7 @@ func pay_for_deal(deal: Deal) -> void:
 		if price_item_name == "Precious":
 			for i in range(required_amount):
 				for j in range(PlayerInfo.inventory.size()):
-					if PlayerInfo.inventory[j].item_type == Item.ITEM_TYPE.precious:
+					if PlayerInfo.inventory[j].item_type == Item.ITEM_TYPE.PRECIOUS:
 						PlayerInfo.inventory.remove_at(j)
 						break
 		else:

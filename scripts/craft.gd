@@ -98,7 +98,7 @@ func pay_for_deal(deal: Deal) -> void:
 					PlayerInfo.inventory.remove_at(j)
 					break # Sort de la boucle pour trouver le suivant
 	
-	# Après avoir tout retiré, on met à jour l'UI globale
+	# Après avoir tout reé, on met à jour l'UI globale
 	Signals.inventory_updated.emit()
 
 func grant_reward(reward_id: String) -> void:

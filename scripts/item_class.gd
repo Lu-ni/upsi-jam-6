@@ -1,10 +1,10 @@
 class_name Item
 
 enum ITEM_TYPE {
-	thingy,
-	bajigy,
-	bomboclat,
-	precious,
+	HERBAL,
+	ELECTRONICS,
+	WASTE,
+	PRECIOUS
 }
 
 var item_name: String
