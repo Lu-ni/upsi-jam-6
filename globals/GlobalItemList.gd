@@ -1,10 +1,16 @@
 extends Node
 
-var example_item: Item
+var items: Dictionary[String, Item] = {}
 
 func _enter_tree() -> void:
-	example_item = Item.new()
-	example_item.item_type = Item.ITEM_TYPE.thingy
-	example_item.value = 500
-	example_item.weight = 2
-	example_item.texture = load("res://icon.svg")
+	add_item_to_list("Skabungle", Item.ITEM_TYPE.thingy, 100, 2, "res://assets/icons/pods.png")
+	add_item_to_list("Babakiki", Item.ITEM_TYPE.bajigy, 300, 5, "res://assets/icons/time.png")
+	add_item_to_list("Kungamingu", Item.ITEM_TYPE.bomboclat, 500, 1, "res://assets/icons/value.png")
+
+func add_item_to_list(name, type, value, weight, texture):
+	items[name] = Item.new()
+	items[name].item_name = name
+	items[name].item_type = type
+	items[name].value = value
+	items[name].weight = weight
+	items[name].texture = load(texture)
