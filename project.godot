@@ -21,11 +21,14 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SceneList="*uid://c5ra7fd6ewiio"
 Signals="*uid://ckynh1tp68hdk"
 Manager="*uid://c8nwuorbnhm6c"
 ShopManager="*res://scripts/shop_manager.gd"
 Structure="*uid://qfaklmsa6lrk"
+GlobalItemList="*uid://brp35qkkiiwt7"
+SceneList="*uid://c5ra7fd6ewiio"
+PlayerInfo="*uid://bae4ppspx5ngb"
+GameInfo="*uid://d38veo5scdgsj"
 
 [global_group]
 

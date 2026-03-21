@@ -1,17 +1,22 @@
 extends CharacterBody2D
+class_name Drop
 
 var target: Node2D
 @export var pickup_range: int
 @export var move_speed: int
-@export var sprite: Sprite2D
 var entered_range: bool = false
 var picked_up: bool = false
-
-#var drop_type: Structure.DROP_TYPE = Skibidi
-
-var value: int = 0
+var item: Item = null
 
 func _ready() -> void:
+	# TEMP RAND ITEM SELECTION
+	var selection = randi() % GlobalItemList.items.size()
+	var keys = GlobalItemList.items.keys()
+	var rand_index = randi() % keys.size()
+	var key = keys[rand_index]
+	item = GlobalItemList.items[key]
+		
+	$Sprite2D.scale = Vector2(0.2, 0.2)
 	get_player()
 	set_sprite()
 
@@ -34,7 +39,7 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.lerp(desired_velocity, 8.0 * delta)
 		if dist <= 50:
 			picked_up = true
-			sprite.visible = false
+			$Sprite2D.visible = false
 			give_player_loot()
 	move_and_slide()
 
@@ -42,11 +47,10 @@ func get_player():
 	target = get_tree().get_first_node_in_group("player")
 
 func set_sprite():
-	#if drop_type == DROP_TYPE.GOLD:
-		 #sprite.texture = ResourceList.gold_sprites[0]
-		pass
+	if item != null and item.texture != null:
+		$Sprite2D.texture = item.texture
 
 func give_player_loot():
-	print("Woohoo yioppieeei didee dooo da you got loota ma masn")
-	Signals.pick_up.emit()
+	if PlayerInfo.inventory.size() < GameInfo.max_inventory:
+		Signals.pick_up.emit(item)
 	queue_free()
