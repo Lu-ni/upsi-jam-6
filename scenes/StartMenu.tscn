@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://dfp58rsupai7g"]
 
 [ext_resource type="Script" uid="uid://cmqjp5xqeseto" path="res://scripts/start_menu.gd" id="1_cp7se"]
-[ext_resource type="FontFile" uid="uid://brwguhraod48f" path="res://Font/atkinson-hyperlegible/fonts/otf/AtkinsonHyperlegible-Bold.otf" id="1_kmax6"]
-[ext_resource type="FontFile" uid="uid://bvhrvdrbik0bv" path="res://Font/atkinson-hyperlegible/fonts/ttf/AtkinsonHyperlegible-Regular.ttf" id="2_cp7se"]
 
 [sub_resource type="Gradient" id="Gradient_ikcqr"]
 offsets = PackedFloat32Array(0, 0.73)
@@ -14,7 +12,6 @@ metadata/_snap_count = 100
 gradient = SubResource("Gradient_ikcqr")
 
 [sub_resource type="LabelSettings" id="LabelSettings_fgoeh"]
-font = ExtResource("2_cp7se")
 font_size = 48
 outline_size = 2
 
@@ -49,7 +46,6 @@ offset_right = 140.5
 offset_bottom = 59.0
 grow_horizontal = 2
 scale = Vector2(1, 1.0399994)
-theme_override_fonts/font = ExtResource("1_kmax6")
 theme_override_font_sizes/font_size = 156
 text = "Raccon x King"
 label_settings = SubResource("LabelSettings_fgoeh")
@@ -88,28 +84,27 @@ theme_override_constants/separation = 80
 
 [node name="StartBtn" type="Button" parent="HBoxContainer" unique_id=367529308]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_cp7se")
 theme_override_font_sizes/font_size = 32
 text = "Start"
 
 [node name="LeaderboardBtn" type="Button" parent="HBoxContainer" unique_id=313446831]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_cp7se")
 theme_override_font_sizes/font_size = 32
 text = "Leaderboard"
 
 [node name="OptionBtn" type="Button" parent="HBoxContainer" unique_id=1949481770]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_cp7se")
 theme_override_font_sizes/font_size = 32
 text = "Option"
 
 [node name="ExitBtn" type="Button" parent="HBoxContainer" unique_id=1670402415]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_cp7se")
 theme_override_font_sizes/font_size = 32
 text = "Exit
 "
+
+[node name="TextureButton" type="TextureButton" parent="HBoxContainer" unique_id=549828262]
+layout_mode = 2
 
 [connection signal="button_down" from="HBoxContainer/StartBtn" to="." method="_on_start_btn_button_down"]
 [connection signal="button_down" from="HBoxContainer/LeaderboardBtn" to="." method="_on_leaderboard_btn_button_down"]
