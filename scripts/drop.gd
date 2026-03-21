@@ -48,4 +48,5 @@ func set_sprite():
 
 func give_player_loot():
 	print("Woohoo yioppieeei didee dooo da you got loota ma masn")
+	Signals.pick_up.emit()
 	queue_free()

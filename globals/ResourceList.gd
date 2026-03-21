@@ -1,12 +1,14 @@
 extends Node
 
-# EXAMPLES
-var hud: PackedScene
-var menu: PackedScene
-var world: PackedScene
-var pause_menu: PackedScene
+# EXAMPLES (Maybe replace Node type with class later?)
+var hud: Node
+var menu: Node
+var world: Node
+var pause_menu: Node
+var initialized: bool = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	# hud = load("res://scenes/hud.tscn")
-	pass
+func _process(delta: float) -> void:
+	if not initialized:
+		hud = load("res://scenes/hud.tscn").instantiate()
+		get_tree().root.add_child(hud)
+		initialized = true

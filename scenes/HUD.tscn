@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://debrquvelar6f"]
+
+[ext_resource type="Script" uid="uid://7egxrwvyqgyn" path="res://scripts/hud.gd" id="1_fls4u"]
+[ext_resource type="Texture2D" uid="uid://t17t3iqkesbp" path="res://icon.svg" id="1_qpvh6"]
+
+[node name="Hud" type="CanvasLayer" unique_id=1218645215]
+script = ExtResource("1_fls4u")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=257191941]
+modulate = Color(0.8, 0, 0.1882353, 0.36862746)
+position = Vector2(551, 484)
+scale = Vector2(0.225, 0.225)
+texture = ExtResource("1_qpvh6")
