@@ -29,7 +29,9 @@ func _physics_process(delta: float) -> void:
 		return
 	var to_target := target.global_position - global_position
 	var dist := to_target.length()
-
+	
+	if PlayerInfo.inventory.size() >= GameInfo.max_inventory: return
+	
 	if entered_range or dist <= pickup_range:
 		entered_range = true
 		var direction := to_target.normalized()
