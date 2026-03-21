@@ -9,6 +9,6 @@ var initialized: bool = false
 
 func _process(delta: float) -> void:
 	if not initialized:
-		hud = load("res://scenes/hud.tscn").instantiate()
+		hud = load("res://scenes/HUD.tscn").instantiate()
 		get_tree().root.add_child(hud)
 		initialized = true

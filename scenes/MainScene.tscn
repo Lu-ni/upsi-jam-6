@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dtbs3n50bqkkl"]
 
-[ext_resource type="PackedScene" uid="uid://bekfg7wx6vst3" path="res://scenes/Player.tscn" id="1_echbf"]
+[ext_resource type="PackedScene" uid="uid://bxbwud5tu2yaq" path="res://scenes/Player.tscn" id="1_echbf"]
 [ext_resource type="PackedScene" uid="uid://cu0s3kerks1jj" path="res://scenes/Drop.tscn" id="2_ibiss"]
 
 [node name="MainScene" type="Node2D" unique_id=93382841]
@@ -9,10 +9,10 @@
 position = Vector2(158, 103)
 
 [node name="Drop" parent="." unique_id=1198643905 instance=ExtResource("2_ibiss")]
-position = Vector2(207, 446)
+position = Vector2(280, 544)
 
 [node name="Drop2" parent="." unique_id=2131232123 instance=ExtResource("2_ibiss")]
-position = Vector2(-273, 438)
+position = Vector2(-374, 401)
 
 [node name="Drop3" parent="." unique_id=1843587422 instance=ExtResource("2_ibiss")]
 position = Vector2(-782, 285)
@@ -21,7 +21,7 @@ position = Vector2(-782, 285)
 position = Vector2(-625, -374)
 
 [node name="Drop5" parent="." unique_id=1470386848 instance=ExtResource("2_ibiss")]
-position = Vector2(587, 314)
+position = Vector2(722, 380)
 
 [node name="Drop6" parent="." unique_id=2020633068 instance=ExtResource("2_ibiss")]
 position = Vector2(716, -125)
