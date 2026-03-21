@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://d3gartxcwiibl" path="res://scripts/flowers.gd" id="2_7g83o"]
 [ext_resource type="PackedScene" uid="uid://bxbwud5tu2yaq" path="res://scenes/Player.tscn" id="2_32lhk"]
 [ext_resource type="Script" uid="uid://dy3x8dnsttnr6" path="res://scripts/grass.gd" id="3_d1c63"]
+[ext_resource type="Script" uid="uid://cy7vir71vjy74" path="res://scripts/base_spawner.gd" id="4_1lgw5"]
 
 [node name="World" type="Node2D" unique_id=1768956342]
 
@@ -19,5 +20,8 @@ script = ExtResource("3_d1c63")
 z_index = -1
 z_as_relative = false
 script = ExtResource("2_7g83o")
+
+[node name="BaseSpawner" type="Node2D" parent="." unique_id=88248557]
+script = ExtResource("4_1lgw5")
 
 [node name="Player" parent="." unique_id=657339320 instance=ExtResource("2_32lhk")]

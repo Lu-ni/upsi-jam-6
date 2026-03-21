@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://2p3teclicqy4"
-=======
-uid="uid://tkbc7xvfdvfa"
->>>>>>> main
-path="res://.godot/imported/main-sprite-sheet.svg-13a8fe99380e544800426aef0ddde9ef.ctex"
+uid="uid://bdau8dmqw2n13"
+path="res://.godot/imported/tires2.svg-5d651b9d7b8fe924d2437d7f4f852914.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/main-sprite-sheet.svg"
-dest_files=["res://.godot/imported/main-sprite-sheet.svg-13a8fe99380e544800426aef0ddde9ef.ctex"]
+source_file="res://assets/sprites/items-and-more/tires2.svg"
+dest_files=["res://.godot/imported/tires2.svg-5d651b9d7b8fe924d2437d7f4f852914.ctex"]
 
 [params]
 

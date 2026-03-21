@@ -1,23 +1,31 @@
 extends CharacterBody2D
 
 @export var speed: float = 200.0
+@export var squish_frequency: float = 8.0
+@export var squish_amount: float = 0.005
 
 var last_direction: Vector2 = Vector2.DOWN
+var bob_time: float = 0.0
 
 func _ready() -> void:
 	PlayerManager.player = self
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	direction = direction.normalized()
+
+	if direction != Vector2.ZERO:
+		direction = direction.normalized()
+		last_direction = direction
+		play_animation("walk", direction)
+		bob_time += delta * squish_frequency
+		var squish = abs(sin(bob_time)) * squish_amount
+		$AnimatedSprite2D.scale.y = 0.1 - squish
+	else:
+		#play_animation("idle", last_direction)
+		bob_time = 0.0
+		$AnimatedSprite2D.scale.y = lerp($AnimatedSprite2D.scale.y, 0.1, 0.08)
+
 	velocity = direction * speed
-
-	# if direction != Vector2.ZERO:
-	# 	last_direction = direction
-	# 	play_animation("walk", direction)
-	# else:
-	# 	play_animation("idle", last_direction)
-
 	move_and_slide()
 
 func play_animation(anim_type: String, direction: Vector2) -> void:
@@ -36,7 +44,7 @@ func play_animation(anim_type: String, direction: Vector2) -> void:
 	$AnimatedSprite2D.play(anim_type + "_" + anim_dir)
 
 func player_shop_method() -> void:
-	pass;
+	pass
 
 func player_craft_method() -> void:
-	pass;
+	pass

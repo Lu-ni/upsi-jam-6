@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://2p3teclicqy4"
-=======
-uid="uid://tkbc7xvfdvfa"
->>>>>>> main
-path="res://.godot/imported/main-sprite-sheet.svg-13a8fe99380e544800426aef0ddde9ef.ctex"
+uid="uid://dcq1vbw8h8a0o"
+path="res://.godot/imported/toast.svg-d546433604e02f34eb0c61284f48abcc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/main-sprite-sheet.svg"
-dest_files=["res://.godot/imported/main-sprite-sheet.svg-13a8fe99380e544800426aef0ddde9ef.ctex"]
+source_file="res://assets/sprites/items-and-more/toast.svg"
+dest_files=["res://.godot/imported/toast.svg-d546433604e02f34eb0c61284f48abcc.ctex"]
 
 [params]
 

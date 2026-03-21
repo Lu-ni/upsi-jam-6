@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://2p3teclicqy4"
-=======
-uid="uid://tkbc7xvfdvfa"
->>>>>>> main
-path="res://.godot/imported/main-sprite-sheet.svg-13a8fe99380e544800426aef0ddde9ef.ctex"
+uid="uid://dmvw32ut40tcq"
+path="res://.godot/imported/raccon-back.svg-728b7f6d4ff05e2a3854d13d42a3130c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/main-sprite-sheet.svg"
-dest_files=["res://.godot/imported/main-sprite-sheet.svg-13a8fe99380e544800426aef0ddde9ef.ctex"]
+source_file="res://assets/sprites/items-and-more/raccon-back.svg"
+dest_files=["res://.godot/imported/raccon-back.svg-728b7f6d4ff05e2a3854d13d42a3130c.ctex"]
 
 [params]
 

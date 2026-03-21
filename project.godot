@@ -30,6 +30,7 @@ PlayerManager="*res://globals/PlayerManager.gd"
 [global_group]
 
 player="This is the fukin player you dunce"
+garbage_pile=""
 
 [input]
 

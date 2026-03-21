@@ -187,24 +187,31 @@ position = Vector2(165, 148)
 
 [node name="Drop" parent="." unique_id=1198643905 instance=ExtResource("2_ibiss")]
 position = Vector2(280, 544)
+move_speed = 353
 
 [node name="Drop2" parent="." unique_id=2131232123 instance=ExtResource("2_ibiss")]
 position = Vector2(-374, 401)
+move_speed = 353
 
 [node name="Drop3" parent="." unique_id=1843587422 instance=ExtResource("2_ibiss")]
 position = Vector2(-782, 285)
+move_speed = 353
 
 [node name="Drop4" parent="." unique_id=1373959506 instance=ExtResource("2_ibiss")]
 position = Vector2(-625, -374)
+move_speed = 353
 
 [node name="Drop5" parent="." unique_id=1470386848 instance=ExtResource("2_ibiss")]
 position = Vector2(722, 380)
+move_speed = 353
 
 [node name="Drop6" parent="." unique_id=2020633068 instance=ExtResource("2_ibiss")]
 position = Vector2(716, -125)
+move_speed = 353
 
 [node name="Drop7" parent="." unique_id=1528787226 instance=ExtResource("2_ibiss")]
 position = Vector2(291, -368)
+move_speed = 353
 
 [node name="Shop" parent="." unique_id=644990966 instance=ExtResource("3_c6dvc")]
 

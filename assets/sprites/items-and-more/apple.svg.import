@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://2p3teclicqy4"
-=======
-uid="uid://tkbc7xvfdvfa"
->>>>>>> main
-path="res://.godot/imported/main-sprite-sheet.svg-13a8fe99380e544800426aef0ddde9ef.ctex"
+uid="uid://b5lqxy5v15xuu"
+path="res://.godot/imported/apple.svg-78f01c8a90319d0a3ba12fc8b6446202.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/main-sprite-sheet.svg"
-dest_files=["res://.godot/imported/main-sprite-sheet.svg-13a8fe99380e544800426aef0ddde9ef.ctex"]
+source_file="res://assets/sprites/items-and-more/apple.svg"
+dest_files=["res://.godot/imported/apple.svg-78f01c8a90319d0a3ba12fc8b6446202.ctex"]
 
 [params]
 
