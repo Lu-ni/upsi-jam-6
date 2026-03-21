@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 
 func add_item_to_inventory(item: Item):
 	inventory.append(item)
-	
+	Signals.inventory_updated.emit()
 func remove_item_from_inventory(item: Item):
 	for i in inventory:
 		if i == item:

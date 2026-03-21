@@ -1,6 +1,7 @@
 extends Node
 
 var items: Dictionary[String, Item] = {}
+var items: Dictionary[String, Item] = {}
 
 func _enter_tree() -> void:
 	add_item_to_list("Skabungle", Item.ITEM_TYPE.thingy, 100, 2, "res://assets/sprites/items-and-more/apple.svg")

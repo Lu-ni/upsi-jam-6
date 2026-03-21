@@ -4,6 +4,7 @@ func _ready() -> void:
 	clear_inventory_display()
 	Signals.pick_up.connect(on_item_change)
 	Signals.throw.connect(on_item_change)
+	Signals.inventory_updated.connect(on_inventory_change)
 
 func _process(delta: float) -> void:
 	GameInfo.time_used += delta
@@ -55,6 +56,11 @@ func format_time(time_seconds: float) -> String:
 	return "%02d:%02d" % [minutes, seconds]# milliseconds]
 
 func on_item_change(item):
+	clear_inventory_display()
+	display_inventory()
+	display_item_info()
+
+func on_inventory_change():
 	clear_inventory_display()
 	display_inventory()
 	display_item_info()
