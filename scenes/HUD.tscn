@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://7egxrwvyqgyn" path="res://scripts/hud.gd" id="1_fls4u"]
 [ext_resource type="Texture2D" uid="uid://t17t3iqkesbp" path="res://icon.svg" id="1_qpvh6"]
+[ext_resource type="Texture2D" uid="uid://c3xvahy864geu" path="res://assets/icons/pods.png" id="3_1etfg"]
+[ext_resource type="Texture2D" uid="uid://cw5hxm7w3tg1u" path="res://assets/icons/value.png" id="4_nysna"]
+[ext_resource type="Texture2D" uid="uid://dvcvkmdpnf7gc" path="res://assets/icons/time.png" id="5_f6qnu"]
 
 [node name="Hud" type="CanvasLayer" unique_id=1218645215]
 script = ExtResource("1_fls4u")
@@ -23,3 +26,42 @@ texture = ExtResource("1_qpvh6")
 [node name="TextureRect" type="TextureRect" parent="ItemList" unique_id=1478821820]
 layout_mode = 2
 texture = ExtResource("1_qpvh6")
+
+[node name="Weight" type="Sprite2D" parent="." unique_id=880909006]
+position = Vector2(140, 20.000004)
+scale = Vector2(0.155, 0.155)
+texture = ExtResource("3_1etfg")
+
+[node name="Label" type="Label" parent="Weight" unique_id=497785977]
+offset_left = 109.67743
+offset_top = -64.51614
+offset_right = 1159.6775
+offset_bottom = 61.483856
+theme_override_font_sizes/font_size = 92
+text = "0"
+
+[node name="Value" type="Sprite2D" parent="." unique_id=1959881150]
+position = Vector2(367, 19.000002)
+scale = Vector2(0.155, 0.155)
+texture = ExtResource("4_nysna")
+
+[node name="Label" type="Label" parent="Value" unique_id=205730385]
+offset_left = 116.12904
+offset_top = -64.51614
+offset_right = 1166.129
+offset_bottom = 61.483856
+theme_override_font_sizes/font_size = 92
+text = "0"
+
+[node name="Time" type="Sprite2D" parent="." unique_id=1727786038]
+position = Vector2(559, 19.000002)
+scale = Vector2(0.155, 0.155)
+texture = ExtResource("5_f6qnu")
+
+[node name="Label" type="Label" parent="Time" unique_id=687337136]
+offset_left = 116.12904
+offset_top = -64.51614
+offset_right = 1166.129
+offset_bottom = 61.483856
+theme_override_font_sizes/font_size = 92
+text = "0"

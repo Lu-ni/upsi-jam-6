@@ -8,7 +8,7 @@ enum ITEM_TYPE {
 
 var item_name: String
 var item_type: ITEM_TYPE
-var valeur_en_kamas: int
-var pods: int
+var value: int
+var weight: int
 var texture: Texture2D
 #var description: String
