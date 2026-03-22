@@ -16,7 +16,7 @@ func _on_stat_upgraded(stat: int, amount: float) -> void:
 	match stat:
 		PlayerInfo.Stat.SPEED:
 			speed += amount
-			print("New speed: ", speed, "(+", amount,  ")")
+			#print("New speed: ", speed, "(+", amount,  ")")
 
 var is_swimming : bool = false
 func _toggle_swimming(biome : String):

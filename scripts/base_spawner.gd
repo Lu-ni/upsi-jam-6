@@ -39,14 +39,14 @@ func _init_spawner() -> void:
 	if not _world_map:
 		push_error("BaseSpawner: could not find 'WorldMap'.")
 		return
-	print("BaseSpawner: WorldMap found -> ", _world_map.name)
+	#print("BaseSpawner: WorldMap found -> ", _world_map.name)
 
 	await get_tree().process_frame
 
-	print("BaseSpawner: player -> ", _get_player())
+	#print("BaseSpawner: player -> ", _get_player())
 
 	_base_spot = _find_grass_spot()
-	print("BaseSpawner: spot found -> ", _base_spot)
+	#print("BaseSpawner: spot found -> ", _base_spot)
 
 	if _base_spot == Vector2.INF:
 		push_error("BaseSpawner: no pure-grass spot found after %d attempts." % SEARCH_ATTEMPTS)
@@ -104,17 +104,17 @@ func _spawn_scenes(spot: Vector2) -> void:
 	var heap := HEAP_OF_GARBAGE_SCENE.instantiate()
 	heap.global_position = spot
 	add_child(heap)
-	print("BaseSpawner: HeapOfGarbage spawned at ", spot)
+	#print("BaseSpawner: HeapOfGarbage spawned at ", spot)
 
 	var shop := SHOP_SCENE.instantiate()
 	shop.global_position = spot + Vector2(CIRCLE_RADIUS, 0)
 	add_child(shop)
-	print("BaseSpawner: Shop spawned at ", shop.global_position)
+	#print("BaseSpawner: Shop spawned at ", shop.global_position)
 
 	var craft := CRAFT_SCENE.instantiate()
 	craft.global_position = spot + Vector2(-CIRCLE_RADIUS, 0)
 	add_child(craft)
-	print("BaseSpawner: Craft spawned at ", craft.global_position)
+	#print("BaseSpawner: Craft spawned at ", craft.global_position)
 
 # ─────────────────────────────────────────
 #  Drop Spawning  (called every chunk crossing)
@@ -193,7 +193,7 @@ func _teleport_player(world_pos: Vector2) -> void:
 	var player := _get_player()
 	if player:
 		player.global_position = world_pos
-		print("BaseSpawner: player teleported to ", world_pos)
+		#print("BaseSpawner: player teleported to ", world_pos)
 	else:
 		push_error("BaseSpawner: player is null, cannot teleport.")
 

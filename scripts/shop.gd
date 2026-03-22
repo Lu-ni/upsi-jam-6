@@ -101,7 +101,7 @@ func can_player_afford(deal: Deal) -> bool:
 
 func pay_for_deal(deal: Deal) -> void:
 	if (ShopManager.DEBUG == true):
-		print("Mode Debug activé !")
+		#print("Mode Debug activé !")
 		return
 	for price_item_name in deal.current_price.keys():
 		var required_amount = deal.current_price[price_item_name]
@@ -152,7 +152,7 @@ func get_random_rarity() -> int:
 
 func grant_reward(reward_id: String) -> void:
 	var rarity = get_random_rarity()
-	print("rarity = ", rarity)
+	#print("rarity = ", rarity)
 	match reward_id:
 		"speed":
 			Signals.upgrade_stat.emit(PlayerInfo.Stat.SPEED, rarity)

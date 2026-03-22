@@ -17,6 +17,6 @@ func _on_stat_upgraded(stat: int, amount: float) -> void:
 	match stat:
 		PlayerInfo.Stat.MAX_TIME:
 			time_left += amount
-			print("New time left: ", time_left, "(+", amount,  ")")
+			#print("New time left: ", time_left, "(+", amount,  ")")
 var has_seen_craft_tuto: bool = false
 var has_seen_shop_tuto: bool = false

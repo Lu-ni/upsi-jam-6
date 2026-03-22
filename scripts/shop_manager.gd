@@ -20,7 +20,7 @@ func _input(event: InputEvent) -> void:
 	if (DEBUG == true):
 		if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_P:
 			current_algo_type = ((current_algo_type + 1) % Algo.size()) as Algo
-			print("Algo changé pour : ", Algo.keys()[current_algo_type])
+			#print("Algo changé pour : ", Algo.keys()[current_algo_type])
 
 func get_next_price(algo_type: Algo, current_price: int, count: int, base_price: int = 10) -> int:
 	var new_price = current_price

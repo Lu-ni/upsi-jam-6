@@ -34,7 +34,7 @@ func _ready() -> void:
 	timer.wait_time = 0.1
 	timer.timeout.connect(_on_tick)
 	timer.start()
-	print("ready")
+	#print("ready")
 
 func _on_tick() -> void:
 	PlayerManager.biome_in.emit(get_player_biome())

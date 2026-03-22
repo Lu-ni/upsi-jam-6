@@ -106,7 +106,7 @@ func update_display():
 				# Sinon ça reste l'icône de l'argent par défaut (money_icon_path) que le currency_icon possède déjà
 				pass
 				
-			print("Currency: ", currency, " has item in GlobalItemList: ", GlobalItemList.items.has(currency))
+			#print("Currency: ", currency, " has item in GlobalItemList: ", GlobalItemList.items.has(currency))
 			new_icon.show()
 			price_container.add_child(new_icon)
 
@@ -144,7 +144,7 @@ func _on_bubble_clicked():
 	if deal == null: return
 
 	if not shop_owner.can_player_afford(deal):
-		print("Pas assez de ressources pour acheter ", deal.item_name)
+		#print("Pas assez de ressources pour acheter ", deal.item_name)
 		return
 
 	shop_owner.pay_for_deal(deal)
@@ -160,7 +160,7 @@ func _on_bubble_clicked():
 	shop_owner.update_item_price_at_slot(slot_index, new_price_dict)
 	deal.count += 1
 
-	print("Buy deal: ", deal.item_name, " (new price dict: ", new_price_dict, ") [Algo: ", ShopManager.Algo.keys()[ShopManager.current_algo_type], "]")
+	#print("Buy deal: ", deal.item_name, " (new price dict: ", new_price_dict, ") [Algo: ", ShopManager.Algo.keys()[ShopManager.current_algo_type], "]")
 
 	shop_owner.replace_item_at_slot(slot_index)
 	update_display()

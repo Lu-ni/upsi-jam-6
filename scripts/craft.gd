@@ -23,25 +23,25 @@ func _ready() -> void:
 	add_child(vis)
 	vis.screen_entered.connect(_on_screen_entered)
 
-	all_deals.append(Deal.new("max_inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"banana": 1, "bottle": 1}, false, "max_inventory"))
-	all_deals.append(Deal.new("max_time", "Augmente le temps max", "res://assets/test/Yellow.png", {"apple": 2, "banana": 2}, false, "max_time"))
-	all_deals.append(Deal.new("dump_range", "Augmente la range de dump", "res://assets/test/Green.png", {"banana": 1, "bottle": 1}, false, "dump_range"))
-	all_deals.append(Deal.new("max_inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"remote": 1, "cheese": 1}, false, "max_inventory"))
-	all_deals.append(Deal.new("max_time", "Augmente le temps max", "res://assets/test/Yellow.png", {"porcorn": 2, "remote": 2}, false, "max_time"))
-	all_deals.append(Deal.new("dump_range", "Augmente la range de dump", "res://assets/test/Green.png", {"multiprise": 1, "cone": 1}, false, "dump_range"))
-	all_deals.append(Deal.new("max_inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"weed": 1, "knife": 1}, false, "max_inventory"))
-	all_deals.append(Deal.new("max_time", "Augmente le temps max", "res://assets/test/Yellow.png", {"porcorn": 2, "toaster": 2}, false, "max_time"))
-	all_deals.append(Deal.new("dump_range", "Augmente la range de dump", "res://assets/test/Green.png", {"tv": 1, "hamburger": 1}, false, "dump_range"))
+	all_deals.append(Deal.new("Max Inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"banana": 1, "bottle": 1}, false, "max_inventory"))
+	all_deals.append(Deal.new("Max Time", "Augmente le temps max", "res://assets/test/Yellow.png", {"apple": 2, "banana": 2}, false, "max_time"))
+	all_deals.append(Deal.new("Dump Range", "Augmente la range de dump", "res://assets/test/Green.png", {"banana": 1, "bottle": 1}, false, "dump_range"))
+	all_deals.append(Deal.new("Max Inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"remote": 1, "cheese": 1}, false, "max_inventory"))
+	all_deals.append(Deal.new("Max Time", "Augmente le temps max", "res://assets/test/Yellow.png", {"porcorn": 2, "remote": 2}, false, "max_time"))
+	all_deals.append(Deal.new("Dump Range", "Augmente la range de dump", "res://assets/test/Green.png", {"multiprise": 1, "cone": 1}, false, "dump_range"))
+	all_deals.append(Deal.new("Max Inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"weed": 1, "knife": 1}, false, "max_inventory"))
+	all_deals.append(Deal.new("Max Time", "Augmente le temps max", "res://assets/test/Yellow.png", {"porcorn": 2, "toaster": 2}, false, "max_time"))
+	all_deals.append(Deal.new("Dump Range", "Augmente la range de dump", "res://assets/test/Green.png", {"tv": 1, "hamburger": 1}, false, "dump_range"))
 	
-	all_deals.append(Deal.new("max_inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"multiprise": 1, "cotton-candy": 1}, false, "max_inventory"))
-	all_deals.append(Deal.new("max_time", "Augmente le temps max", "res://assets/test/Yellow.png", {"hamburger": 2, "gameboy": 2}, false, "max_time"))
-	all_deals.append(Deal.new("dump_range", "Augmente la range de dump", "res://assets/test/Green.png", {"remote": 1, "toaster": 1}, false, "dump_range"))
-	all_deals.append(Deal.new("max_inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"banana": 1, "bottle": 1}, false, "max_inventory"))
-	all_deals.append(Deal.new("max_time", "Augmente le temps max", "res://assets/test/Yellow.png", {"porcorn": 2, "chicken": 2}, false, "max_time"))
-	all_deals.append(Deal.new("dump_range", "Augmente la range de dump", "res://assets/test/Green.png", {"weed": 1, "cone": 1}, false, "dump_range"))
-	all_deals.append(Deal.new("max_inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"hamburger": 1, "knife": 1}, false, "max_inventory"))
-	all_deals.append(Deal.new("max_time", "Augmente le temps max", "res://assets/test/Yellow.png", {"porcorn": 2, "toaster": 2}, false, "max_time"))
-	all_deals.append(Deal.new("dump_range", "Augmente la range de dump", "res://assets/test/Green.png", {"tv": 1, "remote": 1}, false, "dump_range"))
+	all_deals.append(Deal.new("Max Inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"multiprise": 1, "cotton-candy": 1}, false, "max_inventory"))
+	all_deals.append(Deal.new("Max Time", "Augmente le temps max", "res://assets/test/Yellow.png", {"hamburger": 2, "gameboy": 2}, false, "max_time"))
+	all_deals.append(Deal.new("Dump Range", "Augmente la range de dump", "res://assets/test/Green.png", {"remote": 1, "toaster": 1}, false, "dump_range"))
+	all_deals.append(Deal.new("Max Inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"banana": 1, "bottle": 1}, false, "max_inventory"))
+	all_deals.append(Deal.new("Max Time", "Augmente le temps max", "res://assets/test/Yellow.png", {"porcorn": 2, "chicken": 2}, false, "max_time"))
+	all_deals.append(Deal.new("Dump Range", "Augmente la range de dump", "res://assets/test/Green.png", {"weed": 1, "cone": 1}, false, "dump_range"))
+	all_deals.append(Deal.new("Max Inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"hamburger": 1, "knife": 1}, false, "max_inventory"))
+	all_deals.append(Deal.new("Max Time", "Augmente le temps max", "res://assets/test/Yellow.png", {"porcorn": 2, "toaster": 2}, false, "max_time"))
+	all_deals.append(Deal.new("Dump Range", "Augmente la range de dump", "res://assets/test/Green.png", {"tv": 1, "remote": 1}, false, "dump_range"))
 
 	reroll_shop()
 	$ShopPart.play("default")
@@ -139,12 +139,11 @@ func pay_for_deal(deal: Deal) -> void:
 
 func grant_reward(reward_id: String) -> void:
 	match reward_id:
-		"max_inventory":
-			print("hello -------------")
+		"Max Inventory":
 			Signals.upgrade_stat.emit(PlayerInfo.Stat.MAX_INVENTORY, PlayerInfo.Rarity.COMMON)
-		"max_time":
+		"Max Time":
 			Signals.upgrade_stat.emit(PlayerInfo.Stat.MAX_TIME, PlayerInfo.Rarity.COMMON)
-		"dump_range":
+		"Dump Range":
 			Signals.upgrade_stat.emit(PlayerInfo.Stat.DUMP_RANGE, PlayerInfo.Rarity.COMMON)
 		_:
 			print("Reward Action: Unknown reward_id ", reward_id)
