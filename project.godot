@@ -26,6 +26,10 @@ PlayerInfo="*uid://bae4ppspx5ngb"
 GameInfo="*uid://d38veo5scdgsj"
 PlayerManager="*res://globals/PlayerManager.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [global_group]
 
 player="This is the fukin player you dunce"
