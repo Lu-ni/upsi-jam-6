@@ -53,7 +53,7 @@ func remove_player_loot():
 
 	var sprite: Sprite2D = Sprite2D.new()
 	sprite.texture = PlayerInfo.inventory[0].texture
-	GameInfo.score += PlayerInfo.inventory[0].value
+	GameInfo.score += int(PlayerInfo.inventory[0].value * PlayerInfo.score_multiplier)
 	sprite.scale = Vector2.ONE * 0.4
 
 	get_parent().add_child(sprite)

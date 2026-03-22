@@ -1,7 +1,7 @@
 extends Node
 
 # ── Enums ──
-enum Stat { SPEED, PICKUP_RANGE, DROP_SPEED, MAX_INVENTORY, DUMP_RANGE, DUMP_COOLDOWN, MAX_TIME }
+enum Stat { SPEED, PICKUP_RANGE, DROP_SPEED, MAX_INVENTORY, DUMP_RANGE, DUMP_COOLDOWN, MAX_TIME, DROP_VALUE }
 enum Rarity { COMMON, UNCOMMON, RARE, EPIC }
 
 # ── Upgrade Config ──
@@ -9,7 +9,7 @@ const GLOBAL_MAX_UPGRADES: int = 50
 const MAX_UPGRADES: Dictionary = {
 	Stat.SPEED: 5, Stat.PICKUP_RANGE: 10, Stat.DROP_SPEED: 8,
 	Stat.MAX_INVENTORY: 5, Stat.DUMP_RANGE: 8, Stat.DUMP_COOLDOWN: 8,
-	Stat.MAX_TIME: 5,
+	Stat.MAX_TIME: 5, Stat.DROP_VALUE: 5,
 }
 const UPGRADE_VALUES: Dictionary = {
 	Stat.SPEED:         { Rarity.COMMON: 10.0, Rarity.UNCOMMON: 20.0, Rarity.RARE: 35.0, Rarity.EPIC: 50.0 },
@@ -19,12 +19,14 @@ const UPGRADE_VALUES: Dictionary = {
 	Stat.DUMP_RANGE:    { Rarity.COMMON: 5.0,   Rarity.UNCOMMON: 12.0,   Rarity.RARE: 20.0,    Rarity.EPIC: 35.0 },
 	Stat.DUMP_COOLDOWN: { Rarity.COMMON: 100.0, Rarity.UNCOMMON: 200.0,  Rarity.RARE: 300.0,   Rarity.EPIC: 500.0 },
 	Stat.MAX_TIME:      { Rarity.COMMON: 15000.0, Rarity.UNCOMMON: 30000.0, Rarity.RARE: 50000.0, Rarity.EPIC: 90000.0 },
+	Stat.DROP_VALUE:    { Rarity.COMMON: 0.25,   Rarity.UNCOMMON: 0.5,    Rarity.RARE: 1.0,      Rarity.EPIC: 2.0 },
 }
 
 # ── Player Data ──
 var inventory: Array[Item] = []
 var kamas: int
 var max_inventory: float = 3
+var score_multiplier: float = 1.0
 
 # ── Upgrade Tracking ──
 var upgrade_counts: Dictionary = {}
@@ -56,6 +58,8 @@ func _on_upgrade_stat(stat: int, rarity: int) -> void:
 	match stat:
 		Stat.MAX_INVENTORY:
 			max_inventory += amount
+		Stat.DROP_VALUE:
+			score_multiplier += amount
 	# Broadcast for stats that live on other nodes
 	Signals.stat_upgraded.emit(stat, amount)
 
