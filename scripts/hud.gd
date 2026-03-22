@@ -43,8 +43,8 @@ func display_inventory():
 		add_item(GlobalItemList.items[key], stacks[key])
 
 func display_item_info():
-	$Weight/Label.text = ("%d/%d" % [PlayerInfo.inventory.size(), GameInfo.max_inventory])
-	$Weight/Label.modulate = Color.RED if PlayerInfo.inventory.size() >= GameInfo.max_inventory else Color.WHITE
+	$Weight/Label.text = ("%d/%d" % [PlayerInfo.inventory.size(), PlayerInfo.max_inventory])
+	$Weight/Label.modulate = Color.RED if PlayerInfo.inventory.size() >= PlayerInfo.max_inventory else Color.WHITE
 
 func format_time(time_seconds: float) -> String:
 	var minutes = int(time_seconds / 60)

@@ -9,6 +9,12 @@ var bob_time: float = false
 
 func _ready() -> void:
 	PlayerManager.player = self
+	Signals.stat_upgraded.connect(_on_stat_upgraded)
+
+func _on_stat_upgraded(stat: int, amount: float) -> void:
+	match stat:
+		PlayerInfo.Stat.SPEED:
+			speed += amount
 	PlayerManager.biome_in.connect(_toggle_swimming)
 
 var is_swimming : bool = false

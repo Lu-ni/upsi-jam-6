@@ -19,6 +19,16 @@ func _ready() -> void:
 func _draw() -> void:
 	draw_circle(Vector2.ZERO, pickup_range, Color.CORNFLOWER_BLUE, false, 5)
 
+func _ready() -> void:
+	Signals.stat_upgraded.connect(_on_stat_upgraded)
+
+func _on_stat_upgraded(stat: int, amount: float) -> void:
+	match stat:
+		PlayerInfo.Stat.DUMP_RANGE:
+			pickup_range += int(amount)
+		PlayerInfo.Stat.DUMP_COOLDOWN:
+			cooldown = max(cooldown - int(amount), 100)
+
 func _process(delta: float) -> void:
 	queue_redraw()
 	timer -= delta * 1000
