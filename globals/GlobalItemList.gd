@@ -2,9 +2,11 @@ extends Node
 
 var items: Dictionary[String, Item] = {}
 func _enter_tree() -> void:
-	# Consumable
+	#precious
 	add_item_to_list("apple", Item.ITEM_TYPE.PRECIOUS, 100, 2, "res://assets/sprites/items-and-more/apple.svg")
 	add_item_to_list("banana", Item.ITEM_TYPE.PRECIOUS, 300, 5, "res://assets/sprites/items-and-more/banana-peal.svg")
+	# Consumable
+	
 	add_item_to_list("bottle", Item.ITEM_TYPE.COSUMABLE, 500, 1, "res://assets/sprites/items-and-more/bottle.svg")
 	add_item_to_list("chicken", Item.ITEM_TYPE.COSUMABLE, 500, 1, "res://assets/sprites/items-and-more/chicken-meat.svg")
 	add_item_to_list("cotton-candy", Item.ITEM_TYPE.COSUMABLE, 500, 1, "res://assets/sprites/items-and-more/cotton-candy.svg")

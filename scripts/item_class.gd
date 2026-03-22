@@ -1,10 +1,10 @@
 class_name Item
 
 enum ITEM_TYPE {
-	COSUMABLE,
-	ELECTRONICS,
-	WASTE,
-	PRECIOUS
+    COSUMABLE,
+    ELECTRONICS,
+    WASTE,
+    PRECIOUS
 }
 
 var item_name: String

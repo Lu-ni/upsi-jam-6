@@ -5,7 +5,7 @@ enum Algo {
 	EXPONENTIAL,
 	GEOMETRIC
 }
-const DEBUG = false
+@export var DEBUG = false
 
 # Variable pour switcher l'algo depuis n'importe où
 var current_algo_type: Algo = Algo.EXPONENTIAL

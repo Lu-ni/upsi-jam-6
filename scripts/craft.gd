@@ -23,11 +23,10 @@ func _ready() -> void:
 	vis.screen_entered.connect(_on_screen_entered)
 
 	# Initialisation des deals : (Nom, Desc, Icon_Path, PriceDict, randomPrice, RewardID)
-	all_deals.append(Deal.new("Waste +1", "augmente the number of recolted Waste", "res://assets/test/Red.png", {"apple": 1, "banana": 1}, false, "add_waste"))
-	all_deals.append(Deal.new("Herbal +1", "augmente the number of recolted Herbal", "res://assets/test/Green.png", {"banana": 1, "bottle": 1}, false, "add_herbal"))
-	all_deals.append(Deal.new("Electrical +1", "augmente the number of recolted Electrical", "res://assets/test/White.png", {"bottle": 1, "apple": 1}, false, "add_electrical"))
-	all_deals.append(Deal.new("Move spd +1", "augmente the global move spd", "res://assets/test/Yellow.png", {"apple": 2, "banana": 2}, false, "add_move_spd"))
-	all_deals.append(Deal.new("Inventory +1", "augmente Inventory slot", "res://assets/test/Black.png", {"banana": 3, "bottle": 2}, false, "add_inventory"))
+	all_deals.append(Deal.new("Max Inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"banana": 1, "bottle": 1}, false, "max_inventory"))
+	all_deals.append(Deal.new("Max Time", "Augmente le temps max", "res://assets/test/Yellow.png", {"apple": 2, "banana": 2}, false, "max_time"))
+	all_deals.append(Deal.new("Dump Range$", "Augmente la range de dump", "res://assets/test/Green.png", {"banana": 1, "bottle": 1}, false, "dump_range"))
+	
 	reroll_shop()
 
 
@@ -132,18 +131,12 @@ func _on_screen_entered() -> void:
 
 func grant_reward(reward_id: String) -> void:
 	match reward_id:
-		"add_waste":
-			print("Reward Action: Player gains +1 Waste bonus")
-			# Logique concrète à lié avec le manager/player
-		"add_herbal":
-			print("Reward Action: Player gains +1 Herbal bonus")
-		"add_electrical":
-			print("Reward Action: Player gains +1 Electrical bonus")
-		"add_move_spd":
-			print("Reward Action: Player gains +1 Move spd")
-		"add_inventory":
-			print("Reward Action: Player gains +1 Inventory slot")
-			PlayerInfo.max_inventory += 1
+		"max_inventory":
+			Signals.upgrade_stat.emit(PlayerInfo.Stat.MAX_INVENTORY, PlayerInfo.Rarity.COMMON)
+		"max_time":
+			Signals.upgrade_stat.emit(PlayerInfo.Stat.MAX_TIME, PlayerInfo.Rarity.COMMON)
+		"dump_range":
+			Signals.upgrade_stat.emit(PlayerInfo.Stat.DUMP_RANGE, PlayerInfo.Rarity.COMMON)
 		_:
 			print("Reward Action: Unknown reward_id ", reward_id)
 	Signals.inventory_updated.emit()

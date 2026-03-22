@@ -25,8 +25,10 @@ func _on_stat_upgraded(stat: int, amount: float) -> void:
 	match stat:
 		PlayerInfo.Stat.DUMP_RANGE:
 			pickup_range += int(amount)
+			print("New pickup range: ", pickup_range, "(+", amount,  ")")
 		PlayerInfo.Stat.DUMP_COOLDOWN:
 			cooldown = max(cooldown - int(amount), 100)
+			print("New dump cooldown: ", cooldown, "(-", amount,  ")")
 
 func _process(delta: float) -> void:
 	queue_redraw()
@@ -121,4 +123,5 @@ func update_bin():
 
 	# Change the frame once the shake finishes
 	tween.tween_callback(func(): s.frame = target_frame)
-	Manager.hud.bin_frame.emit(target_frame)
+	if Manager.hud:
+		Manager.hud.bin_frame.emit(target_frame)

@@ -16,6 +16,17 @@ var all_deals: Array[Deal] = []
 
 var reroll_count: int = 0
 
+var is_tutorial_playing: bool = false
+var waiting_player_body = null
+
+const RARITY_CHANCES = {
+	PlayerInfo.Rarity.COMMON: 60,   # X%
+	PlayerInfo.Rarity.UNCOMMON: 25,
+	PlayerInfo.Rarity.RARE: 12,
+	PlayerInfo.Rarity.EPIC: 100
+}
+
+
 func _ready() -> void:
 	# Ajout d'un notifieur pour que le tuto pop dès qu'on voit le shop
 	var vis = VisibleOnScreenNotifier2D.new()
@@ -23,10 +34,10 @@ func _ready() -> void:
 	vis.screen_entered.connect(_on_screen_entered)
 
 	# Initialisation des deals : (Nom, Desc, Icon_Path, PriceDict, randomPrice, RewardID)
-	all_deals.append(Deal.new("Special +1", "un super buff", "res://assets/test/Yellow.png", {"Precious": 1}, false, "add_special"))
-	all_deals.append(Deal.new("Global spd +1", "augmente the global move spd", "res://assets/test/Yellow.png", {"Precious": 2}, false, "add_move_spd"))
-	all_deals.append(Deal.new("testt", "test", "res://assets/test/Red.png", {"Precious": 1}, false, "bigger_bag"))
-	#all_deals.append(Deal.new("Special +5", "un mega buff", "res://assets/test/Red.png", {"Precious": 5}, false, "add_special"))
+	all_deals.append(Deal.new("Speed Up", "Augmente la vitesse", "res://assets/test/Yellow.png", {"Precious": 1}, false, "speed"))
+	all_deals.append(Deal.new("Pickup Range", "Augmente la range de ramassage", "res://assets/test/Green.png", {"Precious": 2}, false, "pickup_range"))
+	all_deals.append(Deal.new("Drop Speed", "Augmente la vitesse de drop", "res://assets/test/White.png", {"Precious": 1}, false, "drop_speed"))
+	all_deals.append(Deal.new("Dump Cooldown", "Reduit le cooldown de dump", "res://assets/test/Red.png", {"Precious": 2}, false, "dump_cooldown"))
 
 	reroll_shop()
 
@@ -105,6 +116,9 @@ func can_player_afford(deal: Deal) -> bool:
 	return true
 
 func pay_for_deal(deal: Deal) -> void:
+	if (ShopManager.DEBUG == true):
+		print("Mode Debug activé !")
+		return
 	for price_item_name in deal.current_price.keys():
 		var required_amount = deal.current_price[price_item_name]
 
@@ -124,8 +138,17 @@ func pay_for_deal(deal: Deal) -> void:
 	# Après avoir tout retiré, on met à jour l'UI globale
 	Signals.inventory_updated.emit()
 
-var is_tutorial_playing: bool = false
-var waiting_player_body = null
+
+func get_random_rarity() -> int:
+	var roll = randi() % 100
+	var cumulative = 0
+	
+	for rarity in RARITY_CHANCES.keys():
+		cumulative += RARITY_CHANCES[rarity]
+		if roll < cumulative:
+			return rarity
+			
+	return PlayerInfo.Rarity.COMMON # Fallback
 
 func _on_screen_entered() -> void:
 	if not GameInfo.has_seen_shop_tuto:
@@ -149,13 +172,17 @@ func _on_screen_entered() -> void:
 			popup.start_tutorial("Here you can buy items to get stronger!")
 
 func grant_reward(reward_id: String) -> void:
+	var rarity = get_random_rarity()
+	print("rarity = ", rarity)
 	match reward_id:
-		"bigger_bag":
-			PlayerInfo.max_inventory += 10
-		"add_special":
-			print("Reward Action: Player gains +1 Special bonus")
-		"add_move_spd":
-			print("Reward Action: Player gains +1 Move spd")
+		"speed":
+			Signals.upgrade_stat.emit(PlayerInfo.Stat.SPEED, rarity)
+		"pickup_range":
+			Signals.upgrade_stat.emit(PlayerInfo.Stat.PICKUP_RANGE, rarity)
+		"drop_speed":
+			Signals.upgrade_stat.emit(PlayerInfo.Stat.DROP_SPEED, rarity)
+		"dump_cooldown":
+			Signals.upgrade_stat.emit(PlayerInfo.Stat.DUMP_COOLDOWN, rarity)
 		_:
 			print("Reward Action: Unknown reward_id ", reward_id)
 	Signals.inventory_updated.emit()

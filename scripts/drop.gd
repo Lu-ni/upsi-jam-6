@@ -26,8 +26,10 @@ func _on_stat_upgraded(stat: int, amount: float) -> void:
 	match stat:
 		PlayerInfo.Stat.PICKUP_RANGE:
 			pickup_range += int(amount)
+			print("New pickup range: ", pickup_range, "(+", amount,  ")")
 		PlayerInfo.Stat.DROP_SPEED:
 			move_speed += int(amount)
+			print("New move speed: ", move_speed, "(+", amount,  ")")
 	start_bounce()
 
 var bounce_tween: Tween

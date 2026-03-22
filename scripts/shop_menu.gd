@@ -143,13 +143,15 @@ func _on_buy_button_pressed():
 		var deal: Deal = shop_owner.get_item_at_slot(current_index)
 		if deal == null: return
 
-		# Vérifie si on peut payer
-		if not shop_owner.can_player_afford(deal):
-			print("Pas assez de ressources pour acheter ", deal.item_name)
-			return
+		if (!ShopManager.DEBUG == true):
+		
+			# Vérifie si on peut payer
+			if not shop_owner.can_player_afford(deal):
+				print("Pas assez de ressources pour acheter ", deal.item_name)
+				return
 
-		# Paye l'item
-		shop_owner.pay_for_deal(deal)
+			# Paye l'item
+			shop_owner.pay_for_deal(deal)
 
 		# Applique la récompense
 		shop_owner.grant_reward(deal.reward_id)
@@ -178,12 +180,13 @@ func _on_buy_button_pressed():
 
 func _on_reroll_button_pressed():
 	if shop_owner:
-		if shop_owner.has_method("can_player_afford_reroll") and not shop_owner.can_player_afford_reroll():
-			print("Pas assez de ressources pour reroll")
-			return
-
-		if shop_owner.has_method("pay_for_reroll"):
-			shop_owner.pay_for_reroll()
+		if (!ShopManager.DEBUG == true):
+			if shop_owner.has_method("can_player_afford_reroll") and not shop_owner.can_player_afford_reroll():
+				print("Pas assez de ressources pour reroll")
+				return
+			if (!ShopManager.DEBUG == true):
+				if shop_owner.has_method("pay_for_reroll"):
+					shop_owner.pay_for_reroll()
 
 		var current_price = shop_owner.get_current_reroll_price()
 
