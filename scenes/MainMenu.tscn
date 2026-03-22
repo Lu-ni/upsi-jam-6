@@ -74,7 +74,7 @@ scale = Vector2(0.8725636, 1.4029851)
 texture = ExtResource("2_826wr")
 centered = false
 
-[node name="IllustrationSansTitre3" type="Sprite2D" parent="." unique_id=632019592]
+[node name="Title" type="Sprite2D" parent="." unique_id=632019592]
 position = Vector2(524, 522)
 scale = Vector2(0.522694, 0.51904297)
 texture = ExtResource("3_7shrw")
@@ -120,7 +120,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_7la6k")
 icon = ExtResource("5_bky6r")
 expand_icon = true
 script = ExtResource("1_yqorp")
-hover_scale = 1.2
+hover_scale = 1.07
 
 [node name="RacoonTarget" type="Node2D" parent="Play" unique_id=2081675068]
 position = Vector2(127.17308, 44.181507)
@@ -166,7 +166,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_7la6k")
 icon = ExtResource("7_l4mxc")
 expand_icon = true
 script = ExtResource("1_yqorp")
-hover_scale = 1.02
+hover_scale = 1.05
 
 [node name="Label" type="Label" parent="Credits" unique_id=2105997182]
 layout_mode = 0
@@ -207,6 +207,9 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_7la6k")
 icon = ExtResource("8_5faoh")
 expand_icon = true
 script = ExtResource("1_yqorp")
+hover_scale = 1.1
+rotate_amount = 5.0
+cycle_time = 0.7
 
 [node name="Label" type="Label" parent="Quit" unique_id=1711412060]
 layout_mode = 0

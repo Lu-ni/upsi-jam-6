@@ -22,7 +22,7 @@ const UPGRADE_VALUES: Dictionary = {
 }
 
 # ── Player Data ──
-var inventory: Array[Item]
+var inventory: Array[Item] = []
 var kamas: int
 var max_inventory: float = 3
 
