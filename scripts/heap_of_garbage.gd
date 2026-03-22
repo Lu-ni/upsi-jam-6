@@ -103,7 +103,9 @@ func on_trash_land():
 
 func update_bin(start: bool = false):
 	var s: Sprite2D = $Sprite2D
-	var frame_nb: int = start_frame + (GameInfo.amount_of_trash_collected / GameInfo.HOWMUCHTRASHFORMULTUP)
+	var frame_nb: int = start_frame + int(
+	sqrt(GameInfo.amount_of_trash_collected / float(GameInfo.HOWMUCHTRASHFORMULTUP))
+	)
 	var target_frame: int = frame_nb if frame_nb <= max_frame else max_frame
 
 	# Only shake + change frame if the frame actually changes

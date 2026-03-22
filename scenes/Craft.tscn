@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b82ibctgve75e" path="res://scripts/craft.gd" id="1_ec5oe"]
 [ext_resource type="Texture2D" uid="uid://ctul1a62yrca5" path="res://assets/sprites/npc-sprite-sheet.png" id="2_fngce"]
+[ext_resource type="Texture2D" uid="uid://b5ptlnxm6g88a" path="res://assets/particles/petal.png" id="3_qrsei"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fngce"]
 atlas = ExtResource("2_fngce")
@@ -33,6 +34,26 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_skkvx"]
 radius = 52.126858
 
+[sub_resource type="Gradient" id="Gradient_qrsei"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qrsei"]
+gradient = SubResource("Gradient_qrsei")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lhxn1"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(29.745, 1, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+angular_velocity_min = -404.43
+angular_velocity_max = 428.93997
+orbit_velocity_min = -0.09999991
+orbit_velocity_max = 0.1000001
+gravity = Vector3(0, -46.82, 0)
+scale_min = 0.19999999
+color = Color(0.42745098, 0.92156863, 0.3019608, 1)
+color_ramp = SubResource("GradientTexture1D_qrsei")
+
 [node name="Craft" type="StaticBody2D" unique_id=644990966]
 scale = Vector2(2.763, 3)
 script = ExtResource("1_ec5oe")
@@ -49,6 +70,16 @@ animation = &"open"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/Area2D" unique_id=1926473600]
 position = Vector2(0, 11.333334)
 shape = SubResource("CircleShape2D_skkvx")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1263850462]
+position = Vector2(-0.36192545, 34)
+amount = 9
+texture = ExtResource("3_qrsei")
+lifetime = 2.34
+preprocess = 1.47
+explosiveness = 0.35
+randomness = 0.25
+process_material = SubResource("ParticleProcessMaterial_lhxn1")
 
 [connection signal="body_entered" from="Area2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D/Area2D" to="." method="_on_area_2d_body_exited"]
