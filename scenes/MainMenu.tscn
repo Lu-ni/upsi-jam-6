@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://ct35l0x224xjr" path="res://assets/sprites/Menu/new/empty-bin.png" id="9_ptake"]
 [ext_resource type="Texture2D" uid="uid://lf7qka13o6vb" path="res://assets/sprites/Menu/new/front-bin.png" id="10_hubol"]
 [ext_resource type="Texture2D" uid="uid://qrrvusk4fd84" path="res://assets/sprites/Menu/new/trash1.png" id="12_1n6yq"]
+[ext_resource type="Script" uid="uid://bjaba1cc8wjje" path="res://scripts/psych_button.gd" id="12_duata"]
 [ext_resource type="Texture2D" uid="uid://ckdfdgeevsmxr" path="res://assets/sprites/Menu/new/trash2.png" id="13_yovvs"]
 [ext_resource type="Texture2D" uid="uid://cdgve36dxurg7" path="res://assets/sprites/Menu/new/trash3.png" id="14_2axsc"]
 [ext_resource type="Texture2D" uid="uid://d2q117480lp5j" path="res://assets/sprites/Menu/new/trash4.png" id="15_wrgne"]
@@ -24,10 +25,15 @@
 [ext_resource type="PackedScene" uid="uid://dl258kyanald3" path="res://scenes/Flower.tscn" id="22_yovvs"]
 [ext_resource type="Texture2D" uid="uid://bgshhbhqyf6b5" path="res://assets/sprites/deco/daisy.svg" id="23_2axsc"]
 [ext_resource type="Texture2D" uid="uid://bwgylurdoi5s5" path="res://assets/sprites/deco/heb2.svg" id="24_i7r3k"]
+[ext_resource type="Texture2D" uid="uid://davjy62hcgu5t" path="res://assets/sprites/hud/title.png" id="25_lw0hr"]
 [ext_resource type="Texture2D" uid="uid://crul4m2wkvsx6" path="res://assets/sprites/deco/tulip.svg" id="25_os5dr"]
+[ext_resource type="Texture2D" uid="uid://buij5xgexl644" path="res://assets/sprites/hud/credits.png" id="25_ynb5t"]
 [ext_resource type="Texture2D" uid="uid://dthf5xt7etok5" path="res://assets/sprites/deco/herb1.svg" id="26_duata"]
 [ext_resource type="Texture2D" uid="uid://c567rg5vwxw20" path="res://assets/sprites/deco/herb3.svg" id="27_lw0hr"]
+[ext_resource type="Texture2D" uid="uid://clf1ymya8c64b" path="res://assets/sprites/items-and-more/chicken-meat.svg" id="28_ejntt"]
 [ext_resource type="Texture2D" uid="uid://b5ptlnxm6g88a" path="res://assets/particles/petal.png" id="28_os5dr"]
+[ext_resource type="Texture2D" uid="uid://c7kpyr7nc27hv" path="res://assets/sprites/items-and-more/banana-peal.svg" id="33_c3y1w"]
+[ext_resource type="Texture2D" uid="uid://b5lqxy5v15xuu" path="res://assets/sprites/items-and-more/apple.svg" id="34_krgl8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7la6k"]
 content_margin_left = 4.0
@@ -75,8 +81,8 @@ texture = ExtResource("2_826wr")
 centered = false
 
 [node name="Title" type="Sprite2D" parent="." unique_id=632019592]
-position = Vector2(524, 522)
-scale = Vector2(0.522694, 0.51904297)
+position = Vector2(512, 566)
+scale = Vector2(0.69308203, 0.55407715)
 texture = ExtResource("3_7shrw")
 
 [node name="Grass" type="Sprite2D" parent="." unique_id=161801746]
@@ -87,6 +93,12 @@ texture = ExtResource("3_7la6k")
 [node name="Daisy2" parent="." unique_id=345284531 instance=ExtResource("22_yovvs")]
 position = Vector2(995, 508)
 texture = ExtResource("23_2axsc")
+
+[node name="Apple" type="Sprite2D" parent="." unique_id=1917045745]
+position = Vector2(216.99998, 574)
+rotation = 1.4961408
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("34_krgl8")
 
 [node name="Stick" type="Sprite2D" parent="." unique_id=2103545980]
 position = Vector2(194, 366.99997)
@@ -139,47 +151,6 @@ theme_override_fonts/font = ExtResource("8_viowm")
 theme_override_font_sizes/font_size = 41
 text = "Play"
 
-[node name="Credits" type="Button" parent="." unique_id=822284143]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 66.0
-offset_top = 255.99997
-offset_right = 349.6169
-offset_bottom = 338.61008
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.17802358
-theme_override_styles/normal = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/focus = SubResource("StyleBoxFlat_7la6k")
-icon = ExtResource("7_l4mxc")
-expand_icon = true
-script = ExtResource("1_yqorp")
-hover_scale = 1.05
-
-[node name="Label" type="Label" parent="Credits" unique_id=2105997182]
-layout_mode = 0
-offset_left = 46.29811
-offset_top = 30.683657
-offset_right = 250.29811
-offset_bottom = 72.683655
-rotation = -0.04363323
-theme_override_colors/font_color = Color(0.55621684, 0.2990823, 0.17730615, 1)
-theme_override_fonts/font = ExtResource("8_viowm")
-theme_override_font_sizes/font_size = 41
-text = "Credits"
-
 [node name="Quit" type="Button" parent="." unique_id=398890271]
 anchors_preset = 8
 anchor_left = 0.5
@@ -222,6 +193,48 @@ theme_override_colors/font_color = Color(0.55621684, 0.2990823, 0.17730615, 1)
 theme_override_fonts/font = ExtResource("8_viowm")
 theme_override_font_sizes/font_size = 32
 text = "Quit"
+
+[node name="Credits" type="Button" parent="." unique_id=822284143]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 66.0
+offset_top = 255.99997
+offset_right = 349.6169
+offset_bottom = 338.61008
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.17802358
+theme_override_styles/normal = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/focus = SubResource("StyleBoxFlat_7la6k")
+icon = ExtResource("7_l4mxc")
+expand_icon = true
+script = ExtResource("12_duata")
+fall_distance = 400.0
+fall_time = 0.5
+
+[node name="Label" type="Label" parent="Credits" unique_id=2105997182]
+layout_mode = 0
+offset_left = 46.29811
+offset_top = 30.683657
+offset_right = 250.29811
+offset_bottom = 72.683655
+rotation = -0.04363323
+theme_override_colors/font_color = Color(0.55621684, 0.2990823, 0.17730615, 1)
+theme_override_fonts/font = ExtResource("8_viowm")
+theme_override_font_sizes/font_size = 41
+text = "Credits"
 
 [node name="Tulip2" parent="." unique_id=746206440 instance=ExtResource("22_yovvs")]
 position = Vector2(628, 508)
@@ -268,9 +281,27 @@ influence_distance = 500.0
 position = Vector2(-121, 261)
 texture = ExtResource("10_hubol")
 
+[node name="Credits2" type="Sprite2D" parent="EmptyBin" unique_id=1074012092]
+position = Vector2(14.035065, 392.9824)
+scale = Vector2(0.8393285, 0.59660935)
+texture = ExtResource("25_ynb5t")
+
+[node name="Title2" type="Sprite2D" parent="EmptyBin" unique_id=1183541201]
+position = Vector2(445.61395, 105.26325)
+rotation = -0.95294976
+scale = Vector2(0.287, 0.226)
+skew = 0.8848819
+texture = ExtResource("25_lw0hr")
+
 [node name="Bin6" type="Sprite2D" parent="EmptyBin" unique_id=635301903]
 position = Vector2(235.08772, 498.2455)
 texture = ExtResource("20_duata")
+
+[node name="ChickenMeat" type="Sprite2D" parent="." unique_id=708102280]
+position = Vector2(669.99994, 621)
+rotation = 0.7746084
+scale = Vector2(0.875, 0.875)
+texture = ExtResource("28_ejntt")
 
 [node name="Deco" type="Node2D" parent="." unique_id=1759035669]
 
@@ -313,3 +344,21 @@ lifetime = 6.35
 preprocess = 1.29
 explosiveness = 0.35
 process_material = SubResource("ParticleProcessMaterial_duata")
+
+[node name="BananaPeal" type="Sprite2D" parent="." unique_id=1828838957]
+position = Vector2(722, 600)
+texture = ExtResource("33_c3y1w")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1296543148]
+
+[node name="Info" type="Label" parent="." unique_id=854309725]
+offset_left = 679.0
+offset_top = 494.0
+offset_right = 810.0
+offset_bottom = 524.0
+theme_override_colors/font_color = Color(0.36194757, 0.1996446, 0.016974224, 0.5882353)
+theme_override_fonts/font = ExtResource("8_viowm")
+theme_override_font_sizes/font_size = 8
+text = "n for groove
+m to keep your mouth shut
+e to find your way"
