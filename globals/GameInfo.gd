@@ -1,8 +1,8 @@
 extends Node
 
-var max_time: float = 3 * 60 * 1000 #ms
-var throw_trash_time: int = 1000
-var amount_of_trash_collected: int = 0
+var max_time: float
+var throw_trash_time: int
+var amount_of_trash_collected: int
 #var thing_idk
 
 var time_used: float = 0

@@ -1,0 +1,6 @@
+extends Node
+
+var base_max_time: float = 3 * 60 * 1000
+var base_throw_trash_time: int = 1000
+var base_amount_of_trash_collected: int = 0
+var base_max_inventory: int = 3
