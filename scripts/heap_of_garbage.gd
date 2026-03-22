@@ -11,8 +11,9 @@ var trash: Array[Sprite2D] = []
 func _ready() -> void:
 	Signals.trash_added.connect(update_size)
 
-func _draw():
-	draw_circle(Vector2.ZERO,pickup_range,Color.REBECCA_PURPLE,false,5)
+
+func _draw() -> void:
+	draw_circle(Vector2.ZERO, pickup_range, Color.CORNFLOWER_BLUE, false, 5)
 
 func _process(delta: float) -> void:
 	queue_redraw()
