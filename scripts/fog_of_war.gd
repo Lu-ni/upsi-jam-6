@@ -8,7 +8,7 @@ extends CanvasLayer
 #  Configuration
 # ─────────────────────────────────────────
 
-@export var fog_color     : Color = Color(0.0, 0.0, 0.0, 1)
+@export var fog_color     : Color = Color(0.874, 0.671, 0.78, 1.0)
 @export var edge_softness : float = 0.5  # in chunks
 
 # ─────────────────────────────────────────

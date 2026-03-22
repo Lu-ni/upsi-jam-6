@@ -29,3 +29,4 @@ script = ExtResource("4_1lgw5")
 
 [node name="FogOfWar" type="CanvasLayer" parent="." unique_id=1543546890]
 script = ExtResource("6_hlk0d")
+fog_color = Color(1, 1, 1, 1)

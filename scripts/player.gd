@@ -5,10 +5,18 @@ extends CharacterBody2D
 @export var squish_amount: float = 0.005
 
 var last_direction: Vector2 = Vector2.DOWN
-var bob_time: float = 0.0
+var bob_time: float = false
 
 func _ready() -> void:
 	PlayerManager.player = self
+	PlayerManager.biome_in.connect(_toggle_swimming)
+
+var is_swimming : bool = false
+func _toggle_swimming(biome : String):
+	if biome == "ocean":
+		is_swimming = true
+	else:
+		is_swimming = false
 
 func _input(event):
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -20,17 +28,26 @@ func _input(event):
 func _physics_process(delta):
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
-	if direction != Vector2.ZERO:
+	if direction != Vector2.ZERO and not is_swimming:
 		direction = direction.normalized()
 		last_direction = direction
 		play_animation("walk", direction)
 		bob_time += delta * squish_frequency
 		var squish = abs(sin(bob_time)) * squish_amount
 		$AnimatedSprite2D.scale.y = 0.1 - squish
+	elif direction != Vector2.ZERO and is_swimming:
+		direction = direction.normalized()
+		last_direction = direction
+		play_animation("swim", direction)
+		bob_time += delta * squish_frequency
+		var squish = abs(sin(bob_time)) * squish_amount
+		$AnimatedSprite2D.scale.y = 0.1 - 2 * squish
 	else:
-		#play_animation("idle", last_direction)
-		bob_time = 0.0
-		$AnimatedSprite2D.scale.y = lerp($AnimatedSprite2D.scale.y, 0.1, 0.08)
+		play_animation("idle", last_direction)
+		bob_time += delta * squish_frequency
+		var squish = abs(sin(bob_time)) * squish_amount
+		$AnimatedSprite2D.scale.y = 0.1 - squish/3
+		#$AnimatedSprite2D.scale.y = lerp($AnimatedSprite2D.scale.y, 0.1, 0.08)
 
 	velocity = direction * speed
 	move_and_slide()
