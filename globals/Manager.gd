@@ -35,8 +35,8 @@ func _process(delta: float) -> void:
 		initialized = true
 		menu = get_tree().root.get_node("MainMenu")
 		play_next_track()
-	if Input.is_action_just_pressed("ui_cancel") and in_game:
-		go_to_end_menu()
+	#if Input.is_action_just_pressed("ui_cancel") and in_game:
+		#go_to_end_menu()
 	if Input.is_action_just_pressed("next_track"):
 		play_next_track()
 	if Input.is_action_just_pressed("mute"):
