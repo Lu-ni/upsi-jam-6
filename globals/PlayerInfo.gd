@@ -26,7 +26,6 @@ const UPGRADE_VALUES: Dictionary = {
 var inventory: Array[Item] = []
 var kamas: int
 var max_inventory: float = 3
-var score_multiplier: float = 1.0
 
 # ── Upgrade Tracking ──
 var upgrade_counts: Dictionary = {}
@@ -59,7 +58,7 @@ func _on_upgrade_stat(stat: int, rarity: int) -> void:
 		Stat.MAX_INVENTORY:
 			max_inventory += amount
 		Stat.DROP_VALUE:
-			score_multiplier += amount
+			GameInfo.multiplier += amount
 	# Broadcast for stats that live on other nodes
 	Signals.stat_upgraded.emit(stat, amount)
 
