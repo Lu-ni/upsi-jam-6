@@ -1,39 +1,44 @@
 extends Button
 
-@export var hover_scale := 1.2
-@export var hover_rotation := 10.0
-@export var anim_time := 0.15
+@export var hover_scale := 1.01
+@export var rotate_amount := 3.0
+@export var cycle_time := 0.6
 
-var tween: Tween
+var base_scale : Vector2
+var base_rotation : float
+var base_position : Vector2
+
+var hover_tween : Tween
 
 func _ready():
-	# Ensure scaling/rotation happens from the center
-	set_anchors_preset(Control.PRESET_CENTER)
+	base_scale = scale
+	base_rotation = rotation
+	base_position = position
+	
 	pivot_offset = size / 2
 
-	mouse_entered.connect(_on_hover)
-	mouse_exited.connect(_on_exit)
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
 
-func _on_hover():
-	if tween:
-		tween.kill()
+func _on_mouse_entered():
+	if hover_tween:
+		hover_tween.kill()
 
-	tween = create_tween()
+	scale = base_scale * hover_scale
+
+	hover_tween = create_tween()
+	hover_tween.set_loops()
+	hover_tween.set_trans(Tween.TRANS_SINE)
+	hover_tween.set_ease(Tween.EASE_IN_OUT)
+
+	hover_tween.tween_property(self, "rotation", deg_to_rad(rotate_amount), cycle_time)
+	hover_tween.tween_property(self, "rotation", deg_to_rad(-rotate_amount), cycle_time)
+
+func _on_mouse_exited():
+	if hover_tween:
+		hover_tween.kill()
+
+	var tween = create_tween()
 	tween.set_parallel(true)
-	tween.set_trans(Tween.TRANS_BACK)
-	tween.set_ease(Tween.EASE_OUT)
-
-	tween.tween_property(self, "scale", Vector2.ONE * hover_scale, anim_time)
-	tween.tween_property(self, "rotation_degrees", hover_rotation, anim_time)
-
-func _on_exit():
-	if tween:
-		tween.kill()
-
-	tween = create_tween()
-	tween.set_parallel(true)
-	tween.set_trans(Tween.TRANS_BACK)
-	tween.set_ease(Tween.EASE_OUT)
-
-	tween.tween_property(self, "scale", Vector2.ONE, anim_time)
-	tween.tween_property(self, "rotation_degrees", 0.0, anim_time)
+	tween.tween_property(self, "scale", base_scale, 0.1)
+	tween.tween_property(self, "rotation", base_rotation, 0.1)

@@ -2,9 +2,96 @@
 
 [ext_resource type="Script" uid="uid://fmxmfvp0coc3" path="res://scripts/main_menu.gd" id="1_0ykhv"]
 [ext_resource type="Script" uid="uid://gw3w1aprt07r" path="res://scripts/menu_button.gd" id="1_yqorp"]
+[ext_resource type="Texture2D" uid="uid://d0bv5v2cbikv5" path="res://assets/sprites/Menu/assets_menu9.png" id="2_826wr"]
+[ext_resource type="Texture2D" uid="uid://csrjsb2epof3n" path="res://assets/sprites/Menu/new/grass.png" id="3_7la6k"]
+[ext_resource type="Texture2D" uid="uid://csi5deajwdfkk" path="res://assets/sprites/Menu/Illustration_sans_titre3.png" id="3_7shrw"]
+[ext_resource type="Texture2D" uid="uid://c0r5crq15byhn" path="res://assets/sprites/Menu/new/stick.png" id="4_2nypq"]
+[ext_resource type="Texture2D" uid="uid://bwo05hbc56war" path="res://assets/sprites/Menu/new/plank1.png" id="5_bky6r"]
+[ext_resource type="Texture2D" uid="uid://cua441dandbxe" path="res://assets/sprites/Menu/new/plank2.png" id="7_l4mxc"]
+[ext_resource type="Texture2D" uid="uid://d3d1p8r052x5m" path="res://assets/sprites/Menu/new/plank3.png" id="8_5faoh"]
+[ext_resource type="FontFile" uid="uid://cpskrix0b4eok" path="res://assets/fonts/kirifont/KiriFont.otf" id="8_viowm"]
+[ext_resource type="Texture2D" uid="uid://ct35l0x224xjr" path="res://assets/sprites/Menu/new/empty-bin.png" id="9_ptake"]
+[ext_resource type="Texture2D" uid="uid://lf7qka13o6vb" path="res://assets/sprites/Menu/new/front-bin.png" id="10_hubol"]
+[ext_resource type="Texture2D" uid="uid://qrrvusk4fd84" path="res://assets/sprites/Menu/new/trash1.png" id="12_1n6yq"]
+[ext_resource type="Texture2D" uid="uid://ckdfdgeevsmxr" path="res://assets/sprites/Menu/new/trash2.png" id="13_yovvs"]
+[ext_resource type="Texture2D" uid="uid://cdgve36dxurg7" path="res://assets/sprites/Menu/new/trash3.png" id="14_2axsc"]
+[ext_resource type="Texture2D" uid="uid://d2q117480lp5j" path="res://assets/sprites/Menu/new/trash4.png" id="15_wrgne"]
+[ext_resource type="Texture2D" uid="uid://bxj14nydf1ijo" path="res://assets/sprites/Menu/new/trash6.png" id="16_hm0al"]
+[ext_resource type="Texture2D" uid="uid://dt0oxebqlndrt" path="res://assets/sprites/Menu/new/trash9.png" id="17_i7r3k"]
+[ext_resource type="Texture2D" uid="uid://dpjyd7bga3bcc" path="res://assets/sprites/Menu/assets_menu6.png" id="18_os5dr"]
+[ext_resource type="Script" uid="uid://4jyg4wirygrh" path="res://scripts/menu_racoon.gd" id="19_viowm"]
+[ext_resource type="Texture2D" uid="uid://bljf3bplq3op7" path="res://assets/sprites/Menu/new/trash7.png" id="20_duata"]
+[ext_resource type="PackedScene" uid="uid://dl258kyanald3" path="res://scenes/Flower.tscn" id="22_yovvs"]
+[ext_resource type="Texture2D" uid="uid://bgshhbhqyf6b5" path="res://assets/sprites/deco/daisy.svg" id="23_2axsc"]
+[ext_resource type="Texture2D" uid="uid://bwgylurdoi5s5" path="res://assets/sprites/deco/heb2.svg" id="24_i7r3k"]
+[ext_resource type="Texture2D" uid="uid://crul4m2wkvsx6" path="res://assets/sprites/deco/tulip.svg" id="25_os5dr"]
+[ext_resource type="Texture2D" uid="uid://dthf5xt7etok5" path="res://assets/sprites/deco/herb1.svg" id="26_duata"]
+[ext_resource type="Texture2D" uid="uid://c567rg5vwxw20" path="res://assets/sprites/deco/herb3.svg" id="27_lw0hr"]
+[ext_resource type="Texture2D" uid="uid://b5ptlnxm6g88a" path="res://assets/particles/petal.png" id="28_os5dr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7la6k"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Gradient" id="Gradient_os5dr"]
+colors = PackedColorArray(0.889915, 0.36962965, 0.67995244, 1, 1, 0.7647059, 1, 0.3764706)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_duata"]
+gradient = SubResource("Gradient_os5dr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_duata"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 200, 1)
+direction = Vector3(1, 0.5, 0)
+spread = 10.321
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+angular_velocity_min = -214.46
+angular_velocity_max = 288.00998
+orbit_velocity_min = -0.009999906
+orbit_velocity_max = 0.010000096
+gravity = Vector3(0, 20, 0)
+radial_accel_min = -22.130001
+radial_accel_max = 17.869997
+color_ramp = SubResource("GradientTexture1D_duata")
+turbulence_noise_strength = 0.87
+turbulence_noise_scale = 0.152
 
 [node name="MainMenu" type="Node2D" unique_id=2000621963]
 script = ExtResource("1_0ykhv")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1760639615]
+scale = Vector2(0.8725636, 1.4029851)
+texture = ExtResource("2_826wr")
+centered = false
+
+[node name="IllustrationSansTitre3" type="Sprite2D" parent="." unique_id=632019592]
+position = Vector2(524, 522)
+scale = Vector2(0.522694, 0.51904297)
+texture = ExtResource("3_7shrw")
+
+[node name="Grass" type="Sprite2D" parent="." unique_id=161801746]
+position = Vector2(598, 606)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_7la6k")
+
+[node name="Daisy2" parent="." unique_id=345284531 instance=ExtResource("22_yovvs")]
+position = Vector2(995, 508)
+texture = ExtResource("23_2axsc")
+
+[node name="Stick" type="Sprite2D" parent="." unique_id=2103545980]
+position = Vector2(194, 366.99997)
+scale = Vector2(0.305, 0.305)
+texture = ExtResource("4_2nypq")
 
 [node name="Play" type="Button" parent="." unique_id=1270679684]
 anchors_preset = 8
@@ -12,40 +99,214 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 159.5
-offset_top = 300.0
-offset_right = 390.5
-offset_bottom = 345.0
+offset_left = 77.0
+offset_top = 148.0
+offset_right = 372.0
+offset_bottom = 236.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -0.07137309
+theme_override_styles/normal = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/focus = SubResource("StyleBoxFlat_7la6k")
+icon = ExtResource("5_bky6r")
+expand_icon = true
 script = ExtResource("1_yqorp")
+hover_scale = 1.2
 
-[node name="Options" type="Button" parent="." unique_id=1146469659]
+[node name="RacoonTarget" type="Node2D" parent="Play" unique_id=2081675068]
+position = Vector2(127.17308, 44.181507)
+rotation = 0.07137309
+scale = Vector2(0.9999999, 0.9999999)
+
+[node name="Label" type="Label" parent="Play" unique_id=561008151]
+layout_mode = 0
+offset_left = 74.166306
+offset_top = 28.361176
+offset_right = 190.1663
+offset_bottom = 70.361176
+rotation = -0.043344725
+theme_override_colors/font_color = Color(0.55621684, 0.2990823, 0.17730615, 1)
+theme_override_fonts/font = ExtResource("8_viowm")
+theme_override_font_sizes/font_size = 41
+text = "Play"
+
+[node name="Credits" type="Button" parent="." unique_id=822284143]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 192.0
-offset_top = 411.0
-offset_right = 401.0
-offset_bottom = 482.0
+offset_left = 66.0
+offset_top = 255.99997
+offset_right = 349.6169
+offset_bottom = 338.61008
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -0.17802358
+theme_override_styles/normal = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/focus = SubResource("StyleBoxFlat_7la6k")
+icon = ExtResource("7_l4mxc")
+expand_icon = true
 script = ExtResource("1_yqorp")
+hover_scale = 1.02
 
-[node name="Credits" type="Button" parent="." unique_id=1769316302]
+[node name="Label" type="Label" parent="Credits" unique_id=2105997182]
+layout_mode = 0
+offset_left = 46.29811
+offset_top = 30.683657
+offset_right = 250.29811
+offset_bottom = 72.683655
+rotation = -0.04363323
+theme_override_colors/font_color = Color(0.55621684, 0.2990823, 0.17730615, 1)
+theme_override_fonts/font = ExtResource("8_viowm")
+theme_override_font_sizes/font_size = 41
+text = "Credits"
+
+[node name="Quit" type="Button" parent="." unique_id=398890271]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 106.0
-offset_top = 166.0
-offset_right = 464.0
-offset_bottom = 203.0
+offset_left = 89.0
+offset_top = 366.99997
+offset_right = 293.0
+offset_bottom = 428.99997
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 0.10646509
+theme_override_styles/normal = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/focus = SubResource("StyleBoxFlat_7la6k")
+icon = ExtResource("8_5faoh")
+expand_icon = true
 script = ExtResource("1_yqorp")
 
-[node name="Racoon" type="Sprite2D" parent="." unique_id=132808380]
+[node name="Label" type="Label" parent="Quit" unique_id=1711412060]
+layout_mode = 0
+offset_left = 49.999992
+offset_top = 15.000008
+offset_right = 180.0
+offset_bottom = 57.000008
+rotation = 0.04363323
+theme_override_colors/font_color = Color(0.55621684, 0.2990823, 0.17730615, 1)
+theme_override_fonts/font = ExtResource("8_viowm")
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[node name="Tulip2" parent="." unique_id=746206440 instance=ExtResource("22_yovvs")]
+position = Vector2(628, 508)
+texture = ExtResource("25_os5dr")
+
+[node name="EmptyBin" type="Sprite2D" parent="." unique_id=455423321]
+position = Vector2(843, 464)
+scale = Vector2(0.285, 0.285)
+texture = ExtResource("9_ptake")
+
+[node name="Bin" type="Sprite2D" parent="EmptyBin" unique_id=905406257]
+position = Vector2(175.4386, 21.052631)
+texture = ExtResource("12_1n6yq")
+
+[node name="Bin2" type="Sprite2D" parent="EmptyBin" unique_id=460301053]
+position = Vector2(-56.14026, 66.66665)
+texture = ExtResource("13_yovvs")
+
+[node name="Bin3" type="Sprite2D" parent="EmptyBin" unique_id=12258001]
+position = Vector2(540.35095, 364.91226)
+texture = ExtResource("14_2axsc")
+
+[node name="Bin4" type="Sprite2D" parent="EmptyBin" unique_id=331311615]
+position = Vector2(-719.29816, 329.82452)
+texture = ExtResource("15_wrgne")
+
+[node name="Bin5" type="Sprite2D" parent="EmptyBin" unique_id=1987322008]
+position = Vector2(505.26324, 505.26312)
+texture = ExtResource("16_hm0al")
+
+[node name="Bin7" type="Sprite2D" parent="EmptyBin" unique_id=807497501]
+position = Vector2(340.35095, -14.035107)
+texture = ExtResource("17_i7r3k")
+
+[node name="Racoon" type="Sprite2D" parent="EmptyBin" unique_id=132808380 node_paths=PackedStringArray("target")]
+position = Vector2(-270.17548, 147.36841)
+scale = Vector2(3.508772, 3.508772)
+texture = ExtResource("18_os5dr")
+script = ExtResource("19_viowm")
+target = NodePath("../../Play/RacoonTarget")
+influence_distance = 500.0
+
+[node name="FrontBin" type="Sprite2D" parent="EmptyBin" unique_id=101901237]
+position = Vector2(-121, 261)
+texture = ExtResource("10_hubol")
+
+[node name="Bin6" type="Sprite2D" parent="EmptyBin" unique_id=635301903]
+position = Vector2(235.08772, 498.2455)
+texture = ExtResource("20_duata")
+
+[node name="Deco" type="Node2D" parent="." unique_id=1759035669]
+
+[node name="Daisy" parent="Deco" unique_id=1418150430 instance=ExtResource("22_yovvs")]
+position = Vector2(319, 584)
+texture = ExtResource("23_2axsc")
+
+[node name="Herb" parent="Deco" unique_id=1436235246 instance=ExtResource("22_yovvs")]
+position = Vector2(45, 619)
+texture = ExtResource("24_i7r3k")
+
+[node name="Tulip" parent="Deco" unique_id=1081280027 instance=ExtResource("22_yovvs")]
+position = Vector2(1120, 628)
+texture = ExtResource("25_os5dr")
+
+[node name="Herb2" parent="Deco" unique_id=315785301 instance=ExtResource("22_yovvs")]
+position = Vector2(147, 514)
+texture = ExtResource("26_duata")
+
+[node name="Herb3" parent="Deco" unique_id=1520582747 instance=ExtResource("22_yovvs")]
+position = Vector2(483, 588)
+texture = ExtResource("27_lw0hr")
+
+[node name="Herb4" parent="Deco" unique_id=1969400186 instance=ExtResource("22_yovvs")]
+position = Vector2(790, 625)
+texture = ExtResource("26_duata")
+
+[node name="Herb5" parent="Deco" unique_id=357173813 instance=ExtResource("22_yovvs")]
+position = Vector2(1082, 518)
+texture = ExtResource("27_lw0hr")
+
+[node name="Daisy2" parent="Deco" unique_id=384743891 instance=ExtResource("22_yovvs")]
+position = Vector2(29, 540)
+texture = ExtResource("23_2axsc")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=480583450]
+position = Vector2(-89, -23)
+texture = ExtResource("28_os5dr")
+lifetime = 6.35
+preprocess = 1.29
+explosiveness = 0.35
+process_material = SubResource("ParticleProcessMaterial_duata")
