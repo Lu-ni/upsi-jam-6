@@ -139,11 +139,11 @@ func pay_for_deal(deal: Deal) -> void:
 
 func grant_reward(reward_id: String) -> void:
 	match reward_id:
-		"Max Inventory":
+		"max_inventory":
 			Signals.upgrade_stat.emit(PlayerInfo.Stat.MAX_INVENTORY, PlayerInfo.Rarity.COMMON)
-		"Max Time":
+		"max_time":
 			Signals.upgrade_stat.emit(PlayerInfo.Stat.MAX_TIME, PlayerInfo.Rarity.COMMON)
-		"Dump Range":
+		"dump_range":
 			Signals.upgrade_stat.emit(PlayerInfo.Stat.DUMP_RANGE, PlayerInfo.Rarity.COMMON)
 		_:
 			print("Reward Action: Unknown reward_id ", reward_id)
