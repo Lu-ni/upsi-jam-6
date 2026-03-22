@@ -52,7 +52,6 @@ func _init_spawner() -> void:
 		push_error("BaseSpawner: no pure-grass spot found after %d attempts." % SEARCH_ATTEMPTS)
 		return
 
-	_draw_marker(_base_spot)
 	_spawn_scenes(_base_spot)
 	_teleport_player(_base_spot)
 
@@ -185,21 +184,6 @@ func _spawn_drops() -> void:
 #  Marker Drawing
 # ─────────────────────────────────────────
 
-func _draw_marker(world_pos: Vector2) -> void:
-	if _marker:
-		_marker.queue_free()
-
-	_marker = Node2D.new()
-	_marker.position = world_pos
-	add_child(_marker)
-
-	var canvas := _MarkerCanvas.new()
-	canvas.circle_radius = CIRCLE_RADIUS
-	canvas.position = Vector2.ZERO
-	_marker.add_child(canvas)
-	canvas.queue_redraw()
-
-	print("BaseSpawner: marker placed at ", world_pos)
 
 # ─────────────────────────────────────────
 #  Player
@@ -224,10 +208,3 @@ func _get_player() -> Node2D:
 
 class _MarkerCanvas extends Node2D:
 	var circle_radius : int = 30
-
-	func _draw() -> void:
-		var r   := float(circle_radius)
-		var col := Color(1, 0, 0, 0.0)
-		var rim := Color(1, 0, 0, 1.0)
-		draw_circle(Vector2.ZERO, r, col)
-		draw_arc(Vector2.ZERO, r, 0.0, TAU, 48, rim, 2.0)

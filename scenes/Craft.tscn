@@ -9,7 +9,7 @@ region = Rect2(1600, 0, 1600, 1200)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qrsei"]
 atlas = ExtResource("2_fngce")
-region = Rect2(1600, 0, 1600, 1200)
+region = Rect2(1600, 1200, 1600, 1200)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yltc6"]
 animations = [{
@@ -40,6 +40,7 @@ script = ExtResource("1_ec5oe")
 [node name="ShopPart" type="AnimatedSprite2D" parent="." unique_id=415828246]
 scale = Vector2(0.06, 0.06)
 sprite_frames = SubResource("SpriteFrames_yltc6")
+animation = &"open"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=436078647]
 
