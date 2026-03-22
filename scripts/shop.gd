@@ -25,8 +25,9 @@ func _ready() -> void:
 	# Initialisation des deals : (Nom, Desc, Icon_Path, PriceDict, randomPrice, RewardID)
 	all_deals.append(Deal.new("Special +1", "un super buff", "res://assets/test/Yellow.png", {"Precious": 1}, false, "add_special"))
 	all_deals.append(Deal.new("Global spd +1", "augmente the global move spd", "res://assets/test/Yellow.png", {"Precious": 2}, false, "add_move_spd"))
-	all_deals.append(Deal.new("Special +5", "un mega buff", "res://assets/test/Red.png", {"Precious": 5}, false, "add_special"))
-	
+	all_deals.append(Deal.new("testt", "test", "res://assets/test/Red.png", {"Precious": 1}, false, "bigger_bag"))
+	#all_deals.append(Deal.new("Special +5", "un mega buff", "res://assets/test/Red.png", {"Precious": 5}, false, "add_special"))
+
 	reroll_shop()
 
 func reroll_shop() -> void:
@@ -37,14 +38,14 @@ func reroll_shop() -> void:
 
 func get_random_item_index() -> int:
 	var potential_indices = range(all_deals.size())
-	
+
 	if not ALLOW_DUPLICATES:
 		for idx in shop_slots_indices:
 			potential_indices.erase(idx)
 
 	if potential_indices.is_empty():
 		return randi() % all_deals.size()
-		
+
 	return potential_indices.pick_random()
 
 func replace_item_at_slot(slot_index: int) -> void:
@@ -53,9 +54,9 @@ func replace_item_at_slot(slot_index: int) -> void:
 
 	var current_indices_copy = shop_slots_indices.duplicate()
 	current_indices_copy.remove_at(slot_index)
-	
+
 	var potential_indices = range(all_deals.size())
-	
+
 	if not ALLOW_DUPLICATES:
 		for idx in current_indices_copy:
 			potential_indices.erase(idx)
@@ -68,7 +69,7 @@ func replace_item_at_slot(slot_index: int) -> void:
 func get_item_at_slot(slot_index: int) -> Deal:
 	if slot_index < 0 or slot_index >= shop_slots_indices.size():
 		return null
-	
+
 	var real_index = shop_slots_indices[slot_index]
 	return all_deals[real_index]
 
@@ -98,7 +99,7 @@ func can_player_afford(deal: Deal) -> bool:
 			for inv_item in PlayerInfo.inventory:
 				if inv_item.item_name == price_item_name:
 					player_has += 1
-			
+
 			if player_has < required_amount:
 				return false
 	return true
@@ -106,7 +107,7 @@ func can_player_afford(deal: Deal) -> bool:
 func pay_for_deal(deal: Deal) -> void:
 	for price_item_name in deal.current_price.keys():
 		var required_amount = deal.current_price[price_item_name]
-		
+
 		if price_item_name == "Precious":
 			for i in range(required_amount):
 				for j in range(PlayerInfo.inventory.size()):
@@ -119,7 +120,7 @@ func pay_for_deal(deal: Deal) -> void:
 					if PlayerInfo.inventory[j].item_name == price_item_name:
 						PlayerInfo.inventory.remove_at(j)
 						break
-	
+
 	# Après avoir tout retiré, on met à jour l'UI globale
 	Signals.inventory_updated.emit()
 
@@ -132,10 +133,10 @@ func _on_screen_entered() -> void:
 		is_tutorial_playing = true
 		var popup = load("res://scenes/tuto_popup.tscn").instantiate()
 		add_child(popup)
-		
+
 		# On place toujours le tuto de shop AU-DESSUS (y = -65)
 		popup.position = Vector2(-120, -65)
-		
+
 		# Connect to signal before starting
 		popup.tutorial_finished.connect(func():
 			is_tutorial_playing = false
@@ -143,12 +144,14 @@ func _on_screen_entered() -> void:
 				_on_area_2d_body_entered(waiting_player_body)
 				waiting_player_body = null
 		)
-		
+
 		if popup.has_method("start_tutorial"):
 			popup.start_tutorial("Here you can buy items to get stronger!")
 
 func grant_reward(reward_id: String) -> void:
 	match reward_id:
+		"bigger_bag":
+			PlayerInfo.max_inventory += 10
 		"add_special":
 			print("Reward Action: Player gains +1 Special bonus")
 		"add_move_spd":

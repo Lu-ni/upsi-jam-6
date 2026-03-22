@@ -29,7 +29,7 @@ var max_inventory: float = 3
 # ── Upgrade Tracking ──
 var upgrade_counts: Dictionary = {}
 var total_upgrades: int = 0
-@export var field_of_view : int = 12 # should not be biger than 20
+@export var field_of_view : int = 16 # should not be biger than 20
 #var ta_race_jsp
 
 func _ready() -> void:
