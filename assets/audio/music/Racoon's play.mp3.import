@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b1wdudkfmgndo"
+path="res://.godot/imported/Racoon's play.mp3-4f69aefab88cefccfd079f3bcb59c246.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/Racoon's play.mp3"
+dest_files=["res://.godot/imported/Racoon's play.mp3-4f69aefab88cefccfd079f3bcb59c246.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

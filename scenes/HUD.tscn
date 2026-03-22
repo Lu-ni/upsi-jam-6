@@ -4,27 +4,27 @@
 [ext_resource type="Texture2D" uid="uid://t17t3iqkesbp" path="res://icon.svg" id="1_qpvh6"]
 [ext_resource type="Texture2D" uid="uid://c3xvahy864geu" path="res://assets/icons/pods.png" id="3_1etfg"]
 [ext_resource type="Texture2D" uid="uid://bjqu23rdcmm5g" path="res://assets/sprites/bin-sprite-sheet.png" id="4_nysna"]
-[ext_resource type="Texture2D" uid="uid://dvcvkmdpnf7gc" path="res://assets/icons/time.png" id="5_f6qnu"]
+[ext_resource type="Texture2D" uid="uid://dw6lj2fnwtmn0" path="res://assets/sprites/hub/clock2.png" id="5_nysna"]
 
 [node name="Hud" type="CanvasLayer" unique_id=1218645215]
 script = ExtResource("1_fls4u")
 
 [node name="ItemList" type="VBoxContainer" parent="." unique_id=1672027048]
-offset_left = 29.0
-offset_top = 142.0
-offset_right = 157.0
-offset_bottom = 1472.303
-scale = Vector2(0.33, 0.33)
+offset_left = 28.999998
+offset_top = 165.0
+offset_right = 120.0
+offset_bottom = 1488.303
 size_flags_stretch_ratio = 0.0
 
 [node name="TextureRect2" type="TextureRect" parent="ItemList" unique_id=1341948677]
 layout_mode = 2
 texture = ExtResource("1_qpvh6")
-stretch_mode = 2
+expand_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ItemList" unique_id=1478821820]
 layout_mode = 2
 texture = ExtResource("1_qpvh6")
+expand_mode = 2
 
 [node name="Weight" type="Sprite2D" parent="." unique_id=880909006]
 position = Vector2(41.000004, 99.00001)
@@ -40,7 +40,7 @@ theme_override_font_sizes/font_size = 92
 text = "0"
 
 [node name="Value" type="Sprite2D" parent="." unique_id=1959881150]
-position = Vector2(328, 33)
+position = Vector2(333, 32)
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("4_nysna")
 hframes = 4
@@ -48,17 +48,17 @@ vframes = 4
 frame = 3
 
 [node name="Label" type="Label" parent="Value" unique_id=205730385]
-offset_left = 149.99954
-offset_top = -81.25
-offset_right = 1199.9995
-offset_bottom = 94.75
+offset_left = -87.50006
+offset_top = -25.0
+offset_right = 962.49994
+offset_bottom = 151.0
 theme_override_font_sizes/font_size = 129
 text = "0"
 
 [node name="Time" type="Sprite2D" parent="." unique_id=1727786038]
-position = Vector2(609.00006, 36)
+position = Vector2(698.00006, 36)
 scale = Vector2(0.255, 0.255)
-texture = ExtResource("5_f6qnu")
+texture = ExtResource("5_nysna")
 
 [node name="Label" type="Label" parent="Time" unique_id=687337136]
 offset_left = 116.12904

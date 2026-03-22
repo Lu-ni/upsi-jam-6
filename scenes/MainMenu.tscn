@@ -151,48 +151,6 @@ theme_override_fonts/font = ExtResource("8_viowm")
 theme_override_font_sizes/font_size = 41
 text = "Play"
 
-[node name="Credits" type="Button" parent="." unique_id=822284143]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 66.0
-offset_top = 255.99997
-offset_right = 349.6169
-offset_bottom = 338.61008
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.17802358
-theme_override_styles/normal = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_7la6k")
-theme_override_styles/focus = SubResource("StyleBoxFlat_7la6k")
-icon = ExtResource("7_l4mxc")
-expand_icon = true
-script = ExtResource("12_duata")
-fall_distance = 400.0
-fall_time = 0.5
-
-[node name="Label" type="Label" parent="Credits" unique_id=2105997182]
-layout_mode = 0
-offset_left = 46.29811
-offset_top = 30.683657
-offset_right = 250.29811
-offset_bottom = 72.683655
-rotation = -0.04363323
-theme_override_colors/font_color = Color(0.55621684, 0.2990823, 0.17730615, 1)
-theme_override_fonts/font = ExtResource("8_viowm")
-theme_override_font_sizes/font_size = 41
-text = "Credits"
-
 [node name="Quit" type="Button" parent="." unique_id=398890271]
 anchors_preset = 8
 anchor_left = 0.5
@@ -235,6 +193,48 @@ theme_override_colors/font_color = Color(0.55621684, 0.2990823, 0.17730615, 1)
 theme_override_fonts/font = ExtResource("8_viowm")
 theme_override_font_sizes/font_size = 32
 text = "Quit"
+
+[node name="Credits" type="Button" parent="." unique_id=822284143]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 66.0
+offset_top = 255.99997
+offset_right = 349.6169
+offset_bottom = 338.61008
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.17802358
+theme_override_styles/normal = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_7la6k")
+theme_override_styles/focus = SubResource("StyleBoxFlat_7la6k")
+icon = ExtResource("7_l4mxc")
+expand_icon = true
+script = ExtResource("12_duata")
+fall_distance = 400.0
+fall_time = 0.5
+
+[node name="Label" type="Label" parent="Credits" unique_id=2105997182]
+layout_mode = 0
+offset_left = 46.29811
+offset_top = 30.683657
+offset_right = 250.29811
+offset_bottom = 72.683655
+rotation = -0.04363323
+theme_override_colors/font_color = Color(0.55621684, 0.2990823, 0.17730615, 1)
+theme_override_fonts/font = ExtResource("8_viowm")
+theme_override_font_sizes/font_size = 41
+text = "Credits"
 
 [node name="Tulip2" parent="." unique_id=746206440 instance=ExtResource("22_yovvs")]
 position = Vector2(628, 508)
@@ -348,3 +348,17 @@ process_material = SubResource("ParticleProcessMaterial_duata")
 [node name="BananaPeal" type="Sprite2D" parent="." unique_id=1828838957]
 position = Vector2(722, 600)
 texture = ExtResource("33_c3y1w")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1296543148]
+
+[node name="Info" type="Label" parent="." unique_id=854309725]
+offset_left = 679.0
+offset_top = 494.0
+offset_right = 810.0
+offset_bottom = 524.0
+theme_override_colors/font_color = Color(0.36194757, 0.1996446, 0.016974224, 0.5882353)
+theme_override_fonts/font = ExtResource("8_viowm")
+theme_override_font_sizes/font_size = 8
+text = "n for groove
+m to keep your mouth shut
+e to find your way"
