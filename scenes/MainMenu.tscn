@@ -25,10 +25,15 @@
 [ext_resource type="PackedScene" uid="uid://dl258kyanald3" path="res://scenes/Flower.tscn" id="22_yovvs"]
 [ext_resource type="Texture2D" uid="uid://bgshhbhqyf6b5" path="res://assets/sprites/deco/daisy.svg" id="23_2axsc"]
 [ext_resource type="Texture2D" uid="uid://bwgylurdoi5s5" path="res://assets/sprites/deco/heb2.svg" id="24_i7r3k"]
+[ext_resource type="Texture2D" uid="uid://davjy62hcgu5t" path="res://assets/sprites/hud/title.png" id="25_lw0hr"]
 [ext_resource type="Texture2D" uid="uid://crul4m2wkvsx6" path="res://assets/sprites/deco/tulip.svg" id="25_os5dr"]
+[ext_resource type="Texture2D" uid="uid://buij5xgexl644" path="res://assets/sprites/hud/credits.png" id="25_ynb5t"]
 [ext_resource type="Texture2D" uid="uid://dthf5xt7etok5" path="res://assets/sprites/deco/herb1.svg" id="26_duata"]
 [ext_resource type="Texture2D" uid="uid://c567rg5vwxw20" path="res://assets/sprites/deco/herb3.svg" id="27_lw0hr"]
+[ext_resource type="Texture2D" uid="uid://clf1ymya8c64b" path="res://assets/sprites/items-and-more/chicken-meat.svg" id="28_ejntt"]
 [ext_resource type="Texture2D" uid="uid://b5ptlnxm6g88a" path="res://assets/particles/petal.png" id="28_os5dr"]
+[ext_resource type="Texture2D" uid="uid://c7kpyr7nc27hv" path="res://assets/sprites/items-and-more/banana-peal.svg" id="33_c3y1w"]
+[ext_resource type="Texture2D" uid="uid://b5lqxy5v15xuu" path="res://assets/sprites/items-and-more/apple.svg" id="34_krgl8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7la6k"]
 content_margin_left = 4.0
@@ -76,8 +81,8 @@ texture = ExtResource("2_826wr")
 centered = false
 
 [node name="Title" type="Sprite2D" parent="." unique_id=632019592]
-position = Vector2(524, 522)
-scale = Vector2(0.522694, 0.51904297)
+position = Vector2(512, 566)
+scale = Vector2(0.69308203, 0.55407715)
 texture = ExtResource("3_7shrw")
 
 [node name="Grass" type="Sprite2D" parent="." unique_id=161801746]
@@ -88,6 +93,12 @@ texture = ExtResource("3_7la6k")
 [node name="Daisy2" parent="." unique_id=345284531 instance=ExtResource("22_yovvs")]
 position = Vector2(995, 508)
 texture = ExtResource("23_2axsc")
+
+[node name="Apple" type="Sprite2D" parent="." unique_id=1917045745]
+position = Vector2(216.99998, 574)
+rotation = 1.4961408
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("34_krgl8")
 
 [node name="Stick" type="Sprite2D" parent="." unique_id=2103545980]
 position = Vector2(194, 366.99997)
@@ -270,9 +281,27 @@ influence_distance = 500.0
 position = Vector2(-121, 261)
 texture = ExtResource("10_hubol")
 
+[node name="Credits2" type="Sprite2D" parent="EmptyBin" unique_id=1074012092]
+position = Vector2(14.035065, 392.9824)
+scale = Vector2(0.8393285, 0.59660935)
+texture = ExtResource("25_ynb5t")
+
+[node name="Title2" type="Sprite2D" parent="EmptyBin" unique_id=1183541201]
+position = Vector2(445.61395, 105.26325)
+rotation = -0.95294976
+scale = Vector2(0.287, 0.226)
+skew = 0.8848819
+texture = ExtResource("25_lw0hr")
+
 [node name="Bin6" type="Sprite2D" parent="EmptyBin" unique_id=635301903]
 position = Vector2(235.08772, 498.2455)
 texture = ExtResource("20_duata")
+
+[node name="ChickenMeat" type="Sprite2D" parent="." unique_id=708102280]
+position = Vector2(669.99994, 621)
+rotation = 0.7746084
+scale = Vector2(0.875, 0.875)
+texture = ExtResource("28_ejntt")
 
 [node name="Deco" type="Node2D" parent="." unique_id=1759035669]
 
@@ -315,3 +344,7 @@ lifetime = 6.35
 preprocess = 1.29
 explosiveness = 0.35
 process_material = SubResource("ParticleProcessMaterial_duata")
+
+[node name="BananaPeal" type="Sprite2D" parent="." unique_id=1828838957]
+position = Vector2(722, 600)
+texture = ExtResource("33_c3y1w")
