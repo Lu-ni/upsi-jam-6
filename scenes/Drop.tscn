@@ -10,7 +10,7 @@ shader_parameter/outline_width = 1.398000066405
 
 [node name="Drop" type="CharacterBody2D" unique_id=1198643905]
 script = ExtResource("1_21n5c")
-pickup_range = 100
+pickup_range = 40
 move_speed = 503
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=57519601]
