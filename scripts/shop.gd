@@ -32,10 +32,10 @@ func _ready() -> void:
 	vis.screen_entered.connect(_on_screen_entered)
 
 	# Initialisation des deals : (Nom, Desc, Icon_Path, PriceDict, randomPrice, RewardID)
-	all_deals.append(Deal.new("Speed Up", "Augmente la vitesse", "res://assets/test/Yellow.png", {"Precious": 2}, false, "speed"))
-	all_deals.append(Deal.new("Pickup Range", "Augmente la range de ramassage", "res://assets/test/Green.png", {"Precious": 2}, false, "pickup_range"))
-	all_deals.append(Deal.new("Drop Speed", "Augmente la vitesse de drop", "res://assets/test/White.png", {"Precious": 2}, false, "drop_speed"))
-	all_deals.append(Deal.new("Dump Cooldown", "Reduit le cooldown de dump", "res://assets/test/Red.png", {"Precious": 2}, false, "dump_cooldown"))
+	all_deals.append(Deal.new("Speed Up", "Augmente la vitesse", "res://assets/test/Yellow.png", {"PRECIOUS": 2}, false, "speed"))
+	all_deals.append(Deal.new("Pickup Range", "Augmente la range de ramassage", "res://assets/test/Green.png", {"PRECIOUS": 2}, false, "pickup_range"))
+	all_deals.append(Deal.new("Drop Speed", "Augmente la vitesse de drop", "res://assets/test/White.png", {"PRECIOUS": 2}, false, "drop_speed"))
+	all_deals.append(Deal.new("Dump Cooldown", "Reduit le cooldown de dump", "res://assets/test/Red.png", {"PRECIOUS": 2}, false, "dump_cooldown"))
 	$ShopPart.play("default")
 	reroll_shop()
 
@@ -89,8 +89,12 @@ func can_player_afford(deal: Deal) -> bool:
 		var required_amount = deal.current_price[price_item_name]
 		var player_has = 0
 		for inv_item in PlayerInfo.inventory:
-			if inv_item.item_name == price_item_name:
-				player_has += 1
+			if price_item_name == "PRECIOUS":
+				if inv_item.item_type == Item.ITEM_TYPE.PRECIOUS:
+					player_has += 1
+			else:
+				if inv_item.item_name == price_item_name:
+					player_has += 1
 		if player_has < required_amount:
 			return false
 	return true
@@ -103,9 +107,14 @@ func pay_for_deal(deal: Deal) -> void:
 		var required_amount = deal.current_price[price_item_name]
 		for i in range(required_amount):
 			for j in range(PlayerInfo.inventory.size()):
-				if PlayerInfo.inventory[j].item_name == price_item_name:
-					PlayerInfo.inventory.remove_at(j)
-					break
+				if price_item_name == "PRECIOUS":
+					if PlayerInfo.inventory[j].item_type == Item.ITEM_TYPE.PRECIOUS:
+						PlayerInfo.inventory.remove_at(j)
+						break
+				else:
+					if PlayerInfo.inventory[j].item_name == price_item_name:
+						PlayerInfo.inventory.remove_at(j)
+						break
 	Signals.inventory_updated.emit()
 
 

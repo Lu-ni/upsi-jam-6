@@ -112,8 +112,12 @@ func can_player_afford(deal: Deal) -> bool:
 		var required_amount = deal.current_price[price_item_name]
 		var player_has = 0
 		for inv_item in PlayerInfo.inventory:
-			if inv_item.item_name == price_item_name:
-				player_has += 1
+			if price_item_name == "PRECIOUS":
+				if inv_item.item_type == Item.ITEM_TYPE.PRECIOUS:
+					player_has += 1
+			else:
+				if inv_item.item_name == price_item_name:
+					player_has += 1
 		if player_has < required_amount:
 			return false
 	return true
@@ -123,9 +127,14 @@ func pay_for_deal(deal: Deal) -> void:
 		var required_amount = deal.current_price[price_item_name]
 		for i in range(required_amount):
 			for j in range(PlayerInfo.inventory.size()):
-				if PlayerInfo.inventory[j].item_name == price_item_name:
-					PlayerInfo.inventory.remove_at(j)
-					break
+				if price_item_name == "PRECIOUS":
+					if PlayerInfo.inventory[j].item_type == Item.ITEM_TYPE.PRECIOUS:
+						PlayerInfo.inventory.remove_at(j)
+						break
+				else:
+					if PlayerInfo.inventory[j].item_name == price_item_name:
+						PlayerInfo.inventory.remove_at(j)
+						break
 	Signals.inventory_updated.emit()
 
 func grant_reward(reward_id: String) -> void:
