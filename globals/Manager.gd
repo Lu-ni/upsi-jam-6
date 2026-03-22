@@ -1,13 +1,28 @@
 extends Node
 
-# Script that manages all other scenes
-# ex. display menu on esc pressed, pause game and whatnot
+var in_game: bool = false
+var hud: Node = null
+var menu: Node = null
+var world: Node = null
+var pause_menu: Node = null
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var initialized: bool = false
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if not initialized:
+		hud = load("res://scenes/HUD.tscn").instantiate()
+		hud.visible = false
+		get_tree().root.add_child(hud)
+		initialized = true
+
+func _ready() -> void:
+	pass
+
+func toggle_pause_menu():
+	pass
+
+func start_game():
+	pass
+
+func reset_game_data():
 	pass

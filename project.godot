@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="upsi-jam-6"
-run/main_scene="uid://dtbs3n50bqkkl"
+run/main_scene="uid://bt5ppf60hstyw"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -22,7 +22,6 @@ Manager="*uid://c8nwuorbnhm6c"
 ShopManager="*res://scripts/shop_manager.gd"
 Structure="*uid://qfaklmsa6lrk"
 GlobalItemList="*uid://brp35qkkiiwt7"
-SceneList="*uid://c5ra7fd6ewiio"
 PlayerInfo="*uid://bae4ppspx5ngb"
 GameInfo="*uid://d38veo5scdgsj"
 PlayerManager="*res://globals/PlayerManager.gd"
