@@ -8,11 +8,13 @@ const LOOKUP_SIZE     := 300
 const CIRCLE_RADIUS   := int(LOOKUP_SIZE * 2)
 const SEARCH_RADIUS   := 2000
 const SEARCH_ATTEMPTS := 500
-const DROP_COUNT      := 50
-const DROP_SPREAD     := 400
+
+const DROP_MAX_RADIUS       := CIRCLE_RADIUS * 3
+const DROP_SPAWN_CHANCE_MIN := 0.0    # probability right at the heap
+const DROP_SPAWN_CHANCE_MAX := 0.35   # probability at DROP_MAX_RADIUS and beyond
 
 const SHOP_SCENE            := preload("res://scenes/Shop.tscn")
-const CRAFT_SCENE            := preload("res://scenes/Craft.tscn")
+const CRAFT_SCENE           := preload("res://scenes/Craft.tscn")
 const HEAP_OF_GARBAGE_SCENE := preload("res://scenes/HeapOfGarbage.tscn")
 const DROP_SCENE            := preload("res://scenes/Drop.tscn")
 
@@ -20,8 +22,10 @@ const DROP_SCENE            := preload("res://scenes/Drop.tscn")
 #  State
 # ─────────────────────────────────────────
 
-var _world_map : Node    = null
-var _marker    : Node2D  = null
+var _world_map     : Node    = null
+var _marker        : Node2D  = null
+var _base_spot     : Vector2 = Vector2.INF
+var _spawned_chunks : Dictionary = {}   # chunk_coord -> true, never re-seeded
 
 # ─────────────────────────────────────────
 #  Lifecycle
@@ -41,17 +45,30 @@ func _init_spawner() -> void:
 
 	print("BaseSpawner: player -> ", _get_player())
 
-	var spot := _find_grass_spot()
-	print("BaseSpawner: spot found -> ", spot)
+	_base_spot = _find_grass_spot()
+	print("BaseSpawner: spot found -> ", _base_spot)
 
-	if spot == Vector2.INF:
+	if _base_spot == Vector2.INF:
 		push_error("BaseSpawner: no pure-grass spot found after %d attempts." % SEARCH_ATTEMPTS)
 		return
 
-	_draw_marker(spot)
-	_spawn_scenes(spot)
-	_spawn_drops(spot)
-	_teleport_player(spot)
+	_draw_marker(_base_spot)
+	_spawn_scenes(_base_spot)
+	_teleport_player(_base_spot)
+
+	# Wait one frame so the player has moved and WorldMap has emitted its first
+	# player_changed_chunk — then connect so every future chunk crossing seeds drops.
+	await get_tree().process_frame
+	PlayerManager.player_changed_chunk.connect(_on_player_changed_chunk)
+	# Seed the initial visible area straight away.
+	_spawn_drops()
+
+# ─────────────────────────────────────────
+#  Signal handler
+# ─────────────────────────────────────────
+
+func _on_player_changed_chunk() -> void:
+	_spawn_drops()
 
 # ─────────────────────────────────────────
 #  Search
@@ -66,9 +83,6 @@ func _find_grass_spot() -> Vector2:
 			rng.randf_range(-SEARCH_RADIUS, SEARCH_RADIUS),
 			rng.randf_range(-SEARCH_RADIUS, SEARCH_RADIUS)
 		)
-		var biome : String = _world_map.get_biome_at(candidate)
-		if i < 5:
-			print("BaseSpawner: attempt %d candidate=%s biome=%s" % [i, candidate, biome])
 		if _is_all_grass(candidate):
 			return candidate
 
@@ -98,25 +112,77 @@ func _spawn_scenes(spot: Vector2) -> void:
 	add_child(shop)
 	print("BaseSpawner: Shop spawned at ", shop.global_position)
 
-	var craft := SHOP_SCENE.instantiate()
+	var craft := CRAFT_SCENE.instantiate()
 	craft.global_position = spot + Vector2(-CIRCLE_RADIUS, 0)
 	add_child(craft)
-	print("BaseSpawner: Shop spawned at ", shop.global_position)
+	print("BaseSpawner: Craft spawned at ", craft.global_position)
 
-func _spawn_drops(spot: Vector2) -> void:
-	var rng := RandomNumberGenerator.new()
+# ─────────────────────────────────────────
+#  Drop Spawning  (called every chunk crossing)
+# ─────────────────────────────────────────
+
+func _spawn_drops() -> void:
+	var player := _get_player()
+	if not player:
+		return
+
+	var chunk_size : int = _world_map.get_chunk_size()
+	var view_dist  : int = _world_map.get_view_distance()
+	var rng        := RandomNumberGenerator.new()
 	rng.randomize()
 
-	for i in range(DROP_COUNT):
-		var angle    : float = rng.randf_range(0.0, TAU)
-		var distance : float = rng.randf_range(float(CIRCLE_RADIUS), float(CIRCLE_RADIUS) + DROP_SPREAD)
-		var offset   := Vector2(cos(angle), sin(angle)) * distance
+	# Centre the scan on the PLAYER's current chunk so newly loaded
+	# chunks at the edge of view are always covered.
+	var player_chunk := Vector2(
+		floor(player.global_position.x / chunk_size),
+		floor(player.global_position.y / chunk_size)
+	)
 
-		var drop := DROP_SCENE.instantiate()
-		drop.global_position = spot + offset
-		add_child(drop)
+	var total := 0
 
-	print("BaseSpawner: %d drops spawned around %s" % [DROP_COUNT, spot])
+	for cx in range(-view_dist, view_dist + 1):
+		for cy in range(-view_dist, view_dist + 1):
+			var chunk_coord  := player_chunk + Vector2(cx, cy)
+
+			# Never re-seed a chunk we already visited.
+			if _spawned_chunks.has(chunk_coord):
+				continue
+			_spawned_chunks[chunk_coord] = true
+
+			var chunk_world  := chunk_coord * chunk_size
+			var chunk_center := chunk_world + Vector2(chunk_size, chunk_size) * 0.5
+
+			# Distance from this chunk to the HEAP (not the player).
+			var dist := chunk_center.distance_to(_base_spot)
+
+			# Linear ramp 0→MAX up to DROP_MAX_RADIUS, flat cap beyond.
+			var t      := minf(dist / float(DROP_MAX_RADIUS), 1.0)
+			var chance := lerpf(DROP_SPAWN_CHANCE_MIN, DROP_SPAWN_CHANCE_MAX, t)
+
+			if rng.randf() > chance:
+				continue
+
+			# One candidate position per chunk, random inside the chunk.
+			var candidate := Vector2(
+				chunk_world.x + rng.randf_range(0.0, float(chunk_size)),
+				chunk_world.y + rng.randf_range(0.0, float(chunk_size))
+			)
+
+			var biome : String = _world_map.get_biome_at(candidate)
+			if biome == "ocean":
+				continue
+
+			# Sand spawns freely; grass is rarer.
+			if biome == "grass" and rng.randf() < 0.6:
+				continue
+
+			var drop := DROP_SCENE.instantiate()
+			drop.global_position = candidate
+			add_child(drop)
+			total += 1
+
+	if total > 0:
+		print("BaseSpawner: %d drops spawned (player at chunk %s)" % [total, player_chunk])
 
 # ─────────────────────────────────────────
 #  Marker Drawing
@@ -126,12 +192,10 @@ func _draw_marker(world_pos: Vector2) -> void:
 	if _marker:
 		_marker.queue_free()
 
-	# Draw directly on this node so global_position is world_pos
 	_marker = Node2D.new()
 	_marker.position = world_pos
 	add_child(_marker)
 
-	# Use a script on the marker itself to draw
 	var canvas := _MarkerCanvas.new()
 	canvas.circle_radius = CIRCLE_RADIUS
 	canvas.position = Vector2.ZERO

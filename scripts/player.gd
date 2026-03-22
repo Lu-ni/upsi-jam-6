@@ -10,12 +10,12 @@ var bob_time: float = false
 func _ready() -> void:
 	PlayerManager.player = self
 	Signals.stat_upgraded.connect(_on_stat_upgraded)
+	PlayerManager.biome_in.connect(_toggle_swimming)
 
 func _on_stat_upgraded(stat: int, amount: float) -> void:
 	match stat:
 		PlayerInfo.Stat.SPEED:
 			speed += amount
-	PlayerManager.biome_in.connect(_toggle_swimming)
 
 var is_swimming : bool = false
 func _toggle_swimming(biome : String):
@@ -48,7 +48,7 @@ func _physics_process(delta):
 		bob_time += delta * squish_frequency
 		var squish = abs(sin(bob_time)) * squish_amount
 		$AnimatedSprite2D.scale.y = 0.1 - 2 * squish
-	else:
+	elif not is_swimming:
 		play_animation("idle", last_direction)
 		bob_time += delta * squish_frequency
 		var squish = abs(sin(bob_time)) * squish_amount
