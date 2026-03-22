@@ -42,7 +42,7 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [sub_resource type="Gradient" id="Gradient_os5dr"]
-colors = PackedColorArray(0.889915, 0.36962965, 0.67995244, 1, 1, 0.76479936, 0.9981467, 0.5294118)
+colors = PackedColorArray(0.889915, 0.36962965, 0.67995244, 1, 1, 0.7647059, 1, 0.3764706)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_duata"]
 gradient = SubResource("Gradient_os5dr")
@@ -220,6 +220,10 @@ theme_override_fonts/font = ExtResource("8_viowm")
 theme_override_font_sizes/font_size = 32
 text = "Quit"
 
+[node name="Tulip2" parent="." unique_id=746206440 instance=ExtResource("22_yovvs")]
+position = Vector2(628, 508)
+texture = ExtResource("25_os5dr")
+
 [node name="EmptyBin" type="Sprite2D" parent="." unique_id=455423321]
 position = Vector2(843, 464)
 scale = Vector2(0.285, 0.285)
@@ -280,16 +284,12 @@ position = Vector2(1120, 628)
 texture = ExtResource("25_os5dr")
 
 [node name="Herb2" parent="Deco" unique_id=315785301 instance=ExtResource("22_yovvs")]
-position = Vector2(99, 515)
+position = Vector2(147, 514)
 texture = ExtResource("26_duata")
 
 [node name="Herb3" parent="Deco" unique_id=1520582747 instance=ExtResource("22_yovvs")]
 position = Vector2(483, 588)
 texture = ExtResource("27_lw0hr")
-
-[node name="Tulip2" parent="Deco" unique_id=746206440 instance=ExtResource("22_yovvs")]
-position = Vector2(413, 483)
-texture = ExtResource("25_os5dr")
 
 [node name="Herb4" parent="Deco" unique_id=1969400186 instance=ExtResource("22_yovvs")]
 position = Vector2(790, 625)
@@ -299,10 +299,14 @@ texture = ExtResource("26_duata")
 position = Vector2(1082, 518)
 texture = ExtResource("27_lw0hr")
 
+[node name="Daisy2" parent="Deco" unique_id=384743891 instance=ExtResource("22_yovvs")]
+position = Vector2(29, 540)
+texture = ExtResource("23_2axsc")
+
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=480583450]
 position = Vector2(-89, -23)
 texture = ExtResource("28_os5dr")
-lifetime = 14.02
-preprocess = 3.7
-explosiveness = 0.42
+lifetime = 6.35
+preprocess = 1.29
+explosiveness = 0.35
 process_material = SubResource("ParticleProcessMaterial_duata")
