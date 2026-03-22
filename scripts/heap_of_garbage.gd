@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var pickup_range: int
+@export var pickup_range: int = 250
 @export var cooldown: float = 500.0
 
 var timer: int = GameInfo.throw_trash_time
@@ -18,8 +18,6 @@ func _ready() -> void:
 	Signals.MULT_UP.connect(mult_up_display)
 	update_bin(true)
 
-func _draw() -> void:
-	draw_circle(Vector2.ZERO, pickup_range, Color.CORNFLOWER_BLUE, false, 5)
 
 func _on_stat_upgraded(stat: int, amount: float) -> void:
 	match stat:

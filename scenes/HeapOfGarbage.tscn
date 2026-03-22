@@ -5,7 +5,6 @@
 
 [node name="HeapOfGarbage" type="Node2D" unique_id=1990489062 groups=["garbage_pile"]]
 script = ExtResource("1_t85yp")
-pickup_range = 354
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=410277950]
 texture = ExtResource("3_p8a1b")

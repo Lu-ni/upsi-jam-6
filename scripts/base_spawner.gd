@@ -4,12 +4,12 @@ extends Node2D
 #  Configuration
 # ─────────────────────────────────────────
 
-const LOOKUP_SIZE     := 300
+const LOOKUP_SIZE     := 200
 const CIRCLE_RADIUS   := int(LOOKUP_SIZE * 2)
 const SEARCH_RADIUS   := 2000
 const SEARCH_ATTEMPTS := 500
 
-const DROP_MAX_RADIUS       := CIRCLE_RADIUS * 3
+const DROP_MAX_RADIUS       := CIRCLE_RADIUS * 8
 const DROP_SPAWN_CHANCE_MIN := 0.0    # probability right at the heap
 const DROP_SPAWN_CHANCE_MAX := 0.35   # probability at DROP_MAX_RADIUS and beyond
 

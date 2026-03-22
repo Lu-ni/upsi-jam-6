@@ -27,6 +27,7 @@ func _ready() -> void:
 	all_deals.append(Deal.new("Max Time", "Augmente le temps max", "res://assets/test/Yellow.png", {"apple": 2, "banana": 2}, false, "max_time"))
 	all_deals.append(Deal.new("Dump Range$", "Augmente la range de dump", "res://assets/test/Green.png", {"banana": 1, "bottle": 1}, false, "dump_range"))
 	reroll_shop()
+	$ShopPart.play("default")
 
 func reroll_shop() -> void:
 	shop_slots_indices.clear()

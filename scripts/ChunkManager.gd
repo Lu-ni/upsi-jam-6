@@ -69,7 +69,7 @@ func _process(_delta: float) -> void:
 func _setup_noise() -> void:
 	_noise.noise_type         = FastNoiseLite.TYPE_SIMPLEX_SMOOTH
 	_noise.seed               = randi()
-	_noise.frequency          = 0.0001
+	_noise.frequency          = 0.0006
 	_noise.fractal_type       = FastNoiseLite.FRACTAL_FBM
 	_noise.fractal_octaves    = 5
 	_noise.fractal_lacunarity = 2.0
