@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://7egxrwvyqgyn" path="res://scripts/hud.gd" id="1_fls4u"]
 [ext_resource type="Texture2D" uid="uid://t17t3iqkesbp" path="res://icon.svg" id="1_qpvh6"]
-[ext_resource type="Texture2D" uid="uid://c3xvahy864geu" path="res://assets/icons/pods.png" id="3_1etfg"]
+[ext_resource type="Texture2D" uid="uid://ckdfdgeevsmxr" path="res://assets/sprites/Menu/new/trash2.png" id="3_nysna"]
 [ext_resource type="Texture2D" uid="uid://bjqu23rdcmm5g" path="res://assets/sprites/bin-sprite-sheet.png" id="4_nysna"]
 [ext_resource type="Texture2D" uid="uid://dw6lj2fnwtmn0" path="res://assets/sprites/hub/clock2.png" id="5_nysna"]
 
@@ -27,9 +27,9 @@ texture = ExtResource("1_qpvh6")
 expand_mode = 2
 
 [node name="Weight" type="Sprite2D" parent="." unique_id=880909006]
-position = Vector2(41.000004, 99.00001)
-scale = Vector2(0.255, 0.255)
-texture = ExtResource("3_1etfg")
+position = Vector2(38.293755, 88.33125)
+scale = Vector2(0.22982557, 0.18013154)
+texture = ExtResource("3_nysna")
 
 [node name="Label" type="Label" parent="Weight" unique_id=497785977]
 offset_left = 109.67743
