@@ -69,6 +69,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_x5d8p")
 icon = ExtResource("4_nsqeq")
 expand_icon = true
 script = ExtResource("5_lnecb")
+hover_scale = 1.05
 
 [node name="Trash3" type="Sprite2D" parent="Menu" unique_id=992504672]
 position = Vector2(123.00003, 107)
