@@ -170,6 +170,7 @@ func _on_area_2d_body_entered(body) -> void:
 			menu_instance.shop_owner = self
 			menu_instance.is_craft = false
 			add_child(menu_instance)
+	$ShopPart.play("open")
 
 func _on_area_2d_body_exited(body) -> void:
 	if body.has_method("player_shop_method"):
@@ -178,6 +179,8 @@ func _on_area_2d_body_exited(body) -> void:
 		if menu_instance != null:
 			menu_instance.queue_free()
 			menu_instance = null
+	$ShopPart.play("default")
+
 
 func get_current_reroll_price() -> int:
 	if use_global_reroll_price:
@@ -195,7 +198,6 @@ func can_player_afford_reroll() -> bool:
 	if use_precious_for_reroll:
 		return get_total_precious() >= get_current_reroll_price()
 	else:
-
 		return PlayerInfo.kamas >= get_current_reroll_price()
 
 func pay_for_reroll() -> void:

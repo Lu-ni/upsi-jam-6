@@ -28,9 +28,8 @@ func _ready() -> void:
 	all_deals.append(Deal.new("Electrical +1", "augmente the number of recolted Electrical", "res://assets/test/White.png", {"bottle": 1, "apple": 1}, false, "add_electrical"))
 	all_deals.append(Deal.new("Move spd +1", "augmente the global move spd", "res://assets/test/Yellow.png", {"apple": 2, "banana": 2}, false, "add_move_spd"))
 	all_deals.append(Deal.new("Inventory +1", "augmente Inventory slot", "res://assets/test/Black.png", {"banana": 3, "bottle": 2}, false, "add_inventory"))
-
-
 	reroll_shop()
+
 
 func reroll_shop() -> void:
 	shop_slots_indices.clear()
@@ -159,6 +158,7 @@ func _on_area_2d_body_entered(body) -> void:
 			menu_instance.shop_owner = self
 			menu_instance.is_craft = true
 			add_child(menu_instance)
+	$ShopPart.play("open")
 
 func _on_area_2d_body_exited(body) -> void:
 	if body.has_method("player_shop_method"):
@@ -167,6 +167,7 @@ func _on_area_2d_body_exited(body) -> void:
 		if menu_instance != null:
 			menu_instance.queue_free()
 			menu_instance = null
+	$ShopPart.play("default")
 
 func get_current_reroll_price() -> int:
 	if use_global_reroll_price:
