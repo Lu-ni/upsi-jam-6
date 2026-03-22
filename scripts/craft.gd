@@ -9,6 +9,7 @@ var shop_slots_indices: Array[int] = []
 
 # reroll price global or not (instancier par shop)
 @export var use_global_reroll_price: bool = false
+@export var use_precious_for_reroll: bool = false
 
 var reroll_price: int = 10
 var all_deals: Array[Deal] = []
@@ -16,12 +17,18 @@ var all_deals: Array[Deal] = []
 var reroll_count: int = 0
 
 func _ready() -> void:
+	# Ajout d'un notifieur pour le tuto d'entrée d'écran
+	var vis = VisibleOnScreenNotifier2D.new()
+	add_child(vis)
+	vis.screen_entered.connect(_on_screen_entered)
+
 	# Initialisation des deals : (Nom, Desc, Icon_Path, PriceDict, randomPrice, RewardID)
-	all_deals.append(Deal.new("Waste +1", "augmente the number of recolted Waste", "res://assets/test/Red.png", {"Skabungle": 1}, false, "add_waste"))
-	all_deals.append(Deal.new("Herbal +1", "augmente the number of recolted Herbal", "res://assets/test/Green.png", {"Babakiki": 1}, false, "add_herbal"))
-	all_deals.append(Deal.new("Electrical +1", "augmente the number of recolted Electrical", "res://assets/test/White.png", {"Kungamingu": 1}, false, "add_electrical"))
-	all_deals.append(Deal.new("Move spd +1", "augmente the global move spd", "res://assets/test/Yellow.png", {"Skabungle": 5}, false, "add_move_spd"))
-	all_deals.append(Deal.new("Inventory +1", "augmente Inventory slot", "res://assets/test/Black.png", {"Babakiki": 5}, false, "add_inventory"))
+	all_deals.append(Deal.new("Waste +1", "augmente the number of recolted Waste", "res://assets/test/Red.png", {"apple": 1, "banana": 1}, false, "add_waste"))
+	all_deals.append(Deal.new("Herbal +1", "augmente the number of recolted Herbal", "res://assets/test/Green.png", {"banana": 1, "bottle": 1}, false, "add_herbal"))
+	all_deals.append(Deal.new("Electrical +1", "augmente the number of recolted Electrical", "res://assets/test/White.png", {"bottle": 1, "apple": 1}, false, "add_electrical"))
+	all_deals.append(Deal.new("Move spd +1", "augmente the global move spd", "res://assets/test/Yellow.png", {"apple": 2, "banana": 2}, false, "add_move_spd"))
+	all_deals.append(Deal.new("Inventory +1", "augmente Inventory slot", "res://assets/test/Black.png", {"banana": 3, "bottle": 2}, false, "add_inventory"))
+
 	
 	reroll_shop()
 
@@ -101,6 +108,29 @@ func pay_for_deal(deal: Deal) -> void:
 	# Après avoir tout reé, on met à jour l'UI globale
 	Signals.inventory_updated.emit()
 
+var is_tutorial_playing: bool = false
+var waiting_player_body = null
+
+func _on_screen_entered() -> void:
+	if not GameInfo.has_seen_craft_tuto:
+		GameInfo.has_seen_craft_tuto = true
+		is_tutorial_playing = true
+		var popup = load("res://scenes/tuto_popup.tscn").instantiate()
+		add_child(popup)
+		
+		# On place toujours le tuto de craft EN DESSOUS (y = 25)
+		popup.position = Vector2(-120, 25)
+		
+		popup.tutorial_finished.connect(func():
+			is_tutorial_playing = false
+			if waiting_player_body != null:
+				_on_area_2d_body_entered(waiting_player_body)
+				waiting_player_body = null
+		)
+		
+		if popup.has_method("start_tutorial"):
+			popup.start_tutorial("Here you can craft items that will be useful to you.")
+
 func grant_reward(reward_id: String) -> void:
 	match reward_id:
 		"add_waste":
@@ -120,14 +150,19 @@ func grant_reward(reward_id: String) -> void:
 
 func _on_area_2d_body_entered(body) -> void:
 	if body.has_method("player_shop_method"):
+		if is_tutorial_playing:
+			waiting_player_body = body
+			return
 		if menu_instance == null:
 			menu_instance = SHOP_MENU_SCENE.instantiate()
-
 			menu_instance.shop_owner = self
+			menu_instance.is_craft = true
 			add_child(menu_instance)
 
 func _on_area_2d_body_exited(body) -> void:
 	if body.has_method("player_shop_method"):
+		if waiting_player_body == body:
+			waiting_player_body = null
 		if menu_instance != null:
 			menu_instance.queue_free()
 			menu_instance = null
@@ -143,3 +178,29 @@ func update_reroll_price(new_price: int) -> void:
 		ShopManager.global_reroll_price = new_price
 	else:
 		reroll_price = new_price
+
+func get_total_precious() -> int:
+	var total = 0
+	for inv_item in PlayerInfo.inventory:
+		if inv_item.item_type == Item.ITEM_TYPE.PRECIOUS:
+			total += 1
+	return total
+
+func can_player_afford_reroll() -> bool:
+	if use_precious_for_reroll:
+		return get_total_precious() >= get_current_reroll_price()
+	else:
+		return PlayerInfo.kamas >= get_current_reroll_price()
+
+func pay_for_reroll() -> void:
+	var cost = get_current_reroll_price()
+	if use_precious_for_reroll:
+		for i in range(cost):
+			for j in range(PlayerInfo.inventory.size()):
+				if PlayerInfo.inventory[j].item_type == Item.ITEM_TYPE.PRECIOUS:
+					PlayerInfo.inventory.remove_at(j)
+					break
+		Signals.inventory_updated.emit()
+	else:
+		PlayerInfo.kamas -= cost
+		# Signals.inventory_updated.emit()
