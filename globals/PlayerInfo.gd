@@ -18,7 +18,7 @@ const UPGRADE_VALUES: Dictionary = {
 	Stat.MAX_INVENTORY: { Rarity.COMMON: 3.0,  Rarity.UNCOMMON: 4.0,  Rarity.RARE: 6.0,  Rarity.EPIC: 10.0 },
 	Stat.DUMP_RANGE:    { Rarity.COMMON: 5.0,   Rarity.UNCOMMON: 12.0,   Rarity.RARE: 18.0,    Rarity.EPIC: 25.0 },
 	Stat.DUMP_COOLDOWN: { Rarity.COMMON: 100.0, Rarity.UNCOMMON: 200.0,  Rarity.RARE: 300.0,   Rarity.EPIC: 500.0 },
-	Stat.MAX_TIME:      { Rarity.COMMON: 15000.0, Rarity.UNCOMMON: 30000.0, Rarity.RARE: 50000.0, Rarity.EPIC: 90000.0 },
+	Stat.MAX_TIME:      { Rarity.COMMON: 60 * 0.5, Rarity.UNCOMMON: 60 * 0.7, Rarity.RARE: 60 * 0.8, Rarity.EPIC: 60 * 1 },
 	Stat.DROP_VALUE:    { Rarity.COMMON: 0.25,   Rarity.UNCOMMON: 0.5,    Rarity.RARE: 1.0,      Rarity.EPIC: 2.0 },
 }
 

@@ -133,7 +133,7 @@ func _update_bubble_visuals(deal: Deal = null):
 		
 		# On peut indiquer visuellement si c'est achetable ou non
 		if not can_buy:
-			buy_button.modulate = Color(0.6, 0.6, 0.6, 1.0)
+			buy_button.modulate = Color(0.8, 0.4, 0.4, 1.0) # Rouge pas trop flashy
 		else:
 			buy_button.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
