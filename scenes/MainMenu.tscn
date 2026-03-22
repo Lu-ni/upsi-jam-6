@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cp7iirxvi4oij"]
+
+[ext_resource type="Script" uid="uid://fmxmfvp0coc3" path="res://scripts/main_menu.gd" id="1_0ykhv"]
+[ext_resource type="Script" uid="uid://gw3w1aprt07r" path="res://scripts/menu_button.gd" id="1_yqorp"]
+
+[node name="MainMenu" type="Node2D" unique_id=2000621963]
+script = ExtResource("1_0ykhv")
+
+[node name="Play" type="Button" parent="." unique_id=1270679684]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 159.5
+offset_top = 300.0
+offset_right = 390.5
+offset_bottom = 345.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yqorp")
+
+[node name="Options" type="Button" parent="." unique_id=1146469659]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 192.0
+offset_top = 411.0
+offset_right = 401.0
+offset_bottom = 482.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yqorp")
+
+[node name="Credits" type="Button" parent="." unique_id=1769316302]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 106.0
+offset_top = 166.0
+offset_right = 464.0
+offset_bottom = 203.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yqorp")
+
+[node name="Racoon" type="Sprite2D" parent="." unique_id=132808380]

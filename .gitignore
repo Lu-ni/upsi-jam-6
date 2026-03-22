@@ -1,7 +1,6 @@
 # Godot 4+ specific ignores
 /android/
 .godot/*
-!.godot/uid_cache.bin
 .nomedia
 
 # Godot-specific ignores
@@ -18,4 +17,6 @@ export_credentials.cfg
 data_*/
 mono_crash.*.json
 .vscode/settings.json
+.DS_Store
+.DS_Store*
 *.DS_Store

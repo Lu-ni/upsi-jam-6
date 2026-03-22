@@ -4,6 +4,8 @@ class_name Drop
 var target: Node2D
 @export var pickup_range: int
 @export var move_speed: int
+@export var squish_frequency: float = 8.0
+@export var squish_amount: float = 0.005
 var entered_range: bool = false
 var picked_up: bool = false
 var item: Item = null
@@ -15,7 +17,6 @@ func _ready() -> void:
 	var rand_index = randi() % keys.size()
 	var key = keys[rand_index]
 	item = GlobalItemList.items[key]
-
 	$Sprite2D.scale = Vector2(0.4, 0.4)
 	get_player()
 	set_sprite()
@@ -27,6 +28,22 @@ func _on_stat_upgraded(stat: int, amount: float) -> void:
 			pickup_range += int(amount)
 		PlayerInfo.Stat.DROP_SPEED:
 			move_speed += int(amount)
+	start_bounce()
+
+var bounce_tween: Tween
+
+func start_bounce() -> void:
+	if bounce_tween:
+		bounce_tween.kill()
+	bounce_tween = create_tween()
+	var duration = randf_range(0.42, 0.45)
+	var squish = randf_range(0.45, 0.5)
+	var stretch = randf_range(0.5, 0.55)
+	bounce_tween.tween_property($Sprite2D, "scale:y", squish, duration)\
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	bounce_tween.tween_property($Sprite2D, "scale:y", stretch, duration)\
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	bounce_tween.tween_callback(start_bounce)
 
 func _physics_process(delta: float) -> void:
 	if picked_up:

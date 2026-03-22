@@ -5,7 +5,7 @@ extends Node2D
 # ─────────────────────────────────────────
 
 const CHUNK_SIZE       := 64
-const VIEW_DISTANCE    := 14
+var VIEW_DISTANCE  : int = PlayerInfo.field_of_view
 const UNLOAD_MARGIN    := 1.5
 const CHUNKS_PER_FRAME := 4
 
@@ -42,6 +42,8 @@ func _on_tick() -> void:
 func _process(_delta: float) -> void:
 	if not _ready_done:
 		return
+
+	VIEW_DISTANCE  = PlayerInfo.field_of_view
 
 	var player := _get_player()
 	if not player:
@@ -192,9 +194,8 @@ func get_player_biome() -> String:
 	return get_biome_at(player.global_position)
 
 func _noise_to_biome(v: float) -> String:
-	if v < 0.38: return "ocean"
-	if v < 0.49: return "sand"
-	if v < 0.88: return "grass"
+	if v <= 0.40: return "ocean"
+	if v <= 0.49 : return "sand"
 	return "grass"
 
 func get_chunk_size() -> int:

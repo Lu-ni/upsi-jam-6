@@ -40,6 +40,30 @@ turbulence_influence_max = 0.082
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mdl7e"]
 size = Vector2(75, 76)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_61ith"]
+atlas = ExtResource("4_mdl7e")
+region = Rect2(2414, 0, 1207, 1200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebwui"]
+atlas = ExtResource("4_mdl7e")
+region = Rect2(4828, 2400, 1207, 1200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfy4j"]
+atlas = ExtResource("4_mdl7e")
+region = Rect2(2414, 1200, 1207, 1200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3wef"]
+atlas = ExtResource("4_mdl7e")
+region = Rect2(0, 3600, 1207, 1200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4126"]
+atlas = ExtResource("4_mdl7e")
+region = Rect2(2414, 3600, 1207, 1200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfpux"]
+atlas = ExtResource("4_mdl7e")
+region = Rect2(1207, 3600, 1207, 1200)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_mdl7e"]
 atlas = ExtResource("4_mdl7e")
 region = Rect2(0, 0, 1199, 1300)
@@ -89,6 +113,54 @@ animations = [{
 "frames": [],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61ith")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebwui")
+}],
+"loop": true,
+"name": &"idle_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfy4j")
+}],
+"loop": true,
+"name": &"idle_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3wef")
+}],
+"loop": true,
+"name": &"swim_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4126")
+}],
+"loop": true,
+"name": &"swim_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfpux")
+}],
+"loop": true,
+"name": &"swim_up",
 "speed": 5.0
 }, {
 "frames": [{
@@ -165,4 +237,4 @@ shape = SubResource("RectangleShape2D_mdl7e")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=33095273]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_qu4a1")
-animation = &"walk_up"
+animation = &"idle_up"

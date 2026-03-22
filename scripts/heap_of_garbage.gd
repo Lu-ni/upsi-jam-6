@@ -1,13 +1,23 @@
 extends Node2D
 
 @export var pickup_range: int
-@export var cooldown: int = 1000
 
-var timer: int = cooldown
+var timer: int = GameInfo.throw_trash_time
 
 var player: Node2D
 var bin_pos: Node2D
 var trash: Array[Sprite2D] = []
+var amount_trash_for_next_bin_frame = 1
+var start_frame = 3
+var max_frame = 15
+
+func _ready() -> void:
+	Signals.trash_added.connect(update_bin)
+	Signals.trash_removed.connect(update_bin)
+	update_bin()
+
+func _draw() -> void:
+	draw_circle(Vector2.ZERO, pickup_range, Color.CORNFLOWER_BLUE, false, 5)
 
 func _ready() -> void:
 	Signals.stat_upgraded.connect(_on_stat_upgraded)
@@ -20,6 +30,7 @@ func _on_stat_upgraded(stat: int, amount: float) -> void:
 			cooldown = max(cooldown - int(amount), 100)
 
 func _process(delta: float) -> void:
+	queue_redraw()
 	timer -= delta * 1000
 	if player == null:
 		get_player()
@@ -27,7 +38,7 @@ func _process(delta: float) -> void:
 	if timer <= 0:
 		if is_in_range():
 			remove_player_loot()
-			timer = cooldown
+			timer = GameInfo.throw_trash_time
 
 func is_in_range() -> bool:
 	var to_target := player.global_position - global_position
@@ -51,7 +62,7 @@ func remove_player_loot():
 
 	sprite.global_position = player.global_position
 
-	trash.append(sprite)
+	trash.insert(0, sprite)
 
 	var tween := create_tween()
 
@@ -82,4 +93,31 @@ func remove_player_loot():
 		0.3
 	).set_delay(0.25)
 
-	tween.tween_callback(sprite.queue_free)
+	tween.tween_callback(on_trash_land)
+
+func on_trash_land():
+	GameInfo.amount_of_trash_collected += 1
+	Signals.trash_added.emit()
+	trash[0].queue_free()
+
+func update_bin():
+	var s: Sprite2D = $Sprite2D
+	var frame_nb: int = start_frame + (GameInfo.amount_of_trash_collected / amount_trash_for_next_bin_frame)
+	var target_frame: int = frame_nb if frame_nb <= max_frame else max_frame
+
+	# Only shake + change frame if the frame actually changes
+	if target_frame == s.frame:
+		return
+
+	var tween := create_tween()
+	var origin := s.position
+
+	# Shake: alternate left/right offsets
+	tween.tween_property(s, "position", origin + Vector2(10, 4), 0.05)
+	tween.tween_property(s, "position", origin + Vector2(-10, -4), 0.05)
+	tween.tween_property(s, "position", origin + Vector2(12, -7), 0.04)
+	tween.tween_property(s, "position", origin + Vector2(-12, 7), 0.04)
+	tween.tween_property(s, "position", origin, 0.03)
+
+	# Change the frame once the shake finishes
+	tween.tween_callback(func(): s.frame = target_frame)

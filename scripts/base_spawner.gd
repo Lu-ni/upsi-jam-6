@@ -4,14 +4,15 @@ extends Node2D
 #  Configuration
 # ─────────────────────────────────────────
 
-const LOOKUP_SIZE     := 5
-const CIRCLE_RADIUS   := 300
+const LOOKUP_SIZE     := 300
+const CIRCLE_RADIUS   := LOOKUP_SIZE
 const SEARCH_RADIUS   := 2000
 const SEARCH_ATTEMPTS := 500
 const DROP_COUNT      := 50
 const DROP_SPREAD     := 400
 
 const SHOP_SCENE            := preload("res://scenes/Shop.tscn")
+const CRAFT_SCENE            := preload("res://scenes/Craft.tscn")
 const HEAP_OF_GARBAGE_SCENE := preload("res://scenes/HeapOfGarbage.tscn")
 const DROP_SCENE            := preload("res://scenes/Drop.tscn")
 
@@ -97,6 +98,11 @@ func _spawn_scenes(spot: Vector2) -> void:
 	add_child(shop)
 	print("BaseSpawner: Shop spawned at ", shop.global_position)
 
+	var craft := SHOP_SCENE.instantiate()
+	craft.global_position = spot + Vector2(-CIRCLE_RADIUS, 0)
+	add_child(craft)
+	print("BaseSpawner: Shop spawned at ", shop.global_position)
+
 func _spawn_drops(spot: Vector2) -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.randomize()
@@ -160,7 +166,7 @@ class _MarkerCanvas extends Node2D:
 
 	func _draw() -> void:
 		var r   := float(circle_radius)
-		var col := Color(1, 0, 0, 0.45)
+		var col := Color(1, 0, 0, 0.0)
 		var rim := Color(1, 0, 0, 1.0)
 		draw_circle(Vector2.ZERO, r, col)
 		draw_arc(Vector2.ZERO, r, 0.0, TAU, 48, rim, 2.0)

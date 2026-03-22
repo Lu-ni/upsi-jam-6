@@ -29,6 +29,8 @@ var max_inventory: float = 3
 # ── Upgrade Tracking ──
 var upgrade_counts: Dictionary = {}
 var total_upgrades: int = 0
+@export var field_of_view : int = 12 # should not be biger than 20
+#var ta_race_jsp
 
 func _ready() -> void:
 	for stat in MAX_UPGRADES.keys():
@@ -60,6 +62,7 @@ func _on_upgrade_stat(stat: int, rarity: int) -> void:
 func add_item_to_inventory(item: Item):
 	inventory.append(item)
 
+	Signals.inventory_updated.emit()
 func remove_item_from_inventory(item: Item):
 	for i in inventory:
 		if i == item:
