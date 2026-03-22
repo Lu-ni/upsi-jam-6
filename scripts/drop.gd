@@ -19,6 +19,14 @@ func _ready() -> void:
 	$Sprite2D.scale = Vector2(0.4, 0.4)
 	get_player()
 	set_sprite()
+	Signals.stat_upgraded.connect(_on_stat_upgraded)
+
+func _on_stat_upgraded(stat: int, amount: float) -> void:
+	match stat:
+		PlayerInfo.Stat.PICKUP_RANGE:
+			pickup_range += int(amount)
+		PlayerInfo.Stat.DROP_SPEED:
+			move_speed += int(amount)
 
 func _physics_process(delta: float) -> void:
 	if picked_up:
@@ -30,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	var to_target := target.global_position - global_position
 	var dist := to_target.length()
 
-	if PlayerInfo.inventory.size() >= GameInfo.max_inventory:
+	if PlayerInfo.inventory.size() >= PlayerInfo.max_inventory:
 		entered_range = false
 		target = null
 		lerp(velocity, Vector2.ZERO, 0.1)
@@ -57,6 +65,6 @@ func set_sprite():
 		$Sprite2D.texture = item.texture
 
 func give_player_loot():
-	if PlayerInfo.inventory.size() < GameInfo.max_inventory:
+	if PlayerInfo.inventory.size() < PlayerInfo.max_inventory:
 		Signals.pick_up.emit(item)
 	queue_free()

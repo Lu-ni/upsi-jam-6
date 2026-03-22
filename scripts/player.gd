@@ -9,6 +9,12 @@ var bob_time: float = 0.0
 
 func _ready() -> void:
 	PlayerManager.player = self
+	Signals.stat_upgraded.connect(_on_stat_upgraded)
+
+func _on_stat_upgraded(stat: int, amount: float) -> void:
+	match stat:
+		PlayerInfo.Stat.SPEED:
+			speed += amount
 
 func _physics_process(delta):
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")

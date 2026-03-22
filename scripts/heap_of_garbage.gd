@@ -9,6 +9,16 @@ var player: Node2D
 var bin_pos: Node2D
 var trash: Array[Sprite2D] = []
 
+func _ready() -> void:
+	Signals.stat_upgraded.connect(_on_stat_upgraded)
+
+func _on_stat_upgraded(stat: int, amount: float) -> void:
+	match stat:
+		PlayerInfo.Stat.DUMP_RANGE:
+			pickup_range += int(amount)
+		PlayerInfo.Stat.DUMP_COOLDOWN:
+			cooldown = max(cooldown + int(amount), 100)
+
 func _process(delta: float) -> void:
 	timer -= delta * 1000
 	if player == null:
