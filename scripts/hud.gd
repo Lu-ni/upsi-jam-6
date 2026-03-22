@@ -1,14 +1,22 @@
 extends CanvasLayer
 
+signal bin_frame(int)
+
 func _ready() -> void:
 	clear_inventory_display()
 	Signals.pick_up.connect(on_item_change)
 	Signals.throw.connect(on_item_change)
 	Signals.inventory_updated.connect(on_inventory_change)
+	bin_frame.connect(display_bin_frame)
 
 func _process(delta: float) -> void:
-	GameInfo.time_used += delta
-	$Time/Label.text = format_time(GameInfo.time_used)
+	if not Manager.in_game: return
+	GameInfo.time_left -= delta
+	GameInfo.total_time += delta
+	if GameInfo.time_left <= 0:
+		Manager.go_to_end_menu()
+		pass
+	$Time/Label.text = format_time(GameInfo.time_left)
 
 func add_item(item: Item, count: int):
 	var hud_item = load("res://scenes/hud_item.tscn").instantiate()
@@ -42,9 +50,13 @@ func display_inventory():
 	for key in stacks.keys():
 		add_item(GlobalItemList.items[key], stacks[key])
 
+func display_bin_frame(frame: int):
+	$Value.frame = frame
+
 func display_item_info():
 	$Weight/Label.text = ("%d/%d" % [PlayerInfo.inventory.size(), PlayerInfo.max_inventory])
 	$Weight/Label.modulate = Color.RED if PlayerInfo.inventory.size() >= PlayerInfo.max_inventory else Color.WHITE
+	$Value/Label.text = str(GameInfo.score)
 
 func format_time(time_seconds: float) -> String:
 	var minutes = int(time_seconds / 60)

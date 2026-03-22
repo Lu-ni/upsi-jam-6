@@ -47,13 +47,13 @@ func is_in_range() -> bool:
 func get_player():
 	player = get_tree().get_first_node_in_group("player")
 
-
 func remove_player_loot():
 	if player == null or PlayerInfo.inventory.size() <= 0:
 		return
 
 	var sprite: Sprite2D = Sprite2D.new()
 	sprite.texture = PlayerInfo.inventory[0].texture
+	GameInfo.score += PlayerInfo.inventory[0].value
 	sprite.scale = Vector2.ONE * 0.4
 
 	get_parent().add_child(sprite)
@@ -121,3 +121,4 @@ func update_bin():
 
 	# Change the frame once the shake finishes
 	tween.tween_callback(func(): s.frame = target_frame)
+	Manager.hud.bin_frame.emit(target_frame)

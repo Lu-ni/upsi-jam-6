@@ -3,9 +3,10 @@ extends Node
 var max_time: float
 var throw_trash_time: int
 var amount_of_trash_collected: int
-#var thing_idk
+var score: int
 
-var time_used: float = 0
+var time_left: float
+var total_time: float
 
 func _ready() -> void:
 	Signals.stat_upgraded.connect(_on_stat_upgraded)
