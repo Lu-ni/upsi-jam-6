@@ -147,6 +147,7 @@ func grant_reward(reward_id: String) -> void:
 			PlayerInfo.max_inventory += 1
 		_:
 			print("Reward Action: Unknown reward_id ", reward_id)
+	Signals.inventory_updated.emit()
 
 func _on_area_2d_body_entered(body) -> void:
 	if body.has_method("player_shop_method"):
