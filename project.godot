@@ -25,7 +25,7 @@ GlobalItemList="*uid://brp35qkkiiwt7"
 PlayerInfo="*uid://bae4ppspx5ngb"
 GameInfo="*uid://d38veo5scdgsj"
 PlayerManager="*res://globals/PlayerManager.gd"
-BaseDataValues="*uid://b77k81nlxjy1k"
+BaseDataValues="*res://globals/BaseDataValues.gd"
 
 [display]
 

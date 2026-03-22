@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dtbs3n50bqkkl"]
+[gd_scene format=3 uid="uid://cj2ug275g1o2v"]
 
-[ext_resource type="Texture2D" uid="uid://drsmvpdhbasf0" path="res://assets/test/Farming Pixel Art Assets.png" id="1_611at"]
+[ext_resource type="Texture2D" uid="uid://drsmvpdhbasf0" path="res://assets/sprites/test/Farming Pixel Art Assets.png" id="1_611at"]
 [ext_resource type="PackedScene" uid="uid://bxbwud5tu2yaq" path="res://scenes/Player.tscn" id="1_echbf"]
 [ext_resource type="PackedScene" uid="uid://cu0s3kerks1jj" path="res://scenes/Drop.tscn" id="2_ibiss"]
 [ext_resource type="PackedScene" uid="uid://b3lhj3bpiil5j" path="res://scenes/Craft.tscn" id="5_k24pf"]

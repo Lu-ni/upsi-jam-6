@@ -12,12 +12,12 @@ func _ready():
 
 func _process(delta):
 	time += delta
-	
+
 	# Smooth wind sway
 	var sway = sin(time * sway_speed)
-	
+
 	# Rotate like a bending flower
 	rotation_degrees = sway * sway_strength
-	
+
 	# Slight sideways movement
 	position.x = base_position.x + sway * sway_offset
