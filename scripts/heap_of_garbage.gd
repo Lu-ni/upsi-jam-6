@@ -7,10 +7,14 @@ var timer: int = GameInfo.throw_trash_time
 var player: Node2D
 var bin_pos: Node2D
 var trash: Array[Sprite2D] = []
+var amount_trash_for_next_bin_frame = 1
+var start_frame = 3
+var max_frame = 15
 
 func _ready() -> void:
-	Signals.trash_added.connect(update_size)
-
+	Signals.trash_added.connect(update_bin)
+	Signals.trash_removed.connect(update_bin)
+	update_bin()
 
 func _draw() -> void:
 	draw_circle(Vector2.ZERO, pickup_range, Color.CORNFLOWER_BLUE, false, 5)
@@ -82,9 +86,11 @@ func remove_player_loot():
 	tween.tween_callback(on_trash_land)
 
 func on_trash_land():
-	GameInfo.une_ligne_de_code += 1
+	GameInfo.amount_of_trash_collected += 1
 	Signals.trash_added.emit()
 	trash[0].queue_free()
 
-func update_size():
-	scale += Vector2(0.1, 0.1)
+func update_bin():
+	var s: Sprite2D = $Sprite2D
+	var frame_nb: int = start_frame + (GameInfo.amount_of_trash_collected / amount_trash_for_next_bin_frame)
+	s.frame = frame_nb if frame_nb <= max_frame else max_frame
