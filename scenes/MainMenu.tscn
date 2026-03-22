@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://ct35l0x224xjr" path="res://assets/sprites/Menu/new/empty-bin.png" id="9_ptake"]
 [ext_resource type="Texture2D" uid="uid://lf7qka13o6vb" path="res://assets/sprites/Menu/new/front-bin.png" id="10_hubol"]
 [ext_resource type="Texture2D" uid="uid://qrrvusk4fd84" path="res://assets/sprites/Menu/new/trash1.png" id="12_1n6yq"]
+[ext_resource type="Script" uid="uid://bjaba1cc8wjje" path="res://scripts/psych_button.gd" id="12_duata"]
 [ext_resource type="Texture2D" uid="uid://ckdfdgeevsmxr" path="res://assets/sprites/Menu/new/trash2.png" id="13_yovvs"]
 [ext_resource type="Texture2D" uid="uid://cdgve36dxurg7" path="res://assets/sprites/Menu/new/trash3.png" id="14_2axsc"]
 [ext_resource type="Texture2D" uid="uid://d2q117480lp5j" path="res://assets/sprites/Menu/new/trash4.png" id="15_wrgne"]
@@ -165,8 +166,9 @@ theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_7la6k")
 theme_override_styles/focus = SubResource("StyleBoxFlat_7la6k")
 icon = ExtResource("7_l4mxc")
 expand_icon = true
-script = ExtResource("1_yqorp")
-hover_scale = 1.05
+script = ExtResource("12_duata")
+fall_distance = 400.0
+fall_time = 0.5
 
 [node name="Label" type="Label" parent="Credits" unique_id=2105997182]
 layout_mode = 0
