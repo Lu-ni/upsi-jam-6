@@ -11,3 +11,5 @@ signal upgrade_stat(stat: int, rarity: int)
 signal stat_upgraded(stat: int, amount: float)
 signal trash_added
 signal trash_removed
+
+signal MULT_UP

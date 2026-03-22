@@ -7,6 +7,7 @@ func _ready() -> void:
 	Signals.pick_up.connect(on_item_change)
 	Signals.throw.connect(on_item_change)
 	Signals.inventory_updated.connect(on_inventory_change)
+	Signals.MULT_UP.connect(on_inventory_change)
 	bin_frame.connect(display_bin_frame)
 
 func _process(delta: float) -> void:
@@ -30,13 +31,6 @@ func clear_inventory_display():
 	for item in items:
 		item.queue_free()
 
-#func remove_item(item: Item):
-	#for i in $items.find_children("*", "Node"):
-		#if i == item:
-			#item.queue_free()
-			#break
-	#display_item_info()
-
 func display_inventory():
 	var stacks := {}  # Dictionary to hold counts
 
@@ -57,6 +51,11 @@ func display_item_info():
 	$Weight/Label.text = ("%d/%d" % [PlayerInfo.inventory.size(), PlayerInfo.max_inventory])
 	$Weight/Label.modulate = Color.RED if PlayerInfo.inventory.size() >= PlayerInfo.max_inventory else Color.WHITE
 	$Value/Label.text = str(GameInfo.score)
+	var yellow = Color(1.0, 0.95, 0.6)
+	var red = Color(1.0, 0.15, 0.1)
+	var t = clamp(GameInfo.multiplier / 14.0, 0.0, 1.0)
+	$Value/mult.modulate = yellow.lerp(red, t)
+	$Value/mult.text = "x" + str(GameInfo.multiplier)
 
 func format_time(time_seconds: float) -> String:
 	var minutes = int(time_seconds / 60)

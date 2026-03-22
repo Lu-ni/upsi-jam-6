@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="upsi-jam-6"
-run/main_scene="uid://cp7iirxvi4oij"
+run/main_scene="uid://cu2yrqyliq26h"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

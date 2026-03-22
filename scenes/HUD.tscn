@@ -48,12 +48,20 @@ vframes = 4
 frame = 3
 
 [node name="Label" type="Label" parent="Value" unique_id=205730385]
-offset_left = -87.50006
-offset_top = -25.0
-offset_right = 962.49994
-offset_bottom = 151.0
+offset_left = 262.49994
+offset_top = -68.75
+offset_right = 1312.5
+offset_bottom = 107.25
 theme_override_font_sizes/font_size = 129
 text = "0"
+
+[node name="mult" type="Label" parent="Value" unique_id=1423932036]
+offset_left = -87.5
+offset_top = -68.75
+offset_right = 35.5
+offset_bottom = 82.25
+theme_override_font_sizes/font_size = 110
+text = "x1"
 
 [node name="Time" type="Sprite2D" parent="." unique_id=1727786038]
 position = Vector2(698.00006, 36)

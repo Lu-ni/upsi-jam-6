@@ -8,7 +8,6 @@ var timer: int = GameInfo.throw_trash_time
 var player: Node2D
 var bin_pos: Node2D
 var trash: Array[Sprite2D] = []
-var amount_trash_for_next_bin_frame = 1
 var start_frame = 3
 var max_frame = 15
 
@@ -16,7 +15,8 @@ func _ready() -> void:
 	Signals.trash_added.connect(update_bin)
 	Signals.trash_removed.connect(update_bin)
 	Signals.stat_upgraded.connect(_on_stat_upgraded)
-	update_bin()
+	Signals.MULT_UP.connect(mult_up_display)
+	update_bin(true)
 
 func _draw() -> void:
 	draw_circle(Vector2.ZERO, pickup_range, Color.CORNFLOWER_BLUE, false, 5)
@@ -55,7 +55,7 @@ func remove_player_loot():
 
 	var sprite: Sprite2D = Sprite2D.new()
 	sprite.texture = PlayerInfo.inventory[0].texture
-	GameInfo.score += int(PlayerInfo.inventory[0].value * PlayerInfo.score_multiplier)
+	GameInfo.score += PlayerInfo.inventory[0].value * GameInfo.multiplier
 	sprite.scale = Vector2.ONE * 0.4
 
 	get_parent().add_child(sprite)
@@ -102,14 +102,19 @@ func on_trash_land():
 	Signals.trash_added.emit()
 	trash[0].queue_free()
 
-func update_bin():
+func update_bin(start: bool = false):
 	var s: Sprite2D = $Sprite2D
-	var frame_nb: int = start_frame + (GameInfo.amount_of_trash_collected / amount_trash_for_next_bin_frame)
+	var frame_nb: int = start_frame + (GameInfo.amount_of_trash_collected / GameInfo.HOWMUCHTRASHFORMULTUP)
 	var target_frame: int = frame_nb if frame_nb <= max_frame else max_frame
 
 	# Only shake + change frame if the frame actually changes
 	if target_frame == s.frame:
 		return
+	if not start:
+		Manager.hud.bin_frame.emit(target_frame)
+		GameInfo.multiplier += 1
+		if GameInfo.multiplier >= 15: GameInfo.multiplier = 14
+		Signals.MULT_UP.emit()
 
 	var tween := create_tween()
 	var origin := s.position
@@ -123,5 +128,50 @@ func update_bin():
 
 	# Change the frame once the shake finishes
 	tween.tween_callback(func(): s.frame = target_frame)
-	if Manager.hud:
-		Manager.hud.bin_frame.emit(target_frame)
+
+func mult_up_display():
+	if GameInfo.multiplier <= 1: return
+	var container = Node2D.new()
+	add_child(container)
+
+	# Label
+	var label = Label.new()
+	label.text = "x" + str(GameInfo.multiplier)
+	label.add_theme_font_size_override(
+	"font_size",
+	20 + GameInfo.multiplier * 10)
+	var yellow = Color(1.0, 0.95, 0.6)
+	var red = Color(1.0, 0.15, 0.1, 0.1)
+	var t = clamp(GameInfo.multiplier / 14.0, 0.0, 1.0)
+	label.modulate = yellow.lerp(red, t)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	
+	container.add_child(label)
+
+	# Celebration particles
+	var particles = CPUParticles2D.new()
+	particles.amount = 5 + GameInfo.multiplier * 10
+	particles.lifetime = 1.5
+	particles.one_shot = true
+	particles.emitting = true
+	particles.spread = 180
+	particles.initial_velocity_min = 40 * GameInfo.multiplier
+	particles.initial_velocity_max = 120 * GameInfo.multiplier
+	particles.scale_amount_min = 1
+	particles.scale_amount_max = 2.1
+	particles.gravity = Vector2.ZERO
+	
+	container.add_child(particles)
+
+	# Hover animation
+	var tween = create_tween()
+	tween.set_parallel(true)
+
+	tween.tween_property(container, "position:y", container.position.y - (40 + GameInfo.multiplier * 10), 1.2)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_OUT)
+
+	tween.tween_property(label, "modulate:a", 0.0, 1.2)
+	tween.parallel().tween_property(label, "rotation", deg_to_rad(randi() % 20 - 10), 0.6)
+
+	tween.chain().tween_callback(container.queue_free)

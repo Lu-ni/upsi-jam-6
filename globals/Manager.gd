@@ -92,6 +92,8 @@ func reset_game_data():
 	GameInfo.time_left = BaseDataValues.base_max_time
 	GameInfo.total_time = 0
 	GameInfo.score = 0
+	GameInfo.multiplier = 1
+	GameInfo.HOWMUCHTRASHFORMULTUP = BaseDataValues.base_HOWMUCHTRASHFORMULTUP
 	
 	PlayerInfo.inventory = []
 	PlayerInfo.max_inventory = BaseDataValues.base_max_inventory
