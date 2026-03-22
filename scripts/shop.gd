@@ -32,9 +32,9 @@ func _ready() -> void:
 	vis.screen_entered.connect(_on_screen_entered)
 
 	# Initialisation des deals : (Nom, Desc, Icon_Path, PriceDict, randomPrice, RewardID)
-	all_deals.append(Deal.new("Speed Up", "Augmente la vitesse", "res://assets/test/Yellow.png", {"Precious": 1}, false, "speed"))
+	all_deals.append(Deal.new("Speed Up", "Augmente la vitesse", "res://assets/test/Yellow.png", {"Precious": 2}, false, "speed"))
 	all_deals.append(Deal.new("Pickup Range", "Augmente la range de ramassage", "res://assets/test/Green.png", {"Precious": 2}, false, "pickup_range"))
-	all_deals.append(Deal.new("Drop Speed", "Augmente la vitesse de drop", "res://assets/test/White.png", {"Precious": 1}, false, "drop_speed"))
+	all_deals.append(Deal.new("Drop Speed", "Augmente la vitesse de drop", "res://assets/test/White.png", {"Precious": 2}, false, "drop_speed"))
 	all_deals.append(Deal.new("Dump Cooldown", "Reduit le cooldown de dump", "res://assets/test/Red.png", {"Precious": 2}, false, "dump_cooldown"))
 	$ShopPart.play("default")
 	reroll_shop()

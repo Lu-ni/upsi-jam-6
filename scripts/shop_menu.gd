@@ -4,44 +4,70 @@ var shop_owner = null
 var slot_index: int = 0
 var is_craft = false
 
+@export var window_color: Color = Color("ffffff")
+
 @onready var item_label = %ItemLabel
 @onready var price_label = %PriceLabel
-@onready var buy_button = %BuyButton
 @onready var currency_icon = %CurrencyIcon
-@onready var reroll_price_label = %RerollPriceLabel
-@onready var reroll_currency_icon = %RerollCurrencyIcon
-@onready var reroll_button = %RerollButton
+@onready var item_icon = get_node_or_null("%ItemIcon") # On remet l'icône de l'objet
 @onready var bubble = $Bubble
 
-var money_icon_path = "res://assets/sprites/Menu/assets_menu6.png"
+var money_icon_path = "res://assets/sprites/items-and-more/Diamand_money.svg"
 var kamas_path = "res://assets/test/kamas.jpg"
 
 func _ready():
-	if not buy_button: buy_button = find_child("BuyButton", true, false)
+	# Si item_icon n'a pas été trouvé avec get_node_or_null, on tente une deuxième fois
+	if not item_icon: item_icon = find_child("ItemIcon", true, false)
 
 	if currency_icon:
 		if ResourceLoader.exists(money_icon_path):
 			var tex = load(money_icon_path)
 			currency_icon.texture = tex
-			if reroll_currency_icon: reroll_currency_icon.texture = tex
 
 	update_display()
 
-	if buy_button: buy_button.pressed.connect(_on_buy_button_pressed)
-	if reroll_button: reroll_button.pressed.connect(_on_reroll_button_pressed)
-
 	if bubble:
+		# Créer un bouton invisible dynamique par-dessus la bulle
+		var invisible_btn = Button.new()
+		invisible_btn.flat = true 
+		invisible_btn.focus_mode = Control.FOCUS_NONE 
+		
+		# On place ce bouton à la racine et en premier plan pour qu'AUCUN
+		# autre élément (comme le texte ou l'icône) ne bloque la souris
+		add_child(invisible_btn)
+		
+		if bubble is Control:
+			invisible_btn.position = bubble.position
+			invisible_btn.size = bubble.size
+		elif bubble.has_method("get_rect"): 
+			var rect = bubble.get_rect()
+			invisible_btn.position = bubble.position + rect.position
+			invisible_btn.size = rect.size
+			
+		invisible_btn.move_to_front()
+		
+		# On ne connecte plus les événements sur tout le fond
+		# invisible_btn.pressed.connect(_on_bubble_clicked)
+		# invisible_btn.mouse_entered.connect(_on_mouse_entered)
+		# invisible_btn.mouse_exited.connect(_on_mouse_exited)
+		invisible_btn.hide() # On le cache/désactive pour laisser les clics passer au bouton
+		
+		# Connexion du bouton Acheter
+		var buy_button = get_node_or_null("%BuyButton")
+		if buy_button:
+			if not buy_button.pressed.is_connected(_on_bubble_clicked):
+				buy_button.pressed.connect(_on_bubble_clicked)
+		
+		bubble.modulate = window_color
 		bubble.modulate.a = 0.0
-		var tween = create_tween()
-		tween.set_ease(Tween.EASE_OUT)
-		tween.set_trans(Tween.TRANS_SINE)
-		tween.tween_property(bubble, "modulate:a", 1.0, 0.25)
+		var fade_tween = create_tween()
+		fade_tween.set_ease(Tween.EASE_OUT)
+		fade_tween.set_trans(Tween.TRANS_SINE)
+		fade_tween.tween_property(bubble, "modulate:a", window_color.a, 0.25)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("shop_buy") or (event is InputEventKey and event.pressed and event.keycode == KEY_X):
-		_on_buy_button_pressed()
-	elif event.is_action_pressed("shop_reroll") or (event is InputEventKey and event.pressed and event.keycode == KEY_R):
-		_on_reroll_button_pressed()
+		_on_bubble_clicked()
 
 func update_display():
 	if shop_owner == null: return
@@ -69,30 +95,49 @@ func update_display():
 			price_container.add_child(new_lbl)
 
 			var new_icon = currency_icon.duplicate()
-			if GlobalItemList.items.has(currency):
+			
+			if is_craft and GlobalItemList.items.has(currency):
+				# Si c'est du craft, on met en priorité l'icône de l'item demandé comme monnaie !
 				new_icon.texture = GlobalItemList.items[currency].texture
+			elif not is_craft and GlobalItemList.items.has(currency):
+				# Si ce n'est pas du craft, s'il y a une icône spéciale on peut la prendre
+				new_icon.texture = GlobalItemList.items[currency].texture
+			else:
+				# Sinon ça reste l'icône de l'argent par défaut (money_icon_path) que le currency_icon possède déjà
+				pass
+				
+			print("Currency: ", currency, " has item in GlobalItemList: ", GlobalItemList.items.has(currency))
 			new_icon.show()
 			price_container.add_child(new_icon)
 
 
-	var current_reroll_price = shop_owner.get_current_reroll_price()
-	if reroll_price_label:
-		reroll_price_label.text = str(current_reroll_price)
+	# On restaure la logique de l'image de l'ITEM VENDU !
+	if item_icon and deal.texture_path != "":
+		if ResourceLoader.exists(deal.texture_path):
+			item_icon.texture = load(deal.texture_path)
 
-	if reroll_currency_icon:
-		if "use_precious_for_reroll" in shop_owner and shop_owner.use_precious_for_reroll:
-			if ResourceLoader.exists(money_icon_path):
-				reroll_currency_icon.texture = load(money_icon_path)
+	if bubble: 
+		_update_bubble_visuals(deal)
+
+func _update_bubble_visuals(deal: Deal = null):
+	if shop_owner == null or not bubble: return
+	if deal == null:
+		deal = shop_owner.get_item_at_slot(slot_index)
+	
+	var can_buy = deal != null and shop_owner.can_player_afford(deal)
+	
+	# Gestion du bouton "Acheter"
+	var buy_button = get_node_or_null("%BuyButton")
+	if buy_button:
+		buy_button.disabled = false
+		
+		# On peut indiquer visuellement si c'est achetable ou non
+		if not can_buy:
+			buy_button.modulate = Color(0.6, 0.6, 0.6, 1.0)
 		else:
-			if ResourceLoader.exists(kamas_path):
-				reroll_currency_icon.texture = load(kamas_path)
+			buy_button.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
-	if shop_owner.has_method("can_player_afford_reroll"):
-		reroll_button.modulate = Color(1,1,1) if shop_owner.can_player_afford_reroll() else Color(1,1,1)
-
-	buy_button.modulate = Color(1,1,1) if shop_owner.can_player_afford(deal) else Color(1,1,1)
-
-func _on_buy_button_pressed():
+func _on_bubble_clicked():
 	if shop_owner == null: return
 
 	var deal: Deal = shop_owner.get_item_at_slot(slot_index)
@@ -118,33 +163,4 @@ func _on_buy_button_pressed():
 	print("Buy deal: ", deal.item_name, " (new price dict: ", new_price_dict, ") [Algo: ", ShopManager.Algo.keys()[ShopManager.current_algo_type], "]")
 
 	shop_owner.replace_item_at_slot(slot_index)
-	update_display()
-
-func _on_reroll_button_pressed():
-	if shop_owner == null: return
-
-	if shop_owner.has_method("can_player_afford_reroll") and not shop_owner.can_player_afford_reroll():
-		print("Pas assez de ressources pour reroll")
-		return
-
-	if shop_owner.has_method("pay_for_reroll"):
-		shop_owner.pay_for_reroll()
-
-	var count = shop_owner.get("reroll_count") if "reroll_count" in shop_owner else 0
-	var current_price = shop_owner.get_current_reroll_price()
-
-	var new_price = ShopManager.get_next_price(
-		ShopManager.current_algo_type,
-		current_price,
-		count,
-		10
-	)
-
-	shop_owner.update_reroll_price(new_price)
-	if "reroll_count" in shop_owner:
-		shop_owner.reroll_count += 1
-
-	shop_owner.reroll_shop()
-
-	print("Reroll used! New price: ", new_price)
 	update_display()

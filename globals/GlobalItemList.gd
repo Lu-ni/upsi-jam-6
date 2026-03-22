@@ -37,9 +37,3 @@ func add_item_to_list(name, type, value, weight, texture):
 	items[name].value = value
 	items[name].weight = weight
 	items[name].texture = load(texture)
-"res://assets/sprites/items-and-more/chicken-meat.svg"
-"res://assets/sprites/items-and-more/cotton-candy.svg"
-"res://assets/sprites/items-and-more/gameboy.svg"
-"res://assets/sprites/items-and-more/hamburger.svg"
-"res://assets/sprites/items-and-more/toast.svg"
-"res://assets/sprites/items-and-more/toater.svg"

@@ -26,6 +26,23 @@ func _ready() -> void:
 	all_deals.append(Deal.new("Max Inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"banana": 1, "bottle": 1}, false, "max_inventory"))
 	all_deals.append(Deal.new("Max Time", "Augmente le temps max", "res://assets/test/Yellow.png", {"apple": 2, "banana": 2}, false, "max_time"))
 	all_deals.append(Deal.new("Dump Range$", "Augmente la range de dump", "res://assets/test/Green.png", {"banana": 1, "bottle": 1}, false, "dump_range"))
+	all_deals.append(Deal.new("Max Inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"remote": 1, "cheese": 1}, false, "max_inventory"))
+	all_deals.append(Deal.new("Max Time", "Augmente le temps max", "res://assets/test/Yellow.png", {"porcorn": 2, "remote": 2}, false, "max_time"))
+	all_deals.append(Deal.new("Dump Range$", "Augmente la range de dump", "res://assets/test/Green.png", {"multiprise": 1, "cone": 1}, false, "dump_range"))
+	all_deals.append(Deal.new("Max Inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"weed": 1, "knife": 1}, false, "max_inventory"))
+	all_deals.append(Deal.new("Max Time", "Augmente le temps max", "res://assets/test/Yellow.png", {"porcorn": 2, "toaster": 2}, false, "max_time"))
+	all_deals.append(Deal.new("Dump Range$", "Augmente la range de dump", "res://assets/test/Green.png", {"tv": 1, "hamburger": 1}, false, "dump_range"))
+	
+	all_deals.append(Deal.new("Max Inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"multiprise": 1, "cotton-candy": 1}, false, "max_inventory"))
+	all_deals.append(Deal.new("Max Time", "Augmente le temps max", "res://assets/test/Yellow.png", {"hamburger": 2, "gameboy": 2}, false, "max_time"))
+	all_deals.append(Deal.new("Dump Range$", "Augmente la range de dump", "res://assets/test/Green.png", {"remote": 1, "toaster": 1}, false, "dump_range"))
+	all_deals.append(Deal.new("Max Inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"banana": 1, "bottle": 1}, false, "max_inventory"))
+	all_deals.append(Deal.new("Max Time", "Augmente le temps max", "res://assets/test/Yellow.png", {"porcorn": 2, "chicken": 2}, false, "max_time"))
+	all_deals.append(Deal.new("Dump Range$", "Augmente la range de dump", "res://assets/test/Green.png", {"weed": 1, "cone": 1}, false, "dump_range"))
+	all_deals.append(Deal.new("Max Inventory", "Augmente le nombre d'objets max", "res://assets/test/Black.png", {"hamburger": 1, "knife": 1}, false, "max_inventory"))
+	all_deals.append(Deal.new("Max Time", "Augmente le temps max", "res://assets/test/Yellow.png", {"porcorn": 2, "toaster": 2}, false, "max_time"))
+	all_deals.append(Deal.new("Dump Range$", "Augmente la range de dump", "res://assets/test/Green.png", {"tv": 1, "remote": 1}, false, "dump_range"))
+
 	reroll_shop()
 	$ShopPart.play("default")
 
@@ -38,8 +55,16 @@ func get_random_item_index() -> int:
 	var potential_indices = range(all_deals.size())
 
 	if not ALLOW_DUPLICATES:
+		var current_names = []
 		for idx in shop_slots_indices:
-			potential_indices.erase(idx)
+			if idx >= 0 and idx < all_deals.size():
+				current_names.append(all_deals[idx].item_name)
+				
+		var filtered_indices = []
+		for i in potential_indices:
+			if not all_deals[i].item_name in current_names:
+				filtered_indices.append(i)
+		potential_indices = filtered_indices
 
 	if potential_indices.is_empty():
 		return randi() % all_deals.size()
@@ -56,8 +81,16 @@ func replace_item_at_slot(slot_index: int) -> void:
 	var potential_indices = range(all_deals.size())
 
 	if not ALLOW_DUPLICATES:
+		var current_names = []
 		for idx in current_indices_copy:
-			potential_indices.erase(idx)
+			if idx >= 0 and idx < all_deals.size():
+				current_names.append(all_deals[idx].item_name)
+				
+		var filtered_indices = []
+		for i in potential_indices:
+			if not all_deals[i].item_name in current_names:
+				filtered_indices.append(i)
+		potential_indices = filtered_indices
 
 	if potential_indices.is_empty():
 		shop_slots_indices[slot_index] = randi() % all_deals.size()
