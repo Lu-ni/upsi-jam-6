@@ -93,4 +93,21 @@ func on_trash_land():
 func update_bin():
 	var s: Sprite2D = $Sprite2D
 	var frame_nb: int = start_frame + (GameInfo.amount_of_trash_collected / amount_trash_for_next_bin_frame)
-	s.frame = frame_nb if frame_nb <= max_frame else max_frame
+	var target_frame: int = frame_nb if frame_nb <= max_frame else max_frame
+
+	# Only shake + change frame if the frame actually changes
+	if target_frame == s.frame:
+		return
+
+	var tween := create_tween()
+	var origin := s.position
+
+	# Shake: alternate left/right offsets
+	tween.tween_property(s, "position", origin + Vector2(10, 4), 0.05)
+	tween.tween_property(s, "position", origin + Vector2(-10, -4), 0.05)
+	tween.tween_property(s, "position", origin + Vector2(12, -7), 0.04)
+	tween.tween_property(s, "position", origin + Vector2(-12, 7), 0.04)
+	tween.tween_property(s, "position", origin, 0.03)
+
+	# Change the frame once the shake finishes
+	tween.tween_callback(func(): s.frame = target_frame)
