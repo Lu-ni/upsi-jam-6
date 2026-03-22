@@ -8,15 +8,15 @@ enum Rarity { COMMON, UNCOMMON, RARE, EPIC }
 const GLOBAL_MAX_UPGRADES: int = 50
 const MAX_UPGRADES: Dictionary = {
 	Stat.SPEED: 5, Stat.PICKUP_RANGE: 10, Stat.DROP_SPEED: 8,
-	Stat.MAX_INVENTORY: 5, Stat.DUMP_RANGE: 8, Stat.DUMP_COOLDOWN: 8,
+	Stat.MAX_INVENTORY: 5, Stat.DUMP_RANGE: 6, Stat.DUMP_COOLDOWN: 8,
 	Stat.MAX_TIME: 5, Stat.DROP_VALUE: 5,
 }
 const UPGRADE_VALUES: Dictionary = {
 	Stat.SPEED:         { Rarity.COMMON: 10.0, Rarity.UNCOMMON: 20.0, Rarity.RARE: 35.0, Rarity.EPIC: 50.0 },
 	Stat.PICKUP_RANGE:  { Rarity.COMMON: 5.0,  Rarity.UNCOMMON: 12.0, Rarity.RARE: 20.0, Rarity.EPIC: 35.0 },
 	Stat.DROP_SPEED:    { Rarity.COMMON: 5.0,  Rarity.UNCOMMON: 10.0, Rarity.RARE: 18.0, Rarity.EPIC: 30.0 },
-	Stat.MAX_INVENTORY: { Rarity.COMMON: 1.0,  Rarity.UNCOMMON: 2.0,  Rarity.RARE: 3.0,  Rarity.EPIC: 5.0 },
-	Stat.DUMP_RANGE:    { Rarity.COMMON: 5.0,   Rarity.UNCOMMON: 12.0,   Rarity.RARE: 20.0,    Rarity.EPIC: 35.0 },
+	Stat.MAX_INVENTORY: { Rarity.COMMON: 3.0,  Rarity.UNCOMMON: 4.0,  Rarity.RARE: 6.0,  Rarity.EPIC: 10.0 },
+	Stat.DUMP_RANGE:    { Rarity.COMMON: 5.0,   Rarity.UNCOMMON: 12.0,   Rarity.RARE: 18.0,    Rarity.EPIC: 25.0 },
 	Stat.DUMP_COOLDOWN: { Rarity.COMMON: 100.0, Rarity.UNCOMMON: 200.0,  Rarity.RARE: 300.0,   Rarity.EPIC: 500.0 },
 	Stat.MAX_TIME:      { Rarity.COMMON: 15000.0, Rarity.UNCOMMON: 30000.0, Rarity.RARE: 50000.0, Rarity.EPIC: 90000.0 },
 	Stat.DROP_VALUE:    { Rarity.COMMON: 0.25,   Rarity.UNCOMMON: 0.5,    Rarity.RARE: 1.0,      Rarity.EPIC: 2.0 },
