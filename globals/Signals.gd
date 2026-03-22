@@ -5,6 +5,7 @@ signal pick_up (item: Item)
 signal inventory_updated
 signal throw (item: Item)
 signal times_up
+signal gain_score(score: int)
 
 # Upgrade system
 signal upgrade_stat(stat: int, rarity: int)

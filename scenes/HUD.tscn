@@ -32,11 +32,11 @@ scale = Vector2(0.22982557, 0.18013154)
 texture = ExtResource("3_nysna")
 
 [node name="Label" type="Label" parent="Weight" unique_id=497785977]
-offset_left = 109.67743
-offset_top = -64.51614
-offset_right = 1159.6775
-offset_bottom = 61.483856
-theme_override_font_sizes/font_size = 92
+offset_left = 151.01123
+offset_top = -62.90544
+offset_right = 1201.0112
+offset_bottom = 92.09456
+theme_override_font_sizes/font_size = 113
 text = "0"
 
 [node name="Value" type="Sprite2D" parent="." unique_id=1959881150]
@@ -52,7 +52,7 @@ offset_left = 262.49994
 offset_top = -68.75
 offset_right = 1312.5
 offset_bottom = 107.25
-theme_override_font_sizes/font_size = 129
+theme_override_font_sizes/font_size = 157
 text = "0"
 
 [node name="mult" type="Label" parent="Value" unique_id=1423932036]
@@ -62,6 +62,9 @@ offset_right = 35.5
 offset_bottom = 82.25
 theme_override_font_sizes/font_size = 110
 text = "x1"
+
+[node name="Node2D" type="Node2D" parent="Value" unique_id=515466466]
+position = Vector2(843.75, 6.25)
 
 [node name="Time" type="Sprite2D" parent="." unique_id=1727786038]
 position = Vector2(698.00006, 36)

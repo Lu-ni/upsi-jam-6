@@ -8,6 +8,7 @@ func _ready() -> void:
 	Signals.throw.connect(on_item_change)
 	Signals.inventory_updated.connect(on_inventory_change)
 	Signals.MULT_UP.connect(on_inventory_change)
+	Signals.gain_score.connect(gain_score)
 	bin_frame.connect(display_bin_frame)
 
 func _process(delta: float) -> void:
@@ -73,3 +74,36 @@ func on_inventory_change():
 	clear_inventory_display()
 	display_inventory()
 	display_item_info()
+
+func gain_score(score: int):
+	var label := Label.new()
+	add_child(label)
+
+	# Text
+	label.text = "+" + str(score)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+
+	# Appearance
+	label.add_theme_font_size_override("font_size", 28)
+	var yellow = Color(1.0, 0.95, 0.6)
+	var red = Color(1.0, 0.15, 0.1)
+	var t = clamp(GameInfo.multiplier / 14.0, 0.0, 1.0)
+	label.modulate = yellow.lerp(red, t)
+
+	# Start position
+	label.global_position = $Value/Node2D.global_position
+
+	# Tween animation
+	var tween := create_tween()
+	tween.set_parallel(true)
+
+	# Float upward
+	tween.tween_property(label, "position:y", label.position.y - 40, 1.2)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_OUT)
+
+	# Fade out
+	tween.tween_property(label, "modulate:a", 0.0, 1.2)
+
+	# Delete when finished
+	tween.chain().tween_callback(label.queue_free)
