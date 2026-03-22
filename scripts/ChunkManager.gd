@@ -195,6 +195,7 @@ func get_player_biome() -> String:
 
 func _noise_to_biome(v: float) -> String:
 	if v <= 0.40: return "ocean"
+	if v <= 0.49 : return "sand"
 	return "grass"
 
 func get_chunk_size() -> int:
