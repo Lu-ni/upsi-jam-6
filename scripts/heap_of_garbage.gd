@@ -1,13 +1,15 @@
 extends Node2D
 
 @export var pickup_range: int
-@export var cooldown: int = 1000
 
-var timer: int = cooldown
+var timer: int = GameInfo.throw_trash_time
 
 var player: Node2D
 var bin_pos: Node2D
 var trash: Array[Sprite2D] = []
+
+func _ready() -> void:
+	Signals.trash_added.connect(update_size)
 
 func _process(delta: float) -> void:
 	timer -= delta * 1000
@@ -17,7 +19,7 @@ func _process(delta: float) -> void:
 	if timer <= 0:
 		if is_in_range():
 			remove_player_loot()
-			timer = cooldown
+			timer = GameInfo.throw_trash_time
 
 func is_in_range() -> bool:
 	var to_target := player.global_position - global_position
@@ -41,7 +43,7 @@ func remove_player_loot():
 
 	sprite.global_position = player.global_position
 
-	trash.append(sprite)
+	trash.insert(0, sprite)
 
 	var tween := create_tween()
 
@@ -72,4 +74,12 @@ func remove_player_loot():
 		0.3
 	).set_delay(0.25)
 
-	tween.tween_callback(sprite.queue_free)
+	tween.tween_callback(on_trash_land)
+
+func on_trash_land():
+	GameInfo.une_ligne_de_code += 1
+	Signals.trash_added.emit()
+	trash[0].queue_free()
+
+func update_size():
+	scale += Vector2(0.1, 0.1)

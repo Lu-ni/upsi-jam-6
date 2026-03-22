@@ -20,7 +20,6 @@ func add_item(item: Item, count: int):
 func clear_inventory_display():
 	var items = $ItemList.find_children("*", "Node", false, false)
 	for item in items:
-		print("Ciaoa")
 		item.queue_free()
 
 #func remove_item(item: Item):
@@ -41,7 +40,6 @@ func display_inventory():
 
 	# Convert to an array of dictionaries for sorting/display
 	for key in stacks.keys():
-		print("Displaying stack of %d %ss" % [stacks[key], key])
 		add_item(GlobalItemList.items[key], stacks[key])
 
 func display_item_info():

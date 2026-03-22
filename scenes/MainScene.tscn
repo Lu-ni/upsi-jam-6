@@ -4,6 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://bxbwud5tu2yaq" path="res://scenes/Player.tscn" id="1_echbf"]
 [ext_resource type="PackedScene" uid="uid://cu0s3kerks1jj" path="res://scenes/Drop.tscn" id="2_ibiss"]
 [ext_resource type="PackedScene" uid="uid://b8426ip26j4iu" path="res://scenes/Shop.tscn" id="5_k24pf"]
+<<<<<<< HEAD
+=======
+[ext_resource type="PackedScene" uid="uid://cxmshivhhmjok" path="res://scenes/HeapOfGarbage.tscn" id="5_ygjfp"]
+>>>>>>> f61c191 (Add trash pile value, increase in size, rm log prints)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k24pf"]
 texture = ExtResource("1_611at")
@@ -216,3 +220,6 @@ move_speed = 353
 
 [node name="Craft" parent="." unique_id=42163889 instance=ExtResource("5_k24pf")]
 position = Vector2(314, -2)
+
+[node name="HeapOfGarbage" parent="." unique_id=1990489062 instance=ExtResource("5_ygjfp")]
+position = Vector2(1005, 407)

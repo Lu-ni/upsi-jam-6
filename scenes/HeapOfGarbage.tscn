@@ -6,6 +6,8 @@
 [node name="HeapOfGarbage" type="Node2D" unique_id=1990489062 groups=["garbage_pile"]]
 script = ExtResource("1_t85yp")
 pickup_range = 354
+cooldown = null
+une_ligne_de_code = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1134839819]
 modulate = Color(0.7765925, 0.14888993, 9.62615e-08, 1)
