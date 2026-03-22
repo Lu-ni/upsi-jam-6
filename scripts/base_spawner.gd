@@ -5,7 +5,7 @@ extends Node2D
 # ─────────────────────────────────────────
 
 const LOOKUP_SIZE     := 200
-const CIRCLE_RADIUS   := int(LOOKUP_SIZE * 2)
+const CIRCLE_RADIUS   := int(LOOKUP_SIZE * 3)
 const SEARCH_RADIUS   := 2000
 const SEARCH_ATTEMPTS := 500
 
