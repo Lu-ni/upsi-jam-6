@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://b8426ip26j4iu"]
+[gd_scene format=3 uid="uid://d35pkl3pwtuow"]
 
-[ext_resource type="Script" uid="uid://b82ibctgve75e" path="res://scripts/shop.gd" id="1_ec5oe"]
-[ext_resource type="Texture2D" uid="uid://drsmvpdhbasf0" path="res://assets/sprites/test/Farming Pixel Art Assets.png" id="2_t4md6"]
+[ext_resource type="Script" uid="uid://uuccduo61w5q" path="res://scripts/shop.gd" id="1_ec5oe"]
+[ext_resource type="Texture2D" uid="uid://drsmvpdhbasf0" path="res://assets/test/Farming Pixel Art Assets.png" id="2_t4md6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cimqq"]
 atlas = ExtResource("2_t4md6")
@@ -37,7 +37,7 @@ animations = [{
 size = Vector2(6.310071, 24.94112)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_skkvx"]
-radius = 15.0
+radius = 21.353601
 
 [node name="Shop" type="StaticBody2D" unique_id=644990966]
 scale = Vector2(2.763, 3)
@@ -60,7 +60,7 @@ shape = SubResource("RectangleShape2D_ht580")
 [node name="Area2D" type="Area2D" parent="Area2D" unique_id=1994307709]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/Area2D" unique_id=1926473600]
-position = Vector2(-1, 12)
+position = Vector2(-0.36192557, 0)
 shape = SubResource("CircleShape2D_skkvx")
 
 [connection signal="body_entered" from="Area2D/Area2D" to="." method="_on_area_2d_body_entered"]

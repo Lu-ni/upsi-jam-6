@@ -59,6 +59,9 @@ func _on_upgrade_stat(stat: int, rarity: int) -> void:
 	# Broadcast for stats that live on other nodes
 	Signals.stat_upgraded.emit(stat, amount)
 
+func _process(wd: float) -> void:
+	pass
+
 func add_item_to_inventory(item: Item):
 	inventory.append(item)
 

@@ -20,6 +20,7 @@ shader_parameter/amount = 2.5
 
 [node name="ShopMenu" type="Node2D" unique_id=2041116252]
 z_index = 100
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_script")
 
 [node name="Bubble" type="PanelContainer" parent="." unique_id=2073863335]
@@ -60,39 +61,6 @@ alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
-
-[node name="RerollContainer" type="VBoxContainer" parent="Bubble/Content/Header" unique_id=663055354]
-layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="RerollInfo" type="HBoxContainer" parent="Bubble/Content/Header/RerollContainer" unique_id=1574548758]
-layout_mode = 2
-alignment = 1
-
-[node name="RerollPriceLabel" type="Label" parent="Bubble/Content/Header/RerollContainer/RerollInfo" unique_id=998877665]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
-theme_override_font_sizes/font_size = 10
-text = "10"
-horizontal_alignment = 2
-
-[node name="RerollCurrencyIcon" type="TextureRect" parent="Bubble/Content/Header/RerollContainer/RerollInfo" unique_id=11223344]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="RerollButton" type="Button" parent="Bubble/Content/Header/RerollContainer" unique_id=55667788]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 10
-text = "Roll"
-
-[node name="VSeparator" type="VSeparator" parent="Bubble/Content/Header" unique_id=1306338649]
-layout_mode = 2
 
 [node name="ItemIcon" type="TextureRect" parent="Bubble/Content/Header" unique_id=659930584]
 unique_name_in_owner = true
@@ -156,9 +124,53 @@ text = "<"
 
 [node name="BuyButton" type="Button" parent="Bubble/Content/Footer" unique_id=1838717197]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Buy"
+
+[node name="RerollButton" type="Button" parent="Bubble/Content/Footer" unique_id=55667788]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Bubble/Content/Footer/RerollButton" unique_id=1574548758]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="Bubble/Content/Footer/RerollButton/VBoxContainer" unique_id=1111122222]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Roll"
+horizontal_alignment = 1
+
+[node name="PriceContainer" type="HBoxContainer" parent="Bubble/Content/Footer/RerollButton/VBoxContainer" unique_id=1122334455]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="RerollPriceLabel" type="Label" parent="Bubble/Content/Footer/RerollButton/VBoxContainer/PriceContainer" unique_id=998877665]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "10"
+
+[node name="RerollCurrencyIcon" type="TextureRect" parent="Bubble/Content/Footer/RerollButton/VBoxContainer/PriceContainer" unique_id=11223344]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="RightButton" type="Button" parent="Bubble/Content/Footer" unique_id=484053695]
 unique_name_in_owner = true

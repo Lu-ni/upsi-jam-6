@@ -1,112 +1,72 @@
 [gd_scene format=3 uid="uid://dfp58rsupai7g"]
 
 [ext_resource type="Script" uid="uid://cmqjp5xqeseto" path="res://scripts/start_menu.gd" id="1_cp7se"]
-
-[sub_resource type="Gradient" id="Gradient_ikcqr"]
-offsets = PackedFloat32Array(0, 0.73)
-colors = PackedColorArray(0.69, 0.90183336, 1, 1, 0.6901961, 0.79607844, 1, 1)
-metadata/_snap_enabled = true
-metadata/_snap_count = 100
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_fb70i"]
-gradient = SubResource("Gradient_ikcqr")
-
-[sub_resource type="LabelSettings" id="LabelSettings_fgoeh"]
-font_size = 48
-outline_size = 2
+[ext_resource type="Texture2D" uid="uid://dfd1mdxinbq3o" path="res://assets/sprites/Menu/Illustration_sans_titre4.png" id="2_kmax6"]
+[ext_resource type="Texture2D" uid="uid://csi5deajwdfkk" path="res://assets/sprites/Menu/Illustration_sans_titre3.png" id="3_cp7se"]
+[ext_resource type="Texture2D" uid="uid://bbhifey168sdq" path="res://assets/sprites/Menu/Illustration_sans_titre2.png" id="4_aso40"]
+[ext_resource type="Texture2D" uid="uid://djnbmeguytduv" path="res://assets/sprites/Menu/Illustration_sans_titre1.png" id="5_cuvp2"]
+[ext_resource type="Texture2D" uid="uid://cjpvnwskj6ow4" path="res://assets/sprites/Menu/Illustration_sans_titre.png" id="6_frkif"]
 
 [node name="StartMenu" type="Control" unique_id=1720990203]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cp7se")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1682613368]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -848.99994
+offset_top = -9.1552734e-05
+offset_right = 1883.0
+offset_bottom = 5504.0
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+alignment = 1
+
+[node name="Start_btn" type="TextureButton" parent="VBoxContainer" unique_id=456310475]
+layout_mode = 2
+texture_normal = ExtResource("4_aso40")
+
+[node name="Credit_btn" type="TextureButton" parent="VBoxContainer" unique_id=1595530981]
+layout_mode = 2
+texture_normal = ExtResource("5_cuvp2")
+texture_hover = ExtResource("5_cuvp2")
+
+[node name="Exit_btn" type="TextureButton" parent="VBoxContainer" unique_id=715931824]
+layout_mode = 2
+texture_normal = ExtResource("6_frkif")
 
 [node name="Background" type="TextureRect" parent="." unique_id=206579186]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0000014
+offset_top = -6.0
+offset_right = 1579.0
+offset_bottom = 1394.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture1D_fb70i")
+scale = Vector2(0.4251444, 0.3218929)
+texture = ExtResource("2_kmax6")
 
-[node name="GameName" type="Label" parent="." unique_id=755845915]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1380686689]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.50043404
-anchor_top = 0.063271604
-anchor_right = 0.50043404
-anchor_bottom = 0.063271604
-offset_left = -160.5
-offset_top = -1.0
-offset_right = 140.5
-offset_bottom = 59.0
-grow_horizontal = 2
-scale = Vector2(1, 1.0399994)
-theme_override_font_sizes/font_size = 156
-text = "Raccon x King"
-label_settings = SubResource("LabelSettings_fgoeh")
-
-[node name="Title" type="Label" parent="." unique_id=309680282]
-layout_mode = 1
-anchors_preset = 7
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -117.0
-offset_top = -319.0
-offset_right = 118.0
-offset_bottom = -259.0
+offset_left = -433.0
+offset_top = 2.0
+offset_right = 2299.0
+offset_bottom = 2050.0
 grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(1, 1.0399994)
-text = "Main Menu"
-label_settings = SubResource("LabelSettings_fgoeh")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=237402955]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -333.0
-offset_top = -227.0
-offset_right = 334.0
-offset_bottom = -178.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 80
-
-[node name="StartBtn" type="Button" parent="HBoxContainer" unique_id=367529308]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Start"
-
-[node name="LeaderboardBtn" type="Button" parent="HBoxContainer" unique_id=313446831]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Leaderboard"
-
-[node name="OptionBtn" type="Button" parent="HBoxContainer" unique_id=1949481770]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Option"
-
-[node name="ExitBtn" type="Button" parent="HBoxContainer" unique_id=1670402415]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Exit
-"
-
-[node name="TextureButton" type="TextureButton" parent="HBoxContainer" unique_id=549828262]
-layout_mode = 2
-
-[connection signal="button_down" from="HBoxContainer/StartBtn" to="." method="_on_start_btn_button_down"]
-[connection signal="button_down" from="HBoxContainer/LeaderboardBtn" to="." method="_on_leaderboard_btn_button_down"]
-[connection signal="button_down" from="HBoxContainer/OptionBtn" to="." method="_on_option_btn_button_down"]
-[connection signal="button_down" from="HBoxContainer/ExitBtn" to="." method="_on_exit_btn_button_down"]
+scale = Vector2(0.30954108, 0.30954108)
+texture = ExtResource("3_cp7se")
