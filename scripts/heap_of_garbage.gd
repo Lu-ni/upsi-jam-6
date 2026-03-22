@@ -17,7 +17,7 @@ func _on_stat_upgraded(stat: int, amount: float) -> void:
 		PlayerInfo.Stat.DUMP_RANGE:
 			pickup_range += int(amount)
 		PlayerInfo.Stat.DUMP_COOLDOWN:
-			cooldown = max(cooldown + int(amount), 100)
+			cooldown = max(cooldown - int(amount), 100)
 
 func _process(delta: float) -> void:
 	timer -= delta * 1000
