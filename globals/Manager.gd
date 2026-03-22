@@ -94,10 +94,10 @@ func reset_game_data():
 	GameInfo.score = 0
 	GameInfo.multiplier = 1
 	GameInfo.HOWMUCHTRASHFORMULTUP = BaseDataValues.base_HOWMUCHTRASHFORMULTUP
-	
+
 	PlayerInfo.inventory = []
 	PlayerInfo.max_inventory = BaseDataValues.base_max_inventory
-	
+
 	Signals.inventory_updated.emit()
 
 func play_next_track():

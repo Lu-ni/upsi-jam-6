@@ -31,7 +31,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_skkvx"]
-radius = 21.353601
+radius = 51.43232
 
 [node name="Shop" type="StaticBody2D" unique_id=644990966]
 scale = Vector2(2.763, 3)
@@ -40,13 +40,14 @@ script = ExtResource("1_ec5oe")
 [node name="ShopPart" type="AnimatedSprite2D" parent="." unique_id=1607683459]
 scale = Vector2(0.06, 0.06)
 sprite_frames = SubResource("SpriteFrames_ec5oe")
+animation = &"open"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=436078647]
 
 [node name="Area2D" type="Area2D" parent="Area2D" unique_id=1994307709]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/Area2D" unique_id=1926473600]
-position = Vector2(-0.36192545, 24.666668)
+position = Vector2(-0.36192557, 0)
 shape = SubResource("CircleShape2D_skkvx")
 
 [connection signal="body_entered" from="Area2D/Area2D" to="." method="_on_area_2d_body_entered"]

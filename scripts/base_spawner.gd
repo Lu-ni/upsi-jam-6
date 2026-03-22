@@ -181,9 +181,6 @@ func _spawn_drops() -> void:
 			add_child(drop)
 			total += 1
 
-	if total > 0:
-		print("BaseSpawner: %d drops spawned (player at chunk %s)" % [total, player_chunk])
-
 # ─────────────────────────────────────────
 #  Marker Drawing
 # ─────────────────────────────────────────

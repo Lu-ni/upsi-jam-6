@@ -145,7 +145,7 @@ func mult_up_display():
 	var t = clamp(GameInfo.multiplier / 14.0, 0.0, 1.0)
 	label.modulate = yellow.lerp(red, t)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	
+
 	container.add_child(label)
 
 	# Celebration particles
@@ -160,7 +160,7 @@ func mult_up_display():
 	particles.scale_amount_min = 1
 	particles.scale_amount_max = 2.1
 	particles.gravity = Vector2.ZERO
-	
+
 	container.add_child(particles)
 
 	# Hover animation

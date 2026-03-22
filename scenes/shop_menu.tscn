@@ -4,6 +4,10 @@
 [ext_resource type="Shader" uid="uid://cn7hvtpllxew1" path="res://shaders/blur.gdshader" id="2_blur"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bubble"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
 bg_color = Color(0.1, 0.1, 0.1, 0.8)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -101,26 +105,10 @@ text = "Item Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DescLabel" type="Label" parent="Bubble/Content" unique_id=987654321]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
-theme_override_font_sizes/font_size = 10
-text = "Description of the item goes here."
-horizontal_alignment = 1
-autowrap_mode = 2
-
 [node name="Footer" type="HBoxContainer" parent="Bubble/Content" unique_id=1896034198]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
-
-[node name="LeftButton" type="Button" parent="Bubble/Content/Footer" unique_id=2144269564]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-text = "<"
 
 [node name="BuyButton" type="Button" parent="Bubble/Content/Footer" unique_id=1838717197]
 unique_name_in_owner = true
@@ -171,9 +159,3 @@ layout_mode = 2
 mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
-
-[node name="RightButton" type="Button" parent="Bubble/Content/Footer" unique_id=484053695]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-text = ">"
