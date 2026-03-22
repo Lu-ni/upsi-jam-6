@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var pickup_range: int
+@export var cooldown: float = 500.0
 
 var timer: int = GameInfo.throw_trash_time
 
@@ -14,13 +15,11 @@ var max_frame = 15
 func _ready() -> void:
 	Signals.trash_added.connect(update_bin)
 	Signals.trash_removed.connect(update_bin)
+	Signals.stat_upgraded.connect(_on_stat_upgraded)
 	update_bin()
 
 func _draw() -> void:
 	draw_circle(Vector2.ZERO, pickup_range, Color.CORNFLOWER_BLUE, false, 5)
-
-func _ready() -> void:
-	Signals.stat_upgraded.connect(_on_stat_upgraded)
 
 func _on_stat_upgraded(stat: int, amount: float) -> void:
 	match stat:
@@ -48,6 +47,7 @@ func is_in_range() -> bool:
 func get_player():
 	player = get_tree().get_first_node_in_group("player")
 
+
 func remove_player_loot():
 	if player == null or PlayerInfo.inventory.size() <= 0:
 		return
@@ -70,7 +70,7 @@ func remove_player_loot():
 		sprite,
 		"global_position",
 		global_position,
-		0.5
+		(cooldown/1000)
 	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 	# spin while moving
@@ -78,20 +78,20 @@ func remove_player_loot():
 		sprite,
 		"scale",
 		Vector2(1.5,1.5), # two full spins
-		0.2
+		(cooldown/1000) * 0.4
 	)
 	tween.parallel().tween_property(
 		sprite,
 		"rotation_degrees",
 		randi() % 240 - 120, # two full spins
-		0.5
+		(cooldown/1000)
 	)
 	tween.parallel().tween_property(
 		sprite,
 		"scale",
 		Vector2(0.5,0.5), # two full spins
-		0.3
-	).set_delay(0.25)
+		(cooldown/1000)*0.6
+	).set_delay((cooldown/1000)*0.4)
 
 	tween.tween_callback(on_trash_land)
 
