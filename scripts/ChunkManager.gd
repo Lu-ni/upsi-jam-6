@@ -5,7 +5,7 @@ extends Node2D
 # ─────────────────────────────────────────
 
 const CHUNK_SIZE       := 64
-const VIEW_DISTANCE    := 14
+var VIEW_DISTANCE  : int = PlayerInfo.field_of_view
 const UNLOAD_MARGIN    := 1.5
 const CHUNKS_PER_FRAME := 4
 
@@ -42,6 +42,8 @@ func _on_tick() -> void:
 func _process(_delta: float) -> void:
 	if not _ready_done:
 		return
+
+	VIEW_DISTANCE  = PlayerInfo.field_of_view
 
 	var player := _get_player()
 	if not player:

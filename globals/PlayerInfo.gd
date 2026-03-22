@@ -2,6 +2,7 @@ extends Node
 
 var inventory: Array[Item]
 var kamas: int
+@export var field_of_view : int = 12 # should not be biger than 20
 #var ta_race_jsp
 
 # Called when the node enters the scene tree for the first time.

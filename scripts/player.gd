@@ -10,6 +10,13 @@ var bob_time: float = 0.0
 func _ready() -> void:
 	PlayerManager.player = self
 
+func _input(event):
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_O:
+			PlayerInfo.field_of_view -= 1
+		if event.keycode == KEY_P:
+			PlayerInfo.field_of_view += 1
+
 func _physics_process(delta):
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 

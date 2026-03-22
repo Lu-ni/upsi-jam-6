@@ -166,7 +166,7 @@ class _MarkerCanvas extends Node2D:
 
 	func _draw() -> void:
 		var r   := float(circle_radius)
-		var col := Color(1, 0, 0, 0.45)
+		var col := Color(1, 0, 0, 0.0)
 		var rim := Color(1, 0, 0, 1.0)
 		draw_circle(Vector2.ZERO, r, col)
 		draw_arc(Vector2.ZERO, r, 0.0, TAU, 48, rim, 2.0)
