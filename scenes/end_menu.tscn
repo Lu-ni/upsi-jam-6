@@ -41,7 +41,7 @@ offset_right = 718.0
 offset_bottom = 289.0
 theme_override_colors/font_color = Color(0.71159154, 0.27222577, 0.28619847, 1)
 theme_override_fonts/font = ExtResource("3_wqo5a")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 48
 text = "Your reign lasted: 10 min"
 
 [node name="Label3" type="Label" parent="." unique_id=358499025]
@@ -51,7 +51,7 @@ offset_right = 1007.0
 offset_bottom = 381.0
 theme_override_colors/font_color = Color(0.71159154, 0.27222577, 0.28619847, 1)
 theme_override_fonts/font = ExtResource("3_wqo5a")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 48
 text = "Your final score was: 10"
 
 [node name="Menu" type="Button" parent="." unique_id=49202278]
@@ -78,3 +78,13 @@ script = ExtResource("5_lnecb")
 position = Vector2(123.00003, 107)
 scale = Vector2(0.36725664, 0.3167939)
 texture = ExtResource("6_f4hmx")
+
+[node name="Label4" type="Label" parent="." unique_id=1705095104]
+modulate = Color(1, 0.16078432, 0, 1)
+offset_left = 159.0
+offset_top = 458.0
+offset_right = 292.0
+offset_bottom = 482.0
+rotation = 0.26434314
+text = "(click here) ->"
+horizontal_alignment = 1
