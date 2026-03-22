@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bxbwud5tu2yaq" path="res://scenes/Player.tscn" id="2_32lhk"]
 [ext_resource type="Script" uid="uid://dy3x8dnsttnr6" path="res://scripts/grass.gd" id="3_d1c63"]
 [ext_resource type="Script" uid="uid://cy7vir71vjy74" path="res://scripts/base_spawner.gd" id="4_1lgw5"]
-[ext_resource type="Script" uid="uid://dshn2t3lh7d6m" path="res://scripts/fog_of_war.gd" id="6_hlk0d"]
+[ext_resource type="Script" uid="uid://vo51cwpv0wdf" path="res://scripts/fog_of_war.gd" id="6_hlk0d"]
 
 [node name="World" type="Node2D" unique_id=1768956342]
 
